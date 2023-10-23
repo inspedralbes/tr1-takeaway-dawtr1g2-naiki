@@ -11,12 +11,26 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('table_sabates', function (Blueprint $table) {
+        Schema::create('sabates', function (Blueprint $table) {
             $table->id();
             $table->string("marca");
+            $table->string("model");
             $table->string("genere");
-            $table->string("tallas");
+            $table->string("talles");
             $table->string("color");
+            $table->string("imatge");
+        });
+
+        Schema::create('comanda', function (Blueprint $table) {
+            $table->id();
+            $table->string("marca");
+            $table->string("model");
+            $table->string("genere");
+            $table->string("talla");
+            $table->string("color");
+            $table->string("imatge");
+            $table->timestamp("hora");
+            $table->string("estat");
         });
     }
 
