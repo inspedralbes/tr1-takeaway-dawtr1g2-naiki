@@ -15,6 +15,8 @@ class ControllerSabates extends Controller
         $sabata->marca = $request->marca;
         $sabata->model = $request->model;
         $sabata->genere = $request->genere;
+        $sabata->preu = $request->preu;
+
         $sabata->talles = $request->talles;
         $sabata->color  = $request->color;  
         $sabata->imatge = $request->imatge;

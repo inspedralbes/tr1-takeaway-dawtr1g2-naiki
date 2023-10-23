@@ -11,19 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sabates', function (Blueprint $table) {
-            $table->id();
+        Schema::create('comanda', function (Blueprint $table) {
+            $table->integer('idComanda');
+            $table->integer("numItem");
             $table->string("marca");
             $table->string("model");
             $table->string("genere");
-            $table->integer("preu");
-            $table->string("talles");
+            $table->string("talla");
             $table->string("color");
             $table->string("imatge");
+            $table->integer("quantitat");
+            $table->timestamp("hora");
+            $table->string("estat");
+            $table->primary(['idComanda','numItem']);
+
             $table->timestamps();
 
         });
-        
     }
 
     /**
@@ -31,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('table_sabates');
+        Schema::dropIfExists('table_comanda');
     }
 };
