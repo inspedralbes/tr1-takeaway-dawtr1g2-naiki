@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string("talles");
             $table->string("color");
             $table->string("imatge");
+            $table->timestamps();
+
         });
 
         Schema::create('comanda', function (Blueprint $table) {
@@ -31,6 +33,8 @@ return new class extends Migration
             $table->string("imatge");
             $table->timestamp("hora");
             $table->string("estat");
+            $table->timestamps();
+
         });
     }
 
