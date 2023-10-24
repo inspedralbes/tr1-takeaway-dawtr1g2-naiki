@@ -3,42 +3,74 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+
     <title>Document</title>
 </head>
 
 <body>
+
+
     <div id="app">
-        <div id="portada" class="hidden">
-            <div class="container-portada">
-                <div v-if="mostrar('portada')">
-                    <h1>Listado de pelicula</h1>
-                    <button @click="getSabates()">Seccion Video Juegos</button>
-                </div>
-            </div>
+
+        <div v-if="divActivo == 'portada'">
+            <h1>NAIKI</h1>
+            <button @click="cambiar('tienda')">Iniciar</button>
+        </div>
+        <div v-if="divActivo == 'tienda'">
+            <ul id="lista">
+                <li v-for="(actual, index) in sabates">
+                    <img :src="actual.img" alt="">
+                    <h2>{{ actual.model }}</h2>
+                    <p>{{actual.color}}</p>
+                    <p>Preu/u: {{actual.preu}}€</p>
+
+                    <button @click="afegir(actual)">+</button>
+                </li>
+            </ul>
+
+            <ul id="carrito">
+                <h1>Carrito</h1>
+                <li v-for="(actual, index) in carrito">
+                    <h2>{{ actual.model }}</h2>
+                    <p>{{actual.color}}</p>
+                    <p>quantitat: {{actual.quantitat}}</p>
+                    <p>Preu/u: {{actual.preu}}€</p>
+    
+                    <button @click="eliminar(actual)">-</button>
+                </li>
+                <button id="btnCheckout" @click="cambiar('checkout')">Checkout</button>
+            </ul>
+    
         </div>
 
-            <div class="lista hidden" id="item-lista">
-                <div v-for="(actual, index) in sebates" :key="index">
-                    <li><img :src="juego.imagen"></li>
-                    <li>{{actual.model}}</li>
-                    <p>{{actual.color}}</p>
-                    <p>{{actual.preu}}</p>
-                    <button click="afegir(actual)">+</button>
-                    <button click="eliminar(actual)">-</button>
+        
+        <div v-if="divActivo == 'checkout'">
+            <div id="checkout">
+                <ul class="carrito">
+                    <h2>Carrito</h2>
+                    <li v-for="(actual, index) in carrito">
+                        <h2 :id="index">{{ actual.model }}</h2>
+                        <p>{{actual.color}}</p>
+                        <p>Quantitat: {{actual.quantitat}}</p>
+                        <p>Preu/u: {{actual.preu}}€</p>
+                        <p>Preu: {{actual.preu*actual.quantitat}}€</p>
     
-                </div>
+                    </li>
+                    <button @click="">Completar compra</button>
+                </ul>
+                <p id="total">Total: </p>
+    
             </div>
-            <div v-for="actual in juegoActual">
-                {{juegos[actual.id]}} -- {{actual.cantidad}} -- {{juegos[actual.id].precio*actual.cantidad}}€
-            </div>
+        </div>
         
     </div>
-    <script type="module" src="index.js"> </script>
+
+    <script src="js/functions.js" type="module"> </script>
+
 </body>
 
 </html>

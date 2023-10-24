@@ -1,24 +1,17 @@
-import { getSabates } from "./comunitiManager.js";
+import { getSabates } from "./communicatonManagar.js";
 
 const { createApp } = Vue
 
 createApp({
     data() {
         return {
-            divActivo: 'portada',  
+            divActivo: 'portada',
             sabates: [],
             carrito: localStorage.getItem("carrito")!=null?JSON.parse(localStorage.getItem("carrito")):[],
-            nCompra: 0
+            nCompra: 0,
         }
     },
     methods: {
-        getSabates() {
-            getJson().then(sabates => {
-                this.sabates = sabates;
-                console.log(this.sabates);
-                console.log("aa");
-            })  
-        },
         afegir(zapato) {
             const index = this.carrito.findIndex(element => element.model === zapato.model);
 
@@ -79,5 +72,16 @@ createApp({
         cambiar(nuevoDiv){
             this.divActivo=nuevoDiv;
         }
+
+    },
+    created() {
+       
+        
+        getSabates().then(sabates => {
+            this.sabates = sabates;
+            console.log(this.sabates);
+            console.log("aa");
+        })
+
     }
 }).mount("#app")
