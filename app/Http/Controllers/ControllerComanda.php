@@ -16,7 +16,7 @@ class ControllerComanda extends Controller
 
     public function createComanda(Request $request)
     {   
-        $sabata = DB::table('comandaS')
+        $sabata = DB::table('comandas')
                 ->latest()
                 ->first();
         if ($sabata != null){
