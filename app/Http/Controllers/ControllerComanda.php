@@ -26,13 +26,15 @@ class ControllerComanda extends Controller
             $idComanda = 0;
         }
         $numItem = 1;
-        $sabates = json_decode($request->getContent(), true);
+        $payload = json_decode($request->getContent(), true);
+        $sabates = $payload[1]["sabates"];
+        $email = $payload[0]["email"];
         foreach ($sabates as $sabata) {
             $comanda = new Comanda();
             $comanda->idComanda = $idComanda;
             $comanda->numItem = $numItem;
             $numItem++;
-            //dd($sabata);
+            $comanda->usuari = $email;
             $comanda->marca  = $sabata["marca"];
             $comanda->model =  $sabata["model"];
             $comanda->genere =  $sabata["genere"];

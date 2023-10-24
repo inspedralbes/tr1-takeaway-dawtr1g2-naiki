@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('comandas', function (Blueprint $table) {
             $table->integer('idComanda');
             $table->integer("numItem");
+            $table->string("usuari");
             $table->string("marca");
             $table->string("model");
             $table->string("genere");
