@@ -53,16 +53,6 @@ createApp({
                 document.getElementById("lista").className ="hidden";
                 document.getElementById("carrito").className ="hidden";
                 document.getElementById("checkout").className = "";
-                localStorage.clear();
-                const response = fetch("http://localhost:8000/api/comanda", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(this.carrito),
-                });
-                console.log(JSON.stringify(this.carrito))
-                console.log(response);
             }
         },
         mostrar(idDiv){
@@ -71,6 +61,35 @@ createApp({
         },
         cambiar(nuevoDiv){
             this.divActivo=nuevoDiv;
+        },
+
+        completar(){
+            let payload = [{email:"loriscrisafo"},{sabates:this.carrito}];
+            localStorage.clear();
+            const response = fetch("http://localhost:8000/api/comanda", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(payload),
+            });
+            console.log( JSON.stringify(payload))
+            console.log(response);
+        },
+
+        cesta(){
+            let openShopping = document.querySelector('.shopping');
+            let closeShopping = document.querySelector('.closeShopping');
+
+
+            openShopping.addEventListener('click', ()=>{
+                body.classList.add('active');
+            })
+            
+            closeShopping.addEventListener('click', ()=>{
+                body.classList.remove('active');
+
+            })
         }
 
     },

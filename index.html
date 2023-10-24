@@ -20,7 +20,27 @@
             <h1>NAIKI</h1>
             <button @click="cambiar('tienda')">Iniciar</button>
         </div>
+
+
+
         <div v-if="divActivo == 'tienda'">
+            <div class="container-cesta">
+                <header>
+                    <h1>NAIKI</h1>
+                    <div class="shopping">
+                        <img src="imagen/carrito.png">
+                        <span class="cuantitat">0</span>
+                    </div>
+                </header>
+                <div class="lista"></div>
+                <div class="cesta">
+                    <h1>Carrito</h1>
+                    <div class="checkOut">
+                        <div class="total">0</div>
+                        <div class="closeShopping">Close</div>
+                    </div>
+                </div>
+            </div>
             <ul id="lista">
                 <li v-for="(actual, index) in sabates">
                     <img :src="actual.img" alt="">
