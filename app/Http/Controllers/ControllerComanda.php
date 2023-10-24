@@ -16,7 +16,7 @@ class ControllerComanda extends Controller
 
     public function createComanda(Request $request)
     {   
-        $sabata = DB::table('comanda')
+        $sabata = DB::table('comandaS')
                 ->latest()
                 ->first();
         if ($sabata != null){
@@ -26,18 +26,20 @@ class ControllerComanda extends Controller
             $idComanda = 0;
         }
         $numItem = 1;
-        foreach ($request->sabates as $sabata) {
+        $sabates = json_decode($request->getContent(), true);
+        foreach ($sabates as $sabata) {
             $comanda = new Comanda();
             $comanda->idComanda = $idComanda;
             $comanda->numItem = $numItem;
             $numItem++;
-            $comanda->marca = $sabata->marca;
-            $comanda->model = $sabata->model;
-            $comanda->genere = $sabata->genere;
-            $comanda->talla = $sabata->talla;
-            $comanda->imatge = $sabata->imatge;
-            $comanda->color = $sabata->color;
-            $comanda->quantitat = $sabata->quantitat;
+            //dd($sabata);
+            $comanda->marca  = $sabata["marca"];
+            $comanda->model =  $sabata["model"];
+            $comanda->genere =  $sabata["genere"];
+            $comanda->talla =  $sabata["talla"];
+            $comanda->imatge =  $sabata["imatge"];
+            $comanda->color =  $sabata["color"];
+            $comanda->quantitat =  $sabata["quantitat"];
             $comanda->estat = "En preparacio";
             $comanda->save();
 

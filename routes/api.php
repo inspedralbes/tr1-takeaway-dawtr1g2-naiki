@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ControllerComanda;
 use App\Http\Controllers\ControllerSabates;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,4 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/sabates', [ControllerSabates::class, 'getSabates']);
 Route::post('/sabates', [ControllerSabates::class, 'createSabates']);
-Route::post('/comanda', [ControllerSabates::class, 'createComanda']);
+Route::post('/comanda', [ControllerComanda::class, 'createComanda']);
