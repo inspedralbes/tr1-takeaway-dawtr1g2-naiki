@@ -4,9 +4,7 @@ body {
     max-width: 98vw;
 
 }
-.titol{
-    margin-top: 0;
-}
+
 
 .afegir,.eliminar{
     margin-bottom: 5vh;
@@ -181,5 +179,32 @@ margin-right: auto;
 width: 100%;
 background-color: #007BFF;
 }
+
+.portada {
+    background: url("imagen/portada.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    overflow: hidden;
+    width: 50vh;
+    height: 100vh;
+}
+
+.container-portada{
+    width: 400px;
+    height: 250px;
+    border-radius: 6px;
+    box-shadow: 0 10px 30px #000;
+    margin: 200px auto;
+    border: 1px solid #ffffff40;
+    text-align: center;
+
+}
+.titol {
+    font-size: 36px;
+    margin: 0;
+    text-align: center;
+    justify-content: center;
+}
+
 
 
