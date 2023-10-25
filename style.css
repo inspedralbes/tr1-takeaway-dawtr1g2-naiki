@@ -4,13 +4,19 @@ body {
     max-width: 98vw;
 
 }
+.titol{
+    margin-top: 0;
+}
 
-
-
+.afegir,.eliminar{
+    margin-bottom: 5vh;
+    width: 50%;
+}
 header{
     display: grid;
-    grid-template-columns: 1fr 50px;
+    grid-template-columns: 1fr 40px;
     margin-top: 5vh;
+    width: 94vw;
 }
 .closeShopping{
     position: absolute;
@@ -20,7 +26,8 @@ header{
     font-size: 0.8cm;
 }
 header .shopping{
-    position: relative;
+    position: fixed;
+    right: 6vw;
     text-align: right;
 }
 
@@ -51,15 +58,19 @@ header .shopping span{
 
 .cesta{
     position: fixed;
-    top: 13vh;
+    top:0;
     right: -100%;
     width: 98vw;
     max-width: 500px;
     max-height: 100vh;
-    background-color: #453E3B;
+    background-color:  grey;;
+    border: grey;
     transition: 0.5s;
     text-align: center;
     overflow: scroll;
+}
+.cesta::-webkit-scrollbar{
+    display: none;
 }
 .cesta h1{
     color: #fff;
@@ -70,10 +81,14 @@ header .shopping span{
     display: flex;
     align-items: center;
 }
-
+.cesta .item:last-child{
+    margin-bottom: 10vh;
+}
 .cesta .checkOut{
-
+    
     width: 100%;
+    position: sticky;
+    top: 95vh;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     height: 5vh;
@@ -90,10 +105,11 @@ header .shopping span{
     font-weight: bold;
     cursor: pointer;
 }
-.cesta li{
+.cesta .item{
     float: none;
     margin-left: auto;
     margin-right: auto;
+    background-color: #E3E7E8;
 }
 .cesta .checkOut div:nth-child(2){
     background-color: #1C1F25;
@@ -109,33 +125,36 @@ button {
     background-color: #007BFF;
     color: #fff;
     border: none;
-    padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    margin-bottom: 0;
 }
 
 .button:hover {
     background-color: #0056b3;
 }
 
-li{
-    text-align: center;
-    background-color: #DCE0E1;
+.item{
+    
     padding: 20px;
-    box-shadow: 0 20px 20px #757676;
     letter-spacing: 1px;
     float: left;
-    margin: 5%;
-    border: 1px solid;
     list-style: none;
-    width: 120px;
-    height: 200px;
     text-align: center;
+    min-height: 300px;
+    max-height: fit-content;
+    width: 35vw;
+    margin-left: 0;
+    margin-right: 4vw;
+    margin-bottom: 3vh;
+    
 }
 
+
 #llista{
-    width: 60%;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 5vh;
+    margin-left: 0;
+    width: 100vw;
 }
 #carrito{
     margin-top: 10%;
@@ -149,4 +168,14 @@ li{
 #checkout .total{
     font-size: 1cm;
 }
+.item__model{
+    margin: 0;
+}
+.item__img{
+margin-left: auto;
+margin-right: auto;
+width: 100%;
+background-color: #007BFF;
+}
+
 
