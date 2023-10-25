@@ -24,7 +24,6 @@
 
 
         <div v-if="divActivo == 'tienda'">
-            <div class="container-cesta">
                 <header>
                     <h1>NAIKI</h1>
                     <div @click="cesta()" class="shopping">
@@ -32,7 +31,7 @@
                         <span class="cuantitat">{{this.nItems}}</span>
                     </div>
                 </header>
-                <div class="lista"></div>
+
                 <div class="cesta">
                     <h1>Carrito</h1>                        
                     <button class="closeShopping">X</button>
@@ -52,7 +51,7 @@
 
 
                     </div>
-                </div>
+                
             </div>
             <ul id="lista">
                 <li v-for="(actual, index) in sabates">
