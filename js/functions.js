@@ -64,34 +64,38 @@ createApp({
         },
 
         completar() {
-            let payload = [{ email: "loriscrisafo" }, { sabates: this.carrito }];
-            localStorage.clear();
-            const response = fetch("http://localhost:8000/api/comanda", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(payload),
-            });
-            console.log(JSON.stringify(payload))
-            console.log(response);
+            let user = document.getElementById("emailUser").value;
+            console.log(user);
+            if (user != null) {
+                let payload = [{ email: user }, { sabates: this.carrito }];
+                localStorage.clear();
+                const response = fetch("http://localhost:8000/api/comanda", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(payload),
+                });
+                console.log(JSON.stringify(payload))
+                console.log(response);
+            }
         },
 
         cesta() {
             let openShopping = document.querySelector('.shopping');
             let closeShopping = document.querySelector('.closeShopping');
-             let cesta = document.querySelector(".cesta-active")
-          
+            let cesta = document.querySelector(".cesta-active")
 
-                openShopping.addEventListener('click', () => {
-                    document.querySelector(".cesta").classList.add("cesta-active");
-                })
-    
-                closeShopping.addEventListener('click', () => {
-                    document.querySelector(".cesta").classList.remove("cesta-active");
-    
-                })
-            
+
+            openShopping.addEventListener('click', () => {
+                document.querySelector(".cesta").classList.add("cesta-active");
+            })
+
+            closeShopping.addEventListener('click', () => {
+                document.querySelector(".cesta").classList.remove("cesta-active");
+
+            })
+
         }
 
     },

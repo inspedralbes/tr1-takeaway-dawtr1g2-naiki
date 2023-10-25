@@ -169,6 +169,9 @@ button {
 #checkout .total{
     font-size: 1cm;
 }
+.checkout__lista{
+    width: 60%;
+}
 .item__model{
     margin: 0;
 }

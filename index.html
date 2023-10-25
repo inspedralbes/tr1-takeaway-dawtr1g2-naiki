@@ -6,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
 
     <title>Document</title>
@@ -25,68 +27,70 @@
 
 
         <div v-if="divActivo == 'tienda'">
-                <header>
-                    <h1>NAIKI</h1>
-                    <div @click="cesta()" class="shopping">
-                        <img src="imagen/carrito.png">
-                        <span class="cuantitat">{{this.nItems}}</span>
-                    </div>
-                </header>
+            <header>
+                <h1>NAIKI</h1>
+                <div @click="cesta()" class="shopping">
+                    <img src="imagen/carrito.png">
+                    <span class="cuantitat">{{this.nItems}}</span>
+                </div>
+            </header>
 
-                <div class="cesta">
-                    <h1>Carrito</h1>                        
-                    <button class="closeShopping">X</button>
-                    <div class="cesta__checkOut checkOut">          
-                        <div class="total">{{this.total}} € </div>
-                        <button id="btnCheckout" @click="cambiar('checkout')">Checkout</button>
-                    </div>
-                    <div class="cesta__item item" v-for="(actual, index) in carrito">
-                        <img class="item__img" :src="actual.img" height="184" width="184" alt="">
-                        <h2 class="item__model">{{ actual.model }}</h2>
-                            <p class="item__color">{{actual.color}}</p>
-                            <p class="item__quantitat">quantitat: {{actual.quantitat}}</p>
-                            <p class="item__preu">Preu/u: {{actual.preu}}€</p>
-                        
-                        <button class="eliminar" @click="eliminar(actual)">Treure</button>
-                    </div>
-                    
-                
+            <div class="cesta">
+                <h1>Carrito</h1>
+                <button class="closeShopping">X</button>
+                <div class="cesta__checkOut checkOut">
+                    <div class="total">{{this.total}} € </div>
+                    <button id="btnCheckout" @click="cambiar('checkout')">Checkout</button>
+                </div>
+                <div class="cesta__item item" v-for="(actual, index) in carrito">
+                    <img class="item__img" :src="actual.img" height="184" width="184" alt="">
+                    <h2 class="item__model">{{ actual.model }}</h2>
+                    <p class="item__color">{{actual.color}}</p>
+                    <p class="item__quantitat">quantitat: {{actual.quantitat}}</p>
+                    <p class="item__preu">Preu/u: {{actual.preu}}€</p>
+
+                    <button class="eliminar" @click="eliminar(actual)">Treure</button>
+                </div>
+
+
             </div>
             <div id="lista">
                 <div class="llista__item item" v-for="(actual, index) in sabates">
                     <img class="item__img" :src="actual.img" height="184" width="184" alt="">
                     <h2 class="item__model">{{ actual.model }}</h2>
-                        <p class="item__color">{{actual.color}}</p>
-                        <p class="item__preu">Preu/u: {{actual.preu}}€</p>
+                    <p class="item__color">{{actual.color}}</p>
+                    <p class="item__preu">Preu/u: {{actual.preu}}€</p>
 
                     <button @click="afegir(actual)" class="afegir">Afegir</button>
                 </div>
             </div>
 
-            
-    
+
+
         </div>
 
-        
+
         <div v-if="divActivo == 'checkout'">
             <div id="checkout">
-                <ul class="carrito">
-                    <h2>Carrito</h2>
-                    <li v-for="(actual, index) in carrito">
-                        <h2 :id="index">{{ actual.model }}</h2>
-                        <p>{{actual.color}}</p>
-                        <p>Quantitat: {{actual.quantitat}}</p>
-                        <p>Preu/u: {{actual.preu}}€</p>
-                        <p>Preu: {{actual.preu*actual.quantitat}}€</p>
-    
-                    </li>
-                    <button @click="completar">Completar compra</button>
-                </ul>
+                <div class="checkout__lista">
+                    <div class="item" v-for="(actual, index) in carrito">
+                        <img class="item__img" :src="actual.img" height="184" width="184" alt="">
+                        <h2 class="item__model">{{ actual.model }}</h2>
+                        <p class="item__color">{{actual.color}}</p>
+                        <p class="item__quantitat">quantitat: {{actual.quantitat}}</p>
+                        <p class="item__preu">Preu/u: {{actual.preu}}€</p>
+
+                        <button class="eliminar" @click="eliminar(actual)">Treure</button>
+                    </div>
+                </div>
                 <p class="total">Total: {{this.total}} € </p>
-    
+                
+                    <input type="email" required id="emailUser">
+                    <button @click="completar">Completar compra</button>
+                
             </div>
         </div>
-        
+
     </div>
 
     <script src="js/functions.js" type="module"> </script>
