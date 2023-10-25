@@ -49,8 +49,14 @@
             <button @click="limpiarCesta">Vaciar Cesta</button>
             <button @click="mostrarBotiga">Continuar Comprando</button>
             <button @click="realizarCompra">Realizar Compra</button>
+            
         </div>
-
+        
+        <div id="checkout-form" style="display: none;">
+            <h3>Información de envío</h3>
+            <form @submit.prevent="procesarCompra">
+            </form>
+        </div>
         <!-- Página de Modal Login -->
         <div v-if="mostrarModalCorreo" class="modal">
             <div class="modal-contenido">

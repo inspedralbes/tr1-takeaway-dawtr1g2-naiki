@@ -1,24 +1,129 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f1f1f1;
+}
+
+#app {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Contenedor de productos */
 .productos-container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 
+/* Estilos de productos */
 .producto {
-    width: 200px; /* Ancho de cada producto */
-    padding: 10px;
+    width: calc(33.33% - 20px);
     margin: 10px;
-    border: 1px solid #ccc; /* Borde para cada producto */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
-.portada {
-    height: 50vh; /* Altura de la pantalla completa */
-    display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
+
+.producto h3 {
+    margin-bottom: 10px;
 }
 
-.contenido-centrado {
-    text-align: center; /* Centra el contenido horizontalmente */
+.producto p {
+    margin: 5px 0;
+}
+
+/* Botones de productos */
+.producto button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Listas en el carrito de compras */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+/* Botones en el carrito de compras */
+li button {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+li button:hover {
+    background-color: #c82333;
+}
+
+.checkout form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.checkout label, .checkout input {
+    margin: 10px 0;
+}
+
+.checkout input {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 300px;
+}
+
+.checkout button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.checkout button:hover {
+    background-color: #0056b3;
+}
+@media (max-width: 768px) {
+    .productos-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .producto {
+        width: calc(50% - 20px);
+    }
+}
+@media (max-width: 480px) {
+    .producto {
+        width: 100%;
+    }
 }
 .modal {
     display: flex;
