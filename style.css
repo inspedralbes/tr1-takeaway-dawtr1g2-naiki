@@ -15,7 +15,13 @@ header{
     margin-top: 50px;
 
 }
-
+.closeShopping{
+    position: absolute;
+    top: 1vh;
+    color: white;
+    right: 1vw;
+    font-size: 0.8cm;
+}
 header .shopping{
     position: relative;
     text-align: right;
@@ -51,9 +57,11 @@ header .shopping span{
     top: 0;
     left: 100%;
     width: 500px;
+    max-height: 100vh;
     background-color: #453E3B;
-    height: 100vh;
     transition: 0.5s;
+    text-align: center;
+    overflow: scroll;
 }
 .cesta h1{
     color: #fff;
@@ -66,28 +74,35 @@ header .shopping span{
 }
 
 .cesta .checkOut{
-    position: absolute;
-    bottom: 0;
+
     width: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    height: 5vh;
+
+    text-align: center;
 }
 .cesta .checkOut div{
     background-color: #54a6fd;
     width: 100%;
-    height: 70%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: bold;
     cursor: pointer;
 }
+.cesta li{
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+}
 .cesta .checkOut div:nth-child(2){
     background-color: #1C1F25;
     color: #fff;
 }
 .active .cesta{
-    left: calc(100% - 500px);
+    left: calc(100% - 15vw);
 }
 
 .active .container-cesta{
@@ -139,6 +154,6 @@ li{
 .hidden{
     display: none;
 }
-#total{
+#checkout .total{
     font-size: 1cm;
 }

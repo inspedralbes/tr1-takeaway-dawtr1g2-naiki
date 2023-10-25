@@ -29,23 +29,28 @@
                     <h1>NAIKI</h1>
                     <div @click="cesta()" class="shopping">
                         <img src="imagen/carrito.png">
-                        <span class="cuantitat">{{this.carrito.length}}</span>
+                        <span class="cuantitat">{{this.nItems}}</span>
                     </div>
                 </header>
                 <div class="lista"></div>
                 <div class="cesta">
-                    <h1>Carrito</h1>
+                    <h1>Carrito</h1>                        
+                    <button class="closeShopping">X</button>
+
+                    <li v-for="(actual, index) in carrito">
+                        <h2>{{ actual.model }}</h2>
+                        <p>{{actual.color}}</p>
+                        <p>quantitat: {{actual.quantitat}}</p>
+                        <p>Preu/u: {{actual.preu}}€</p>
+        
+                        <button @click="eliminar(actual)">-</button>
+                    </li>
                     <div class="checkOut">
-                        <li v-for="(actual, index) in carrito">
-                            <h2>{{ actual.model }}</h2>
-                            <p>{{actual.color}}</p>
-                            <p>quantitat: {{actual.quantitat}}</p>
-                            <p>Preu/u: {{actual.preu}}€</p>
-            
-                            <button @click="eliminar(actual)">-</button>
-                        </li>
-                        <div class="total">0</div>
-                        <div class="closeShopping">Close</div>
+                        
+                        <div class="total">{{this.total}} € </div>
+                        <button id="btnCheckout" @click="cambiar('checkout')">Checkout</button>
+
+
                     </div>
                 </div>
             </div>
@@ -70,7 +75,6 @@
     
                     <button @click="eliminar(actual)">-</button>
                 </li>
-                <button id="btnCheckout" @click="cambiar('checkout')">Checkout</button>
             </ul>
     
         </div>
@@ -90,7 +94,7 @@
                     </li>
                     <button @click="">Completar compra</button>
                 </ul>
-                <p id="total">Total: </p>
+                <p class="total">Total: {{this.total}} € </p>
     
             </div>
         </div>

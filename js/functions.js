@@ -7,8 +7,10 @@ createApp({
         return {
             divActivo: 'portada',
             sabates: [],
-            carrito: localStorage.getItem("carrito")!=null?JSON.parse(localStorage.getItem("carrito")):[],
+            carrito: localStorage.getItem("carrito") != null ? JSON.parse(localStorage.getItem("carrito")) : [],
             nCompra: 0,
+            total: 0,
+            nItems: 0,
         }
     },
     methods: {
@@ -26,45 +28,43 @@ createApp({
                 this.carrito[index].quantitat++;
             }
             localStorage.setItem("carrito", JSON.stringify(this.carrito));
-
+            this.total += zapato.preu;
+            this.nItems++;
         },
         eliminar(zapato) {
             const index = this.carrito.findIndex(element => element.model === zapato.model);
             this.carrito[index].quantitat--;
-            if (this.carrito[index].quantitat == 0){
-                this.carrito.splice(index,1);
+            if (this.carrito[index].quantitat == 0) {
+                this.carrito.splice(index, 1);
             }
             localStorage.setItem("carrito", JSON.stringify(this.carrito));
+            this.total -= zapato.preu;
+            this.nItems--;
+
 
         },
-        checkout(){
-            if (this.carrito.length == 0){
+        checkout() {
+            if (this.carrito.length == 0) {
                 alert("Carrito vacio");
-            }else{
-                let total = 0;
-                for (let index = 0; index < this.carrito.length; index++) {
-                    const element = this.carrito[index];
-                    total += element.preu * element.quantitat;
+            } else {
 
-                }
-                document.getElementById("total").innerHTML += total+"€";
 
                 document.getElementById("btnCheckout").className = "hidden";
-                document.getElementById("lista").className ="hidden";
-                document.getElementById("carrito").className ="hidden";
+                document.getElementById("lista").className = "hidden";
+                document.getElementById("carrito").className = "hidden";
                 document.getElementById("checkout").className = "";
             }
         },
-        mostrar(idDiv){
-            if (this.divActivo==idDiv) return true;
+        mostrar(idDiv) {
+            if (this.divActivo == idDiv) return true;
             else return false;
         },
-        cambiar(nuevoDiv){
-            this.divActivo=nuevoDiv;
+        cambiar(nuevoDiv) {
+            this.divActivo = nuevoDiv;
         },
 
-        completar(){
-            let payload = [{email:"loriscrisafo"},{sabates:this.carrito}];
+        completar() {
+            let payload = [{ email: "loriscrisafo" }, { sabates: this.carrito }];
             localStorage.clear();
             const response = fetch("http://localhost:8000/api/comanda", {
                 method: "POST",
@@ -73,20 +73,20 @@ createApp({
                 },
                 body: JSON.stringify(payload),
             });
-            console.log( JSON.stringify(payload))
+            console.log(JSON.stringify(payload))
             console.log(response);
         },
 
-        cesta(){
+        cesta() {
             let openShopping = document.querySelector('.shopping');
             let closeShopping = document.querySelector('.closeShopping');
 
 
-            openShopping.addEventListener('click', ()=>{
+            openShopping.addEventListener('click', () => {
                 document.body.classList.add('active');
             })
-            
-            closeShopping.addEventListener('click', ()=>{
+
+            closeShopping.addEventListener('click', () => {
                 document.body.classList.remove('active');
 
             })
@@ -94,13 +94,18 @@ createApp({
 
     },
     created() {
-       
-        
+
+
         getSabates().then(sabates => {
             this.sabates = sabates;
             console.log(this.sabates);
-            console.log("aa");
         })
+
+        for (let index = 0; index < this.carrito.length; index++) {
+            const element = this.carrito[index];
+            this.total += element.preu * element.quantitat;
+            this.nItems += element.quantitat;
+        }
 
     }
 }).mount("#app")
