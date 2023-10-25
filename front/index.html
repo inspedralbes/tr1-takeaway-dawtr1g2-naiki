@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAIK</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="app">
+        <div v-if="paginaActual === 'portada'" class="portada">
+            <div class="contenido-centrado">
+                <h1>Benvinguts a la Tenda</h1>
+                <button @click="mostrarBotiga">Botiga</button>
+            </div>
+        </div>
+        <div v-if="paginaActual === 'botiga'">
+            <h2>Botiga</h2>
+            <div class="productos-container">
+                <div v-for="(producto, index) in productos" :key="index" class="producto">
+                    <h3>{{ producto.nombre }}</h3>
+                    <p>Precio: ${{ producto.precio }}</p>
+                    <p>Talla: {{ producto.talla }}</p>
+                    <p>Color: {{ producto.color }}</p>
+                    <button @click="agregarAlCarrito(producto)">Agregar al Carrito</button>
+                </div>
+            </div>
+            <button @click="mostrarCheckout">Ir al Checkout</button>
+        </div>
+
+        <!-- Página de Checkout -->
+        <div v-if="paginaActual === 'checkout'">
+            <h2>Cesta de la compra</h2>
+            <div v-if="carrito.length > 0">
+                <h3>Producto</h3>
+                <ul>
+                    <li v-for="(producto, index) in carrito" :key="index">
+                        <h4>{{ producto.nombre }}</h4>
+                        <p>Precio: ${{ producto.precio }}</p>
+                        <p>Cantidad: {{ producto.cantidad }}</p> <!-- Aquí muestra la cantidad del producto -->
+                        <button @click="eliminarProducto(producto)">Eliminar producto</button>
+                    </li>
+                </ul>
+            </div>
+            <p>Total del Carrito: ${{ calcularTotalCarrito() }}</p> <!-- Llama al método para mostrar el total -->
+            <button @click="limpiarCesta">Vaciar Cesta</button>
+            <button @click="mostrarBotiga">Continuar Comprando</button>
+            <button @click="realizarCompra">Realizar Compra</button>
+        </div>
+
+        <!-- Página de Modal Login -->
+        <div v-if="mostrarModalCorreo" class="modal">
+            <div class="modal-contenido">
+                <h2>Ingrese su correo</h2>
+                <input type="text" v-model="correo"> <!-- Campo de entrada para el correo -->
+                <button @click="guardarCorreoYContinuar">Guardar</button>
+            </div>
+        </div>
+
+        <!-- Página de compra confirmada -->
+        <div v-if="paginaActual === 'compraConfirm'">
+            <div class="modal-contenido">
+                <h2>Compra Ralizada corretamente</h2>
+                <button @click="mostrarBotiga">Continuar Comprando</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="zapatillas.js"></script>
+</body>
+
+</html>
