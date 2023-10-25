@@ -27,15 +27,23 @@
             <div class="container-cesta">
                 <header>
                     <h1>NAIKI</h1>
-                    <div class="shopping">
+                    <div @click="cesta()" class="shopping">
                         <img src="imagen/carrito.png">
-                        <span class="cuantitat">0</span>
+                        <span class="cuantitat">{{this.carrito.length}}</span>
                     </div>
                 </header>
                 <div class="lista"></div>
                 <div class="cesta">
                     <h1>Carrito</h1>
                     <div class="checkOut">
+                        <li v-for="(actual, index) in carrito">
+                            <h2>{{ actual.model }}</h2>
+                            <p>{{actual.color}}</p>
+                            <p>quantitat: {{actual.quantitat}}</p>
+                            <p>Preu/u: {{actual.preu}}€</p>
+            
+                            <button @click="eliminar(actual)">-</button>
+                        </li>
                         <div class="total">0</div>
                         <div class="closeShopping">Close</div>
                     </div>

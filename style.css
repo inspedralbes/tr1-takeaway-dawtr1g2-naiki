@@ -91,7 +91,7 @@ header .shopping span{
 }
 
 .active .container-cesta{
-    transform: translateX(-200px);
+    transform: translateX(0);
 }
 .container-cesta{
     width: 1000px;

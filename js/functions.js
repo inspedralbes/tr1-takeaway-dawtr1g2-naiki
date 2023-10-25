@@ -83,11 +83,11 @@ createApp({
 
 
             openShopping.addEventListener('click', ()=>{
-                body.classList.add('active');
+                document.body.classList.add('active');
             })
             
             closeShopping.addEventListener('click', ()=>{
-                body.classList.remove('active');
+                document.body.classList.remove('active');
 
             })
         }
