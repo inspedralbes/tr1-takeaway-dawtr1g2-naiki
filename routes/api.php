@@ -23,3 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/sabates', [ControllerSabates::class, 'getSabates']);
 Route::post('/sabates', [ControllerSabates::class, 'createSabates']);
 Route::post('/comanda', [ControllerComanda::class, 'createComanda']);
+Route::get('/comanda', [ControllerComanda::class, 'getComanda']);
