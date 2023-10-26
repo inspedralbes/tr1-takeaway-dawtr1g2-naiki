@@ -226,7 +226,34 @@ button {
     text-align: center;
   }
 
+.checkout{
+    display: flex;
+}
   .checkout form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.checkout label, .checkout input {
+    margin: 10px 0;
+}
+
+.checkout input {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 300px;
+}
+#checkout-total{
+    font-size: 0.8cm;
+}
+
+.checkout button:hover {
+    background-color: #0056b3;
+}
+.checkout form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -248,11 +275,15 @@ button {
     background-color: #007bff;
     color: #fff;
     border: none;
-    padding: 10px 20px;
+    padding: 10px ;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
     margin-top: 20px;
+
+}
+#checkout-buttons button{
+    margin: 5px;
 }
 
 .checkout button:hover {

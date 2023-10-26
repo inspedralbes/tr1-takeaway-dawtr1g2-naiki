@@ -87,9 +87,17 @@ createApp({
                 this.total = 0;
             }
         },
+        mostrarBotiga(){
+            this.divActivo = "tienda";
+        },
         completar() {
             this.mostrarModalCorreo = true;
             
+        },
+        limpiarCesta(){
+            this.carrito = []
+            this.nItems = [];
+            this.total = 0;
         },
 
         cesta() {

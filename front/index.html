@@ -47,7 +47,7 @@
                     <button id="btnCheckout" @click="cambiar('checkout')">Checkout</button>
                 </div>
                 <div class="cesta__item item" v-for="(actual, index) in carrito">
-                    <img class="item__img" :src="actual.img" height="184" width="184" alt="">
+                    <img class="item__img" :src="actual.imatge" height="184" width="184" alt="">
                     <h2 class="item__model">{{ actual.model }}</h2>
                     <p class="item__color">{{actual.color}}</p>
                     <p class="item__quantitat">quantitat: {{actual.quantitat}}</p>
@@ -60,7 +60,7 @@
             </div>
             <div id="lista">
                 <div class="llista__item item" v-for="(actual, index) in sabates">
-                    <img class="item__img" :src="actual.img" height="184" width="184" alt="">
+                    <img class="item__img" :src="actual.imatge" height="184" width="184" alt="">
                     <h2 class="item__model">{{ actual.model }}</h2>
                     <p class="item__color">{{actual.color}}</p>
                     <p class="item__preu">Preu/u: {{actual.preu}}€</p>
@@ -72,28 +72,34 @@
 
         </div>
 
-        <div v-if="divActivo == 'checkout'">
-            <div class="item" v-for="(actual, index) in carrito">
-                <img class="item__img" :src="actual.img" height="184" width="184" alt="">
-                <h2>{{ actual.model }}</h2>
-                <p>{{actual.color}}</p>
-                <p>quantitat: {{actual.quantitat}}</p>
-                <p>Preu/u: {{actual.preu}}€</p>
+        <div v-if="divActivo === 'checkout'" class="checkout-container checkout">
+            <div v-if="carrito.length > 0">
+                <h2>Cesta de la compra</h2>
+                <h3>Producto</h3>
+                <ul>
+                    <div v-for="(actual, index) in carrito" :key="index" class="item">
+                        <img class="item__img" :src="actual.imatge" height="184" width="184" alt="">
+                        <h4>{{ actual.model }}</h2>
+                        <p>{{actual.color}}</p>
+                        <p>Quantitat: {{actual.quantitat}}</p>
+                        <p>Preu/u: {{actual.preu}}€</p>
+                        <button class="eliminar" @click="eliminar(actual)">Treure</button>
+                    </li>
+                </ul>
 
-                <button class="eliminar" @click="eliminar(actual)">Treure</button>
+                
             </div>
+            <div id="checkout-buttons">
+                <p id="checkout-total">Total del Carrito: ${{this.total}}</p>
 
-            <p class="total">Total: {{this.total}} € </p>
-
-            <!--<input type="email" required id="emailUser">-->
-            <button @click="completar()">Completar compra</button>
-
-            <div id="checkout-form" style="display: none;">
-                <h3>Información de envío</h3>
-                <form @submit.prevent="procesarCompra">
-                </form>
+                <button  v-if="carrito.length > 0" @click="completar">Realizar Compra</button>
+                <button v-if="carrito.length > 0" @click="limpiarCesta">Limpiar cesta de compra</button>
+                <button @click="mostrarBotiga">Continuar Comprando</button>
             </div>
         </div>
+
+    
+            
         <!-- Página de Modal Login -->
         <div v-if="mostrarModalCorreo" class="modal">
             <div class="modal-contenido">
