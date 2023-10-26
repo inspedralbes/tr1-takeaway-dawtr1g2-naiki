@@ -67,9 +67,6 @@ createApp({
             // Guarda el correo ingresado y realiza la acción necesaria
             this.mostrarModalCorreo = false; // Cierra el modal
             this.divActivo = nuevoDiv; // Muestra la pagina de compra realizada
-        },
-        completar() {
-            this.mostrarModalCorreo = true;
             let user = document.getElementById("emailUser").value;
             console.log(user);
             if (user != null) {
@@ -84,7 +81,15 @@ createApp({
                 });
                 console.log(JSON.stringify(payload))
                 console.log(response);
+                localStorage.clear();
+                this.carrito = [];
+                this.nItems = 0;
+                this.total = 0;
             }
+        },
+        completar() {
+            this.mostrarModalCorreo = true;
+            
         },
 
         cesta() {

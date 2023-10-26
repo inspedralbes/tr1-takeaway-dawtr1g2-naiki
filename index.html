@@ -98,7 +98,7 @@
         <div v-if="mostrarModalCorreo" class="modal">
             <div class="modal-contenido">
                 <h2>Ingrese su correo</h2>
-                <input type="text" v-model="correo"> <!-- Campo de entrada para el correo -->
+                <input type="text" v-model="correo" id="emailUser"> <!-- Campo de entrada para el correo -->
                 <button @click="guardarCorreoYContinuar('compraConfirm')">Guardar</button>
             </div>
         </div>
