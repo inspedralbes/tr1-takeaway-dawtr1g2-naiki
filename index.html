@@ -23,7 +23,7 @@
             <div class="portada">
                 <div class="container-portada">
                     <h1 class="titol">NAIKI</h1>
-                    <button @click="cambiar('tienda')">Iniciar</button>
+                    <button class="boton__portada" @click="cambiar('tienda')">Iniciar</button>
                 </div>
             </div>
         </div>
@@ -32,7 +32,20 @@
 
         <div v-if="divActivo == 'tienda'">
             <header>
-                <h1>NAIKI</h1>
+                <img src="/imagen/NAIKI.png" class="imagen__logo">
+                <nav>
+                    <ul>
+                      <li class="sub-menu-parent" tab-index="0">
+                        <a href="#">Home</a>
+                      </li>
+                      <li class="sub-menu-parent" tab-index="0">
+                        <a href="#">Done</a>
+                      </li>
+                      <li class="sub-menu-parent" tab-index="0">
+                        <a href="#">Nen/a</a>
+                    </li>
+                    </ul>
+                  </nav>
                 <div @click="cesta()" class="shopping">
                     <img src="imagen/carrito.png">
                     <span class="cuantitat">{{this.nItems}}</span>

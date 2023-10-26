@@ -125,6 +125,7 @@ button {
     border: none;
     font-size: 16px;
     cursor: pointer;
+    border-radius: 4px
 }
 
 .button:hover {
@@ -199,12 +200,54 @@ background-color: #007BFF;
     text-align: center;
 
 }
+
+.imagen__logo{
+    height: 34px;
+    margin-top: 10px;
+    position: absolute;
+    top: 9px;
+    left: 20px;
+}
 .titol {
-    font-size: 36px;
+    font-size: 76px;
     margin: 0;
     text-align: center;
     justify-content: center;
 }
 
+.boton__portada{
+    width: 40%;
+    height: 30px;
+    border-radius: 4px
+}
+
+nav{
+    margin-left: 10%;
+    position: relative;
+}
+.sub-menu-parent { position: static; }
+
+
+.sub-menu-parent:focus .sub-menu,
+.sub-menu-parent:focus-within .sub-menu,
+.sub-menu-parent:hover .sub-menu {
+  visibility: visible; /* shows sub-menu */
+  opacity: 1;
+  z-index: 1;
+}
+
+/* presentational */
+nav a { color: #333; display: block; padding: 0.5em 1em; text-decoration: none; }
+nav a:hover { color: #54a6fd; }
+nav ul,
+nav ul li { list-style-type: none; padding: 0; margin: 0; }
+
+nav > ul { text-align: center; }
+nav > ul > li { display: inline-block;  }
+nav > ul > li:first-child { border-left: none; }
+
+.sub-menu {
+  background: #DDD;
+}
 
 
