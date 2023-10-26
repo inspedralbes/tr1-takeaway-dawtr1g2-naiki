@@ -70,30 +70,48 @@
             </div>
 
 
-
         </div>
-
 
         <div v-if="divActivo == 'checkout'">
-            <div id="checkout">
-                <div class="checkout__lista">
-                    <div class="item" v-for="(actual, index) in carrito">
-                        <img class="item__img" :src="actual.img" height="184" width="184" alt="">
-                        <h2 class="item__model">{{ actual.model }}</h2>
-                        <p class="item__color">{{actual.color}}</p>
-                        <p class="item__quantitat">quantitat: {{actual.quantitat}}</p>
-                        <p class="item__preu">Preu/u: {{actual.preu}}€</p>
+            <div class="item" v-for="(actual, index) in carrito">
+                <img class="item__img" :src="actual.img" height="184" width="184" alt="">
+                <h2>{{ actual.model }}</h2>
+                <p>{{actual.color}}</p>
+                <p>quantitat: {{actual.quantitat}}</p>
+                <p>Preu/u: {{actual.preu}}€</p>
 
-                        <button class="eliminar" @click="eliminar(actual)">Treure</button>
-                    </div>
-                </div>
-                <p class="total">Total: {{this.total}} € </p>
-                
-                    <input type="email" required id="emailUser">
-                    <button @click="completar">Completar compra</button>
-                
+                <button class="eliminar" @click="eliminar(actual)">Treure</button>
+            </div>
+
+            <p class="total">Total: {{this.total}} € </p>
+
+            <!--<input type="email" required id="emailUser">-->
+            <button @click="completar()">Completar compra</button>
+
+            <div id="checkout-form" style="display: none;">
+                <h3>Información de envío</h3>
+                <form @submit.prevent="procesarCompra">
+                </form>
             </div>
         </div>
+        <!-- Página de Modal Login -->
+        <div v-if="mostrarModalCorreo" class="modal">
+            <div class="modal-contenido">
+                <h2>Ingrese su correo</h2>
+                <input type="text" v-model="correo"> <!-- Campo de entrada para el correo -->
+                <button @click="guardarCorreoYContinuar('compraConfirm')">Guardar</button>
+            </div>
+        </div>
+
+        <div v-if="divActivo == 'compraConfirm'">
+            <div id="compraConfirm">
+                <div class="modal-contenido">
+                    <h2>Compra Ralizada corretamente</h2>
+                    <button @click="cambiar('tienda')">Continuar Comprando</button>
+                </div>
+            </div>
+        </div>
+
 
     </div>
 

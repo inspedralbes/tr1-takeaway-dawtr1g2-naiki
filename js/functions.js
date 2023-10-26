@@ -6,6 +6,8 @@ createApp({
     data() {
         return {
             divActivo: 'portada',
+            mostrarModalLogin: false,
+            mostrarModalCorreo: false,
             sabates: [],
             carrito: localStorage.getItem("carrito") != null ? JSON.parse(localStorage.getItem("carrito")) : [],
             nCompra: 0,
@@ -61,9 +63,13 @@ createApp({
         },
         cambiar(nuevoDiv) {
             this.divActivo = nuevoDiv;
+        },guardarCorreoYContinuar(nuevoDiv) {
+            // Guarda el correo ingresado y realiza la acción necesaria
+            this.mostrarModalCorreo = false; // Cierra el modal
+            this.divActivo = nuevoDiv; // Muestra la pagina de compra realizada
         },
-
         completar() {
+            this.mostrarModalCorreo = true;
             let user = document.getElementById("emailUser").value;
             console.log(user);
             if (user != null) {
