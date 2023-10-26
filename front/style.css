@@ -145,4 +145,38 @@ li button:hover {
     padding: 20px;
     text-align: center;
   }
-  
+
+.efectCarrito:hover,
+.efectCarrito:focus {
+  -webkit-animation: efectCarrito 1s;
+          animation: efectCarrito 1s;
+  box-shadow: 0 0 0 2em transparent;
+}
+
+@-webkit-keyframes efectCarrito {
+  0% {
+    box-shadow: 0 0 0 0 var(--hover);
+  }
+}
+
+@keyframes efectCarrito {
+  0% {
+    box-shadow: 0 0 0 0 var(--hover);
+  }
+}
+
+
+.efectCarrito {
+  --color: #ef6eae;
+  --hover: #ef8f6e;
+}
+
+
+#efectCarrito {
+  color: var(--color);
+  transition: 0.25s;
+}
+button:hover, button:focus {
+  border-color: var(--hover);
+  color: #fff;
+}

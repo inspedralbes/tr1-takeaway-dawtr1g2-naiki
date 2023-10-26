@@ -25,7 +25,7 @@
                     <p>Precio: ${{ producto.precio }}</p>
                     <p>Talla: {{ producto.talla }}</p>
                     <p>Color: {{ producto.color }}</p>
-                    <button @click="agregarAlCarrito(producto)">Agregar al Carrito</button>
+                    <button class="efectCarrito" @click="agregarAlCarrito(producto)">Agregar al Carrito</button>
                 </div>
             </div>
             <button @click="mostrarCheckout">Ir al Checkout</button>
