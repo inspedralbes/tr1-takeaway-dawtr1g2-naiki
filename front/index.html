@@ -23,7 +23,7 @@
             <div class="portada">
                 <div class="container-portada">
                     <h1 class="titol">NAIKI</h1>
-                    <button @click="cambiar('tienda')">Iniciar</button>
+                    <button class="boton__portada" @click="cambiar('tienda')">Iniciar</button>
                 </div>
             </div>
         </div>
@@ -32,7 +32,20 @@
 
         <div v-if="divActivo == 'tienda'">
             <header>
-                <h1>NAIKI</h1>
+                <img src="imagen/NAIKI.png" class="imagen__logo">
+                <nav>
+                    <ul>
+                        <li class="sub-menu-parent" tab-index="0">
+                            <a href="#">Home</a>
+                        </li>
+                        <li class="sub-menu-parent" tab-index="0">
+                            <a href="#">Done</a>
+                        </li>
+                        <li class="sub-menu-parent" tab-index="0">
+                            <a href="#">Nen/a</a>
+                        </li>
+                    </ul>
+                </nav>
                 <div @click="cesta()" class="shopping">
                     <img src="imagen/carrito.png">
                     <span class="cuantitat">{{this.nItems}}</span>
@@ -48,7 +61,7 @@
                 </div>
                 <div class="cesta__item item" v-for="(actual, index) in carrito">
                     <img class="item__img" :src="actual.imatge" height="184" width="184" alt="">
-                    <h2 class="item__model">{{ actual.model }}</h2>
+                    <h6 class="item__model">{{ actual.model }}</h6>
                     <p class="item__color">{{actual.color}}</p>
                     <p class="item__quantitat">quantitat: {{actual.quantitat}}</p>
                     <p class="item__preu">Preu/u: {{actual.preu}}€</p>
@@ -79,27 +92,27 @@
                 <ul>
                     <div v-for="(actual, index) in carrito" :key="index" class="item">
                         <img class="item__img" :src="actual.imatge" height="184" width="184" alt="">
-                        <h4>{{ actual.model }}</h2>
+                        <h2>{{ actual.model }}</h2>
                         <p>{{actual.color}}</p>
                         <p>Quantitat: {{actual.quantitat}}</p>
                         <p>Preu/u: {{actual.preu}}€</p>
                         <button class="eliminar" @click="eliminar(actual)">Treure</button>
-                    </li>
+                    </div>
                 </ul>
 
-                
+
             </div>
             <div id="checkout-buttons">
                 <p id="checkout-total">Total del Carrito: ${{this.total}}</p>
 
-                <button  v-if="carrito.length > 0" @click="completar">Realizar Compra</button>
+                <button v-if="carrito.length > 0" @click="completar">Realizar Compra</button>
                 <button v-if="carrito.length > 0" @click="limpiarCesta">Limpiar cesta de compra</button>
                 <button @click="mostrarBotiga">Continuar Comprando</button>
             </div>
         </div>
 
-    
-            
+
+
         <!-- Página de Modal Login -->
         <div v-if="mostrarModalCorreo" class="modal">
             <div class="modal-contenido">
