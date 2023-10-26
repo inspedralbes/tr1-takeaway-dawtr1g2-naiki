@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string("color");
             $table->string("imatge");
             $table->integer("quantitat");
-            $table->timestamp("hora");
             $table->string("estat");
             $table->primary(['idComanda','numItem']);
 
