@@ -85,7 +85,7 @@
 
         </div>
 
-        <div v-if="divActivo === 'checkout'" class="checkout-container checkout">
+        <div v-if="divActivo == 'checkout'">
             <header>
                 <img src="imagen/NAIKI.png" class="imagen__logo">
                 <nav>
@@ -103,34 +103,35 @@
                 </nav>
             </header>
 
-            <h2 class="titol__check">Carretó</h2>
-            <div v-if="carrito.length > 0" class="container__check"> 
-                <div class="check">
-                    <h3 class="titol__producte">Productes</h3>
-                    <ul>
-                        <div v-for="(actual, index) in carrito" :key="index" class="item__checkout">
+            <div v-if="divActivo == 'checkout'" class="checkout-container checkout">
+                <div class="checkout__cesta" v-if="carrito.length > 0">
+                    <h2>Cesta de la compra</h2>
+                    <div class="checkout__llista">
+                        <div class="checkout__item" v-for="(actual, index) in carrito">
                             <img class="item__img" :src="actual.imatge" height="184" width="184" alt="">
-                            <div class="container__text">
-                                <h2 class="text__model">{{ actual.model }}</h2>
-                                <p class="text__color">{{actual.color}}</p>
-                                <p class="text__quantitat">Quantitat: {{actual.quantitat}}</p>
-                                <p class="text__preu">Preu/u: {{actual.preu}}€</p>
-                                <button class="eliminar" @click="eliminar(actual)">Treure</button>
-                            </div>
+                            <h6 class="item__model">{{ actual.model }}</h6>
+                            <p class="item__color">{{actual.color}}</p>
+                            <p class="item__quantitat">quantitat: {{actual.quantitat}}</p>
+                            <p class="item__preu">Preu/u: {{actual.preu}}€</p>
+
+                            <button class="eliminar" @click="eliminar(actual)">Treure</button>
                         </div>
-                    </ul>
-                </div>     
-                </div>
-                <div id="checkout__buttons">
-                    <h6 id="checkout-total">Total: {{this.total}}€</h6>
-    
-                    <div class="container__buttons">
-                        <button v-if="carrito.length > 0" @click="completar">Realizar Compra</button>
-                        <button v-if="carrito.length > 0" @click="limpiarCesta">Limpiar cesta de compra</button>
-                        <button @click="mostrarBotiga">Continuar Comprando</button>
                     </div>
+
+
+
+                </div>
+                <div id="checkout-buttons">
+                    <p id="checkout-total">Total del Carrito: ${{this.total}}</p>
+
+                    <button v-if="carrito.length > 0" @click="completar">Realizar Compra</button>
+                    <button v-if="carrito.length > 0" @click="limpiarCesta">Limpiar cesta de compra</button>
+                    <button @click="mostrarBotiga">Continuar Comprando</button>
+                </div>
             </div>
-            
+
+
+
         </div>
 
 
