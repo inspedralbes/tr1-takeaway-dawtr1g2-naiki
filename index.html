@@ -1,117 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
-        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style.css">
-
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>NAIKI - Tu Destino Deportivo</title>
 </head>
-
 <body>
-
-
-    <div id="app">
-
-        <div v-if="divActivo == 'portada'">
-            <div class="portada">
-                <div class="container-portada">
-                    <h1 class="titol">NAIKI</h1>
-                    <button class="boton__portada" @click="cambiar('tienda')">Iniciar</button>
-                </div>
-            </div>
+    <div class="container">
+        <header>
+            <h1 class="title">Bienvenido a NAIKI</h1>
+            <p class="subtitle">Tu Destino Deportivo</p>
+        </header>
+        <div class="info-box">
+            <h2 class="info-title">Horario de la Tienda</h2>
+            <p class="info-text">Lunes a Viernes: 9:00 AM - 7:00 PM</p>
+            <p class="info-text">Sábados: 10:00 AM - 4:00 PM</p>
         </div>
-
-
-
-        <div v-if="divActivo == 'tienda'">
-            <header>
-                <img src="/imagen/NAIKI.png" class="imagen__logo">
-                <nav>
-                    <ul>
-                      <li class="sub-menu-parent" tab-index="0">
-                        <a href="#">Home</a>
-                      </li>
-                      <li class="sub-menu-parent" tab-index="0">
-                        <a href="#">Done</a>
-                      </li>
-                      <li class="sub-menu-parent" tab-index="0">
-                        <a href="#">Nen/a</a>
-                    </li>
-                    </ul>
-                  </nav>
-                <div @click="cesta()" class="shopping">
-                    <img src="imagen/carrito.png">
-                    <span class="cuantitat">{{this.nItems}}</span>
-                </div>
-            </header>
-
-            <div class="cesta">
-                <h1>Carrito</h1>
-                <button class="closeShopping">X</button>
-                <div class="cesta__checkOut checkOut">
-                    <div class="total">{{this.total}} € </div>
-                    <button id="btnCheckout" @click="cambiar('checkout')">Checkout</button>
-                </div>
-                <div class="cesta__item item" v-for="(actual, index) in carrito">
-                    <img class="item__img" :src="actual.img" height="184" width="184" alt="">
-                    <h2 class="item__model">{{ actual.model }}</h2>
-                    <p class="item__color">{{actual.color}}</p>
-                    <p class="item__quantitat">quantitat: {{actual.quantitat}}</p>
-                    <p class="item__preu">Preu/u: {{actual.preu}}€</p>
-
-                    <button class="eliminar" @click="eliminar(actual)">Treure</button>
-                </div>
-
-
-            </div>
-            <div id="lista">
-                <div class="llista__item item" v-for="(actual, index) in sabates">
-                    <img class="item__img" :src="actual.img" height="184" width="184" alt="">
-                    <h2 class="item__model">{{ actual.model }}</h2>
-                    <p class="item__color">{{actual.color}}</p>
-                    <p class="item__preu">Preu/u: {{actual.preu}}€</p>
-
-                    <button @click="afegir(actual)" class="afegir">Afegir</button>
-                </div>
-            </div>
-
-
-
+        <div class="cta-button-container">
+            <a class="cta-button" href="#">¡COMPRA JA!</a>
         </div>
-
-
-        <div v-if="divActivo == 'checkout'">
-            <div id="checkout">
-                <div class="checkout__lista">
-                    <div class="item" v-for="(actual, index) in carrito">
-                        <img class="item__img" :src="actual.img" height="184" width="184" alt="">
-                        <h2 class="item__model">{{ actual.model }}</h2>
-                        <p class="item__color">{{actual.color}}</p>
-                        <p class="item__quantitat">quantitat: {{actual.quantitat}}</p>
-                        <p class="item__preu">Preu/u: {{actual.preu}}€</p>
-
-                        <button class="eliminar" @click="eliminar(actual)">Treure</button>
-                    </div>
-                </div>
-                <p class="total">Total: {{this.total}} € </p>
-                
-                    <input type="email" required id="emailUser">
-                    <button @click="completar">Completar compra</button>
-                
-            </div>
-        </div>
-
     </div>
-
-    <script src="js/functions.js" type="module"> </script>
-
+    <script src="script.js"></script>
 </body>
-
 </html>
