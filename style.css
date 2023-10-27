@@ -226,6 +226,29 @@ button {
     text-align: center;
   }
 
+  .tiquet-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .tiquet-item {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 5px 0;
+  }
+
+  
+  .total {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  
+
+
   .checkout form {
     display: flex;
     flex-direction: column;

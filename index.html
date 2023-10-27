@@ -106,13 +106,22 @@
         <div v-if="divActivo == 'compraConfirm'">
             <div id="compraConfirm">
                 <div class="modal-contenido">
-                    <h2>Compra Ralizada corretamente</h2>
-                    <button @click="cambiar('tienda')">Continuar Comprando</button>
+                    <h2>Compra Realizada corretamente</h2>
+                    <button @click="cambiar('tienda')">Seguir comprando</button>
                 </div>
+                <h3>Tiquet</h3>
+                <ul class="tiquet-list">
+                    <li v-for="(actual, index) in carrito" :key="index" class="tiquet-item">
+                        <p>{{actual.quantitat}}</p>
+                        <p>{{actual.marca}}  {{ actual.model }}</p>
+                        <p>{{ actual.quantitat * actual.preu }} € </p>
+                    </li>
+                </ul>
+                <p class="total">Total: {{this.total}} € </p>
+                <h4>Datos del usuario: {{correo}}</h4>
             </div>
         </div>
-
-
+    </div>
     </div>
 
     <script src="js/functions.js" type="module"> </script>
