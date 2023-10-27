@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string("genere");
             $table->string("talla");
             $table->string("color");
+            $table->integer("preu");
             $table->string("imatge");
             $table->integer("quantitat");
             $table->string("estat");

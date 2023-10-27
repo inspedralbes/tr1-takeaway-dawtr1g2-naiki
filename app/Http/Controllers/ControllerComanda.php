@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comanda;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Mail;
 class ControllerComanda extends Controller
 {
     public function getComanda()
@@ -42,9 +42,25 @@ class ControllerComanda extends Controller
             $comanda->imatge =  $sabata["imatge"];
             $comanda->color =  $sabata["color"];
             $comanda->quantitat =  $sabata["quantitat"];
+            $comanda->preu = $sabata["preu"];
             $comanda->estat = "En preparacio";
             $comanda->save();
 
         }
+        $comanda = DB::table('comandas')->where('idComanda','=', $idComanda)->get();
+        Mail::to($email)->send(new \App\Mail\Comanda($comanda));
+
     }
+
+    public function canviarEstatComanda(Request $request){
+        
+        $idComanda = $request->idComanda;
+
+        $nouEstat = $request->nouEstat;
+        DB::table('comandas')
+        ->where('idComanda', $idComanda)
+        ->update(['estat' => $nouEstat]);
+
+    }
+
 }
