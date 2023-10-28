@@ -22,8 +22,16 @@
         <div v-if="divActivo == 'portada'">
             <div class="portada">
                 <div class="container-portada">
-                    <h1 class="titol">NAIKI</h1>
-                    <button class="boton__portada" @click="cambiar('tienda')">Iniciar</button>
+                    <h1 class="portada__title">Bienvenido a NAIKI</h1>
+                    <p class="portada__subtitle">Tu Destino Deportivo</p>
+                    <div class="info-box">
+                        <h2 class="info-title">Horario de la Tienda</h2>
+                        <p class="info-text">Lunes a Viernes: 9:00 AM - 7:00 PM</p>
+                        <p class="info-text">Sábados: 10:00 AM - 4:00 PM</p>
+                    </div>
+                    <div class="cta-button-container">
+                        <button class="boton__portada" @click="cambiar('tienda')">¡COMPRA JA!</button>
+                    </div>        
                 </div>
             </div>
         </div>

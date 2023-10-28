@@ -3,6 +3,8 @@ body {
     background-color: #E3E7E8;
     max-width: 98vw;
     max-height: 98vh;
+    margin: 0;
+    padding: 0;
 }
 
 
@@ -180,7 +182,8 @@ button {
 
 
 .portada {
-    background: url("imagen/portada3.jpg");
+    background: url('https://www.tapasmagazine.es/wp-content/uploads/2023/05/fotonoticia_20230525102017_9999-1200x800.jpg');
+    color: #fff;
     background-attachment: fixed;
     background-size: cover;
     overflow: hidden;
@@ -189,23 +192,41 @@ button {
 }
 
 .container-portada{
+    background-color: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(0.4rem);
-    -webkit-backdrop-filter: blur(0.4rem);
-    width: 400px;
-    height: 250px;
+    -webkit-backdrop-filter: blur(0.5rem);
+    max-width: 80%;
     border-radius: 6px;
-    box-shadow: 0 10px 30px #000;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
     margin: 200px auto;
     border: 1px solid #ffffff40;
     text-align: center;
-
+    padding: 20px;
 }
-.titol {
-    font-size: 68px;
+.portada__title {
+    font-size: 3rem;
     margin: 0;
     text-align: center;
     margin-top: 43px;
+    font-variant: small-caps;
+}
 
+.portada__subtitle {
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
+.info-title {
+    font-size: 1rem;
+    color: #03a9f4;
+}
+.info-text {
+    font-size: 1rem;
+    color: #f0f0f0;
+    margin-top: 10px;
+}
+
+.cta-button-container {
+    margin-top: 20px;
 }
 .modal {
     display: flex;
@@ -321,9 +342,13 @@ nav > ul > li:first-child { border-left: none; }
 }
 
 .boton__portada{
-    width: 40%;
-    height: 30px;
-    border-radius: 4px
+    background: #03a9f4;
+    padding: 10px 20px;
+    border-radius: 5px
+}
+.boton__portada:hover {
+    background-color: #0288d1;
+    transform: scale(1.1);
 }
 .imagen__logo{
     height: 34px;
