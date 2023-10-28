@@ -13,21 +13,23 @@ body {
     width: 100%;
 }
 header{
+    background-color: rgba(0, 0, 0, 0.6);
     display: grid;
     grid-template-columns: 1fr 40px;
-    margin-top: 5vh;
+    padding: 5%;
     width: 94vw;
+    border-radius: 0 0 45px 12px;
 }
 .closeShopping{
     position: absolute;
     top: 1vh;
     color: white;
-    right: 1vw;
+    right: 2vw;
     font-size: 0.8cm;
 }
 header .shopping{
     position: fixed;
-    right: 6vw;
+    right: 9vw;
     text-align: right;
     top: 1%;
 }
@@ -86,7 +88,6 @@ header .shopping span{
     margin-bottom: 10vh;
 }
 .cesta .checkOut{
-    
     width: 100%;
     position: sticky;
     top: 95vh;
@@ -117,7 +118,7 @@ header .shopping span{
     color: #fff;
 }
 .cesta-active{
-    right: 0;
+    right: 15px;
 }
 
 #checkout .total{
@@ -194,14 +195,14 @@ button {
 .container-portada{
     background-color: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(0.4rem);
-    -webkit-backdrop-filter: blur(0.5rem);
     max-width: 80%;
     border-radius: 6px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
     margin: 200px auto;
     border: 1px solid #ffffff40;
     text-align: center;
-    padding: 20px;
+    padding: 14px;
+    margin-left: 2px;
 }
 .portada__title {
     font-size: 3rem;
@@ -313,8 +314,10 @@ button {
     background-color: #0056b3;
 }
 nav{
-    margin-left: 10%;
     position: relative;
+    margin: 0;
+    top: 23%;
+    left: 2%;
 }
 .sub-menu-parent { position: static; }
 
@@ -328,7 +331,7 @@ nav{
 }
 
 /* presentational */
-nav a { color: #333; display: block; padding: 0.5em 1em; text-decoration: none; }
+nav a { color: #d7e9eb; display: block; padding: 0.5em 1em; text-decoration: none; }
 nav a:hover { color: #54a6fd; }
 nav ul,
 nav ul li { list-style-type: none; padding: 0; margin: 0; }
@@ -352,10 +355,9 @@ nav > ul > li:first-child { border-left: none; }
 }
 .imagen__logo{
     height: 34px;
-    margin-top: 10px;
     position: absolute;
     top: 9px;
-    left: 20px;
+    left: 00px;
 }
 
 
@@ -373,7 +375,10 @@ nav > ul > li:first-child { border-left: none; }
     margin: 0;
     width: 33vh;
 }
-
+.checkout__cesta{
+    margin: 0;
+    margin-left: 10px;
+}
 .checkout__buttons{
     position: static;
     margin-left: 40%;
@@ -415,6 +420,7 @@ nav > ul > li:first-child { border-left: none; }
     border-radius: 5px;
     margin-left: auto;
     margin-right: auto;
+    margin: 3%;
 
 }
 .checkout__llista{
