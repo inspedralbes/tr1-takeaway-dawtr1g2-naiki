@@ -157,8 +157,9 @@ button {
     border: none;
     font-size: 16px;
     cursor: pointer;
-    border-radius: 4px;
-    padding: 10px;
+    border-radius: 6px;
+    padding: 6px;
+    margin: 2px;
 }
 
 .button:hover {
