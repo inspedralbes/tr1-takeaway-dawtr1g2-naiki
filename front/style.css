@@ -2,31 +2,36 @@ body {
     font-family: Arial, sans-serif;
     background-color: #E3E7E8;
     max-width: 98vw;
-
+    max-height: 98vh;
+    margin: 0;
+    padding: 0;
 }
 
 
 .afegir,.eliminar{
     margin-bottom: 5vh;
-    width: 50%;
+    width: 100%;
 }
 header{
+    background-color: rgba(0, 0, 0, 0.6);
     display: grid;
     grid-template-columns: 1fr 40px;
-    margin-top: 5vh;
+    padding: 5%;
     width: 94vw;
+    border-radius: 0 0 45px 12px;
 }
 .closeShopping{
     position: absolute;
     top: 1vh;
     color: white;
-    right: 1vw;
+    right: 2vw;
     font-size: 0.8cm;
 }
 header .shopping{
     position: fixed;
-    right: 6vw;
+    right: 9vw;
     text-align: right;
+    top: 1%;
 }
 
 header .shopping img{
@@ -83,7 +88,6 @@ header .shopping span{
     margin-bottom: 10vh;
 }
 .cesta .checkOut{
-    
     width: 100%;
     position: sticky;
     top: 95vh;
@@ -114,7 +118,7 @@ header .shopping span{
     color: #fff;
 }
 .cesta-active{
-    right: 0;
+    right: 15px;
 }
 
 #checkout .total{
@@ -140,6 +144,8 @@ button {
     border: none;
     font-size: 16px;
     cursor: pointer;
+    border-radius: 4px;
+    padding: 10px;
 }
 
 .button:hover {
@@ -147,19 +153,14 @@ button {
 }
 
 .item{
-    
+    box-shadow: 0 45px 60px #757676;
+    background-color: lightsteelblue;
     padding: 20px;
-    letter-spacing: 1px;
     float: left;
-    list-style: none;
     text-align: center;
-    min-height: 300px;
-    max-height: fit-content;
     width: 35vw;
-    margin-left: 0;
-    margin-right: 4vw;
-    margin-bottom: 3vh;
-    
+    border-radius: 5px;
+    margin-left: 13px;
 }
 
 #lista{
@@ -168,6 +169,7 @@ button {
     row-gap: 5vh;
     margin-left: 0;
     width: 100vw;
+    margin-top: 15px;
 }
 #carrito{
     margin-top: 10%;
@@ -181,7 +183,8 @@ button {
 
 
 .portada {
-    background: url("imagen/portada.jpg");
+    background: url('https://www.tapasmagazine.es/wp-content/uploads/2023/05/fotonoticia_20230525102017_9999-1200x800.jpg');
+    color: #fff;
     background-attachment: fixed;
     background-size: cover;
     overflow: hidden;
@@ -190,20 +193,41 @@ button {
 }
 
 .container-portada{
-    width: 400px;
-    height: 250px;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(0.4rem);
+    max-width: 80%;
     border-radius: 6px;
-    box-shadow: 0 10px 30px #000;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
     margin: 200px auto;
     border: 1px solid #ffffff40;
     text-align: center;
-
+    padding: 14px;
+    margin-left: 2px;
 }
-.titol {
-    font-size: 36px;
+.portada__title {
+    font-size: 3rem;
     margin: 0;
     text-align: center;
-    justify-content: center;
+    margin-top: 43px;
+    font-variant: small-caps;
+}
+
+.portada__subtitle {
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
+.info-title {
+    font-size: 1rem;
+    color: #03a9f4;
+}
+.info-text {
+    font-size: 1rem;
+    color: #f0f0f0;
+    margin-top: 10px;
+}
+
+.cta-button-container {
+    margin-top: 20px;
 }
 .modal {
     display: flex;
@@ -289,6 +313,132 @@ button {
 .checkout button:hover {
     background-color: #0056b3;
 }
+nav{
+    position: relative;
+    margin: 0;
+    top: 23%;
+    left: 2%;
+}
+.sub-menu-parent { position: static; }
+
+
+.sub-menu-parent:focus .sub-menu,
+.sub-menu-parent:focus-within .sub-menu,
+.sub-menu-parent:hover .sub-menu {
+  visibility: visible; /* shows sub-menu */
+  opacity: 1;
+  z-index: 1;
+}
+
+/* presentational */
+nav a { color: #d7e9eb; display: block; padding: 0.5em 1em; text-decoration: none; }
+nav a:hover { color: #54a6fd; }
+nav ul,
+nav ul li { list-style-type: none; padding: 0; margin: 0; }
+
+nav > ul { text-align: center; }
+nav > ul > li { display: inline-block;  }
+nav > ul > li:first-child { border-left: none; }
+
+.sub-menu {
+  background: #DDD;
+}
+
+.boton__portada{
+    background: #03a9f4;
+    padding: 10px 20px;
+    border-radius: 5px
+}
+.boton__portada:hover {
+    background-color: #0288d1;
+    transform: scale(1.1);
+}
+.imagen__logo{
+    height: 34px;
+    position: absolute;
+    top: 9px;
+    left: 00px;
+}
+
+
+.titol__check{
+    position: relative;
+    margin-inline: -25vh;
+    top: 58%;
+}
+.titol__producte{
+    margin-left: 4%
+}
+.container__check{
+    background: #757676;
+    border-radius: 5px;
+    margin: 0;
+    width: 33vh;
+}
+.checkout__cesta{
+    margin: 0;
+    margin-left: 10px;
+}
+.checkout__buttons{
+    position: static;
+    margin-left: 40%;
+}
+.item__checkout{
+    background-color: lightsteelblue;
+    padding: 20px;
+    text-align: center;
+    width: 35vw;
+    border-radius: 5px;
+    position: relative;
+    margin-right: 3vh;
+    height: 40vh;
+    right: 8px;
+}
+.text__model{
+    margin: 0;
+}
+
+.text__color{
+    margin: 2px;
+}
+.text__quantitat{
+    margin: 4px;
+}
+.text__preu{
+    margin: 4px;
+}
+.checkout-container{
+    position: absolute;
+    overflow: hidden;
+}
+.checkout__item{
+    background-color: lightsteelblue;
+    padding: 20px;
+    float: left;
+    text-align: center;
+    width: 35vw;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    margin: 3%;
+
+}
+.checkout__llista{
+    height: 80vh;
+    max-height: 80vh;
+    overflow: scroll;
+    text-align: center;
+    align-items: center;
+}
+.checkout::-webkit-scrollbar{
+    display: none;
+}
+.checkout button{
+    width: 40vw;
+    max-width: 100px;
+}
+
+
 @media (max-width: 768px) {
     .productos-container {
         flex-direction: row;

@@ -101,14 +101,9 @@ createApp({
         },
 
         cesta() {
-            let openShopping = document.querySelector('.shopping');
             let closeShopping = document.querySelector('.closeShopping');
-            let cesta = document.querySelector(".cesta-active")
 
-
-            openShopping.addEventListener('click', () => {
-                document.querySelector(".cesta").classList.add("cesta-active");
-            })
+            document.querySelector(".cesta").classList.add("cesta-active");
 
             closeShopping.addEventListener('click', () => {
                 document.querySelector(".cesta").classList.remove("cesta-active");

@@ -22,8 +22,16 @@
         <div v-if="divActivo == 'portada'">
             <div class="portada">
                 <div class="container-portada">
-                    <h1 class="titol">NAIKI</h1>
-                    <button @click="cambiar('tienda')">Iniciar</button>
+                    <h1 class="portada__title">Bienvenido a NAIKI</h1>
+                    <p class="portada__subtitle">Tu Destino Deportivo</p>
+                    <div class="info-box">
+                        <h2 class="info-title">Horario de la Tienda</h2>
+                        <p class="info-text">Lunes a Viernes: 9:00 AM - 7:00 PM</p>
+                        <p class="info-text">Sábados: 10:00 AM - 4:00 PM</p>
+                    </div>
+                    <div class="cta-button-container">
+                        <button class="boton__portada" @click="cambiar('tienda')">¡COMPRA JA!</button>
+                    </div>        
                 </div>
             </div>
         </div>
@@ -32,7 +40,20 @@
 
         <div v-if="divActivo == 'tienda'">
             <header>
-                <h1>NAIKI</h1>
+                <img src="imagen/NAIKI.png" class="imagen__logo">
+                <nav>
+                    <ul>
+                        <li class="sub-menu-parent" tab-index="0">
+                            <a href="#">Home</a>
+                        </li>
+                        <li class="sub-menu-parent" tab-index="0">
+                            <a href="#">Done</a>
+                        </li>
+                        <li class="sub-menu-parent" tab-index="0">
+                            <a href="#">Nen/a</a>
+                        </li>
+                    </ul>
+                </nav>
                 <div @click="cesta()" class="shopping">
                     <img src="imagen/carrito.png">
                     <span class="cuantitat">{{this.nItems}}</span>
@@ -48,7 +69,7 @@
                 </div>
                 <div class="cesta__item item" v-for="(actual, index) in carrito">
                     <img class="item__img" :src="actual.imatge" height="184" width="184" alt="">
-                    <h2 class="item__model">{{ actual.model }}</h2>
+                    <h6 class="item__model">{{ actual.model }}</h6>
                     <p class="item__color">{{actual.color}}</p>
                     <p class="item__quantitat">quantitat: {{actual.quantitat}}</p>
                     <p class="item__preu">Preu/u: {{actual.preu}}€</p>
@@ -72,30 +93,53 @@
 
         </div>
 
-        <div v-if="divActivo === 'checkout'" class="checkout-container checkout">
-            <div v-if="carrito.length > 0">
-                <h2>Cesta de la compra</h2>
-                <h3>Producto</h3>
-                <ul>
-                    <div v-for="(actual, index) in carrito" :key="index" class="item">
-                        <img class="item__img" :src="actual.imatge" height="184" width="184" alt="">
-                        <h4>{{ actual.model }}</h2>
-                            <p>{{actual.color}}</p>
-                            <p>Quantitat: {{actual.quantitat}}</p>
-                            <p>Preu/u: {{actual.preu}}€</p>
+        <div v-if="divActivo == 'checkout'">
+            <header>
+                <img src="imagen/NAIKI.png" class="imagen__logo">
+                <nav>
+                    <ul>
+                        <li class="sub-menu-parent" tab-index="0">
+                            <a href="#">Home</a>
+                        </li>
+                        <li class="sub-menu-parent" tab-index="0">
+                            <a href="#">Done</a>
+                        </li>
+                        <li class="sub-menu-parent" tab-index="0">
+                            <a href="#">Nen/a</a>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+
+            <div v-if="divActivo == 'checkout'" class="checkout-container checkout">
+                <div class="checkout__cesta" v-if="carrito.length > 0">
+                    <h2>Cesta de la compra</h2>
+                    <div class="checkout__llista">
+                        <div class="checkout__item" v-for="(actual, index) in carrito">
+                            <img class="item__img" :src="actual.imatge" height="184" width="184" alt="">
+                            <h6 class="item__model">{{ actual.model }}</h6>
+                            <p class="item__color">{{actual.color}}</p>
+                            <p class="item__quantitat">quantitat: {{actual.quantitat}}</p>
+                            <p class="item__preu">Preu/u: {{actual.preu}}€</p>
+
                             <button class="eliminar" @click="eliminar(actual)">Treure</button>
-                            </li>
-                </ul>
+                        </div>
+                    </div>
 
 
+
+                </div>
+                <div id="checkout-buttons">
+                    <p id="checkout-total">Total del Carrito: ${{this.total}}</p>
+
+                    <button v-if="carrito.length > 0" @click="completar">Realizar Compra</button>
+                    <button v-if="carrito.length > 0" @click="limpiarCesta">Limpiar cesta de compra</button>
+                    <button @click="mostrarBotiga">Continuar Comprando</button>
+                </div>
             </div>
-            <div id="checkout-buttons">
-                <p id="checkout-total">Total del Carrito: ${{this.total}}</p>
 
-                <button v-if="carrito.length > 0" @click="completar">Realizar Compra</button>
-                <button v-if="carrito.length > 0" @click="limpiarCesta">Limpiar cesta de compra</button>
-                <button @click="mostrarBotiga">Continuar Comprando</button>
-            </div>
+
+
         </div>
 
 
