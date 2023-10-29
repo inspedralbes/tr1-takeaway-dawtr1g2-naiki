@@ -1,10 +1,12 @@
+*{
+    margin: 0;
+    padding: 0;
+}
 body {
     font-family: Arial, sans-serif;
     background-color: #E3E7E8;
-    max-width: 98vw;
+    max-width: 100%;
     max-height: 98vh;
-    margin: 0;
-    padding: 0;
 }
 
 
@@ -17,19 +19,38 @@ header{
     display: grid;
     grid-template-columns: 1fr 40px;
     padding: 5%;
-    width: 94vw;
+    width: 91vw;
     border-radius: 0 0 45px 12px;
+}
+footer{
+    background-color: rgba(0, 0, 0, 0.6);
+    display: grid;
+    grid-template-columns: 1fr 40px;
+    padding: 9%;
+    width: 83vw;
+    padding-top: 16%;
+}
+.container__img{
+    display: flex;
+    align-items: center;
+    margin: auto;
+    margin-top: -29px;
+    margin-left: 26%;
+}
+.logo__img{
+    height: 40px;
+    margin: 2px;
 }
 .closeShopping{
     position: absolute;
     top: 1vh;
     color: white;
-    right: 2vw;
+    right: 8vw;
     font-size: 0.8cm;
 }
 header .shopping{
     position: fixed;
-    right: 9vw;
+    right: 8vw;
     text-align: right;
     top: 1%;
 }
@@ -51,19 +72,11 @@ header .shopping span{
     padding: 3px 10px;
 }
 
-.list{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    column-gap: 20px;
-    row-gap: 20px;
-    margin-top: 50px;
-}
-
 .cesta{
     position: fixed;
     top:0;
     right: -100%;
-    width: 98vw;
+    width: 94vw;
     max-width: 500px;
     max-height: 100vh;
     background-color:  grey;;
@@ -118,7 +131,7 @@ header .shopping span{
     color: #fff;
 }
 .cesta-active{
-    right: 15px;
+    right: 5px;
 }
 
 #checkout .total{
@@ -134,7 +147,7 @@ header .shopping span{
 margin-left: auto;
 margin-right: auto;
 width: 100%;
-background-color: #007BFF;
+border-radius: 3px;
 }
 
 
@@ -155,21 +168,22 @@ button {
 .item{
     box-shadow: 0 45px 60px #757676;
     background-color: lightsteelblue;
-    padding: 20px;
+    padding: 18px;
     float: left;
     text-align: center;
-    width: 35vw;
+    width: 32vw;
     border-radius: 5px;
-    margin-left: 13px;
+    margin-left: 6px;
 }
 
 #lista{
     display: grid;
     grid-template-columns: 1fr 1fr;
     row-gap: 5vh;
-    margin-left: 0;
-    width: 100vw;
+    margin-left: 6%;
+    width: 89vw;
     margin-top: 15px;
+    margin-bottom: 15px;
 }
 #carrito{
     margin-top: 10%;
@@ -188,21 +202,21 @@ button {
     background-attachment: fixed;
     background-size: cover;
     overflow: hidden;
-    width: 50vh;
+    width: 100%;
     height: 100vh;
 }
 
 .container-portada{
     background-color: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(0.4rem);
-    max-width: 80%;
+    max-width: 84%;
     border-radius: 6px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
     margin: 200px auto;
     border: 1px solid #ffffff40;
     text-align: center;
-    padding: 14px;
-    margin-left: 2px;
+    padding: 20px;
+    margin-left: 10px;
 }
 .portada__title {
     font-size: 3rem;
@@ -251,9 +265,9 @@ button {
   }
 
 .checkout{
-    display: flex;
+    display: grid;
 }
-  .checkout form {
+.checkout form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -269,6 +283,12 @@ button {
     border: 1px solid #ccc;
     width: 100%;
     max-width: 300px;
+}
+#checkout-buttons{
+    position: absolute;
+    display: grid;
+    margin-top: -73vh;
+    margin-left: 26vh;
 }
 #checkout-total{
     font-size: 0.8cm;
@@ -316,8 +336,8 @@ button {
 nav{
     position: relative;
     margin: 0;
-    top: 23%;
-    left: 2%;
+    top: 39%;
+    left: 3%;
 }
 .sub-menu-parent { position: static; }
 
@@ -354,10 +374,10 @@ nav > ul > li:first-child { border-left: none; }
     transform: scale(1.1);
 }
 .imagen__logo{
-    height: 34px;
+    height: 39px;
     position: absolute;
-    top: 9px;
-    left: 00px;
+    top: 5px;
+    left: -3px;
 }
 
 
@@ -378,6 +398,8 @@ nav > ul > li:first-child { border-left: none; }
 .checkout__cesta{
     margin: 0;
     margin-left: 10px;
+    margin-top: 14%;
+    margin-bottom: -21%;
 }
 .checkout__buttons{
     position: static;
@@ -410,6 +432,7 @@ nav > ul > li:first-child { border-left: none; }
 .checkout-container{
     position: absolute;
     overflow: hidden;
+    width: 100%;
 }
 .checkout__item{
     background-color: lightsteelblue;
@@ -425,6 +448,7 @@ nav > ul > li:first-child { border-left: none; }
 }
 .checkout__llista{
     height: 80vh;
+    width: 53%;
     max-height: 80vh;
     overflow: scroll;
     text-align: center;

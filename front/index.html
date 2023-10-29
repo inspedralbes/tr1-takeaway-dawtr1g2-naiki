@@ -76,8 +76,6 @@
 
                     <button class="eliminar" @click="eliminar(actual)">Treure</button>
                 </div>
-
-
             </div>
             <div id="lista">
                 <div class="llista__item item" v-for="(actual, index) in sabates">
@@ -89,8 +87,14 @@
                     <button @click="afegir(actual)" class="afegir">Afegir</button>
                 </div>
             </div>
-
-
+            <footer>
+                <div class="container__img">
+                    <a href="https://www.youtube.com/watch?v=8Pc0AEbfnBM&ab_channel=Marbler"><img src="imagen/instagram.png" alt="" class="logo__img"></a>
+                    <a href="https://www.youtube.com/watch?v=IxQhfoRwSGU"><img src="imagen/youtube.png" alt="" class="logo__img"></a>
+                    <a href="https://www.youtube.com/watch?v=Rk1MYMPDx3s"><img src="imagen/facebook.png" alt="" class="logo__img"></a>
+                    <a href="https://www.youtube.com/watch?v=Kyl01V1EWC8"><img src="imagen/gorjeo.png" alt="" class="logo__img"></a>
+                </div>
+            </footer>
         </div>
 
         <div v-if="divActivo == 'checkout'">
@@ -125,21 +129,26 @@
                             <button class="eliminar" @click="eliminar(actual)">Treure</button>
                         </div>
                     </div>
-
-
-
+                    <div id="checkout-buttons">
+                        <p id="checkout-total">Total del Carrito: ${{this.total}}</p>
+    
+                        <button v-if="carrito.length > 0" @click="completar">Realizar Compra</button>
+                        <button v-if="carrito.length > 0" @click="limpiarCesta">Limpiar cesta de compra</button>
+                        <button @click="mostrarBotiga">Continuar Comprando</button>
+                    </div>
                 </div>
-                <div id="checkout-buttons">
-                    <p id="checkout-total">Total del Carrito: ${{this.total}}</p>
-
-                    <button v-if="carrito.length > 0" @click="completar">Realizar Compra</button>
-                    <button v-if="carrito.length > 0" @click="limpiarCesta">Limpiar cesta de compra</button>
-                    <button @click="mostrarBotiga">Continuar Comprando</button>
-                </div>
+                
+                
+                <footer class="checkout__footer">
+                    <div class="container__img">
+                        <a href="https://www.youtube.com/watch?v=8Pc0AEbfnBM&ab_channel=Marbler"><img src="imagen/instagram.png" alt="" class="logo__img"></a>
+                        <a href="https://www.youtube.com/watch?v=IxQhfoRwSGU"><img src="imagen/youtube.png" alt="" class="logo__img"></a>
+                        <a href="https://www.youtube.com/watch?v=Rk1MYMPDx3s"><img src="imagen/facebook.png" alt="" class="logo__img"></a>
+                        <a href="https://www.youtube.com/watch?v=Kyl01V1EWC8"><img src="imagen/gorjeo.png" alt="" class="logo__img"></a>
+                    </div>
+                </footer>
             </div>
-
-
-
+            
         </div>
 
 
