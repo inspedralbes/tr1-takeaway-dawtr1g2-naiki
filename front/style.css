@@ -29,6 +29,8 @@ footer{
     padding: 9%;
     width: 83vw;
     padding-top: 16%;
+    position: fixed;
+    bottom:0;
 }
 .container__img{
     display: flex;
