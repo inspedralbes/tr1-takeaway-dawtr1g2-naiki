@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ControllerComanda;
 use App\Http\Controllers\ControllerSabates;
 use Illuminate\Http\Request;
@@ -23,5 +24,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/sabates', [ControllerSabates::class, 'getSabates']);
 Route::post('/sabates', [ControllerSabates::class, 'createSabates']);
 Route::post('/comanda', [ControllerComanda::class, 'createComanda']);
-Route::get('/comanda', [ControllerComanda::class, 'getComanda']);
-Route::patch('/comanda', [ControllerComanda::class, 'canviarEstatComanda']);
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/comanda', [ControllerComanda::class, 'getComanda']);
+    Route::patch('/comanda', [ControllerComanda::class, 'canviarEstatComanda']);
+    Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
+
+
+});

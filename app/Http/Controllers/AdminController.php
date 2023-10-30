@@ -66,7 +66,6 @@ class AdminController extends Controller
         $comandes=Comanda::all();
         return view('panel',['sessio' => $response,'comandes'=>$comandes]);
 
-
     }
     public function logout(Request $request)
     {

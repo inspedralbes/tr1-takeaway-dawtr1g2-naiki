@@ -7,6 +7,12 @@
     <title>Document</title>
 </head>
 <body>
+    <form method="POST"  action="{{route('logout')}}">
+        @csrf
+        @method("POST")
+        <button>Tencar sessió</button>
+
+    </form>
     <h1>{{$sessio['user']->name}}</h1>
     <div class="comanda">
         <p>ID</p>

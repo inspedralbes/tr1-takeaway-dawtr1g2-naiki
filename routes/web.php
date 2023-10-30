@@ -26,7 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::post('/panel', function(){
+    Route::get('/panel', function(){
         return view('panel');
     })->name('panel');
 
