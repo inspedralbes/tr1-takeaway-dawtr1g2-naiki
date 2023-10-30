@@ -12,8 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('linea_comandas', function (Blueprint $table) {
-            $table->integer('idComanda')->unsigned();;
-            $table->integer("numItem")->unsigned();;
+            $table->foreignId('idComanda')->constrained(
+                table: 'comandas', indexName: 'id'
+            )->onDelete('cascade')->onUpdate('cascade');
+            $table->integer("numItem");
             $table->string("marca");
             $table->string("model");
             $table->string("genere");
