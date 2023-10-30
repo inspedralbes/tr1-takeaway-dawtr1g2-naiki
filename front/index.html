@@ -54,6 +54,12 @@
                         </li>
                     </ul>
                 </nav>
+
+                <div @click="cambiar('mostrarInicioSesion')" class="usuario">
+                    <img  src="imagen/usuario.png">
+
+                  </div>
+
                 <div @click="cesta()" class="shopping">
                     <img src="imagen/carrito.png">
                     <span class="cuantitat">{{this.nItems}}</span>
@@ -96,6 +102,44 @@
                 </div>
             </footer>
         </div>
+
+        <div v-if="divActivo == 'mostrarInicioSesion'">
+            <div class="contenido-inicioSesion">
+                <h2>Iniciar Sesión</h2>
+                <label for="usuario">Usuario:</label>
+                <input type="text" id="usuario" v-model="nombreUsuario" required>
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" id="contrasena" v-model="contrasena" required>
+                <button type="submit">Iniciar Sesión</button>
+            </div>
+            <button @click="cambiar('tienda')">Volver al comprar</button>
+            <button @click="cambiar('RegistroUsuario')">Registrarse</button>
+        </div>
+        <div v-if="divActivo == 'RegistroUsuario'">
+            <form action="procesar_registro.php" method="post">
+                <!-- Campo de Nombre -->
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                
+                <!-- Campo de Apellido -->
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" name="apellido" required>
+        
+                <!-- Campo de Correo Electrónico -->
+                <label for="correo">Correo Electrónico:</label>
+                <input type="email" id="correo" name="correo" required>
+                
+                <!-- Campo de Contraseña -->
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" id="contrasena" name="contrasena" required>
+                
+                <!-- Botón de Registro -->
+                <button type="submit">Registrarse</button>
+            </form>
+            <button @click="cambiar('tienda')">Volver al comprar</button>
+
+        </div>
+
 
         <div v-if="divActivo == 'checkout'">
             <header>

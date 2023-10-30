@@ -55,7 +55,7 @@ footer{
     font-size: 0.8cm;
 }
 header .shopping{
-    position: sticky;
+    position: fixed;
     text-align: right;
     top: 1%;
     right: 14vw;
@@ -63,7 +63,7 @@ header .shopping{
 
 
 header .shopping img{
-    width: 40px;
+    width: 35px;
 }
 
 header .shopping span{
@@ -487,6 +487,62 @@ a{
         width: 100%;
     }
 }
+.imagen-usuario {
+    width: 40px; /* Ajusta el tamaño de la imagen de usuario */
+  }
+header .usuario{
+    position: fixed;
+    right: 25vw;
+    text-align: right;
+    top: 1%;
+}
+header .usuario img{
+    width: 35px;
+}
+.contenido-inicioSesion,
+        .contenido-registro {
+            background-color: #fff;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
 
 
 

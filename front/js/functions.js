@@ -13,6 +13,7 @@ createApp({
             nCompra: 0,
             total: 0,
             nItems: 0,
+            mostrarMenu: false
         }
     },
     methods: {
