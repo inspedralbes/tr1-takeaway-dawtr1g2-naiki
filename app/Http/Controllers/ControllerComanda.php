@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comanda;
+use App\Models\LineaComanda;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -16,38 +17,44 @@ class ControllerComanda extends Controller
 
     public function createComanda(Request $request)
     {   
-        $sabata = DB::table('comandas')
-                ->latest()
-                ->first();
-        if ($sabata != null){
-            $idComanda = $sabata->idComanda + 1;
-
-        }else{
-            $idComanda = 0;
-        }
+        
         $numItem = 1;
         $payload = json_decode($request->getContent(), true);
         $sabates = $payload[1]["sabates"];
         $email = $payload[0]["email"];
+
+        $comanda = new Comanda();
+        $comanda->usuari = $email;
+        $comanda->estat = "En preparacio";
+        $comanda->save();
+
+
+        $comanda = DB::table('comandas')
+                ->latest()
+                ->first();
+        if ($comanda != null){
+            $idComanda = $comanda->id;
+
+        }else{
+            $idComanda = 0;
+        }
         foreach ($sabates as $sabata) {
-            $comanda = new Comanda();
-            $comanda->idComanda = $idComanda;
-            $comanda->numItem = $numItem;
+            $lineaComanda = new LineaComanda();
+            $lineaComanda->idComanda = $idComanda;
+            $lineaComanda->numItem = $numItem;
             $numItem++;
-            $comanda->usuari = $email;
-            $comanda->marca  = $sabata["marca"];
-            $comanda->model =  $sabata["model"];
-            $comanda->genere =  $sabata["genere"];
-            $comanda->talla =  $sabata["talla"];
-            $comanda->imatge =  $sabata["imatge"];
-            $comanda->color =  $sabata["color"];
-            $comanda->quantitat =  $sabata["quantitat"];
-            $comanda->preu = $sabata["preu"];
-            $comanda->estat = "En preparacio";
-            $comanda->save();
+            $lineaComanda->marca  = $sabata["marca"];
+            $lineaComanda->model =  $sabata["model"];
+            $lineaComanda->genere =  $sabata["genere"];
+            $lineaComanda->talla =  $sabata["talla"];
+            $lineaComanda->imatge =  $sabata["imatge"];
+            $lineaComanda->color =  $sabata["color"];
+            $lineaComanda->quantitat =  $sabata["quantitat"];
+            $lineaComanda->preu = $sabata["preu"];
+            $lineaComanda->save();
 
         }
-        $comanda = DB::table('comandas')->where('idComanda','=', $idComanda)->get();
+        $comanda = DB::table('linea_comandas')->where('idComanda','=', $idComanda)->get();
         Mail::to($email)->send(new \App\Mail\Comanda($comanda));
 
     }
