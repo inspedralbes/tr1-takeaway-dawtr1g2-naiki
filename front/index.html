@@ -71,7 +71,7 @@
                     <img class="item__img" :src="actual.imatge" height="184" width="184" alt="">
                     <h6 class="item__model">{{ actual.model }}</h6>
                     <p class="item__color">{{actual.color}}</p>
-                    <p class="item__quantitat">quantitat: {{actual.quantitat}}</p>
+                    <p class="item__quantitat">Quantitat: {{actual.quantitat}}</p>
                     <p class="item__preu">Preu/u: {{actual.preu}}€</p>
 
                     <button class="eliminar" @click="eliminar(actual)">Treure</button>
@@ -121,9 +121,9 @@
                     <div class="checkout__llista">
                         <div class="checkout__item" v-for="(actual, index) in carrito">
                             <img class="item__img" :src="actual.imatge" height="184" width="184" alt="">
-                            <h6 class="item__model">{{ actual.model }}</h6>
+                            <h3 class="item__model">{{ actual.model }}</h3>
                             <p class="item__color">{{actual.color}}</p>
-                            <p class="item__quantitat">quantitat: {{actual.quantitat}}</p>
+                            <p class="item__quantitat">Quantitat: {{actual.quantitat}}</p>
                             <p class="item__preu">Preu/u: {{actual.preu}}€</p>
 
                             <button class="eliminar" @click="eliminar(actual)">Treure</button>

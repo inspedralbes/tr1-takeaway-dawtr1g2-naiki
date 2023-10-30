@@ -21,23 +21,27 @@ header{
     padding: 5%;
     width: 91vw;
     border-radius: 0 0 45px 12px;
+    position: sticky;
+    text-align: right;
+    top: 0;
 }
 footer{
     background-color: rgba(0, 0, 0, 0.6);
-    display: grid;
-    grid-template-columns: 1fr 40px;
-    padding: 9%;
-    width: 83vw;
-    padding-top: 16%;
+    display: flex;
+    vertical-align:middle;
+    padding: 5%;
+    width: 98vw;
+    
+}
+.checkout__footer{
     position: fixed;
-    bottom:0;
+    bottom: 0vh;
 }
 .container__img{
     display: flex;
     align-items: center;
     margin: auto;
-    margin-top: -29px;
-    margin-left: 26%;
+
 }
 .logo__img{
     height: 40px;
@@ -51,11 +55,12 @@ footer{
     font-size: 0.8cm;
 }
 header .shopping{
-    position: fixed;
-    right: 8vw;
+    position: sticky;
     text-align: right;
     top: 1%;
+    right: 14vw;
 }
+
 
 header .shopping img{
     width: 40px;
@@ -139,9 +144,7 @@ header .shopping span{
 #checkout .total{
     font-size: 1cm;
 }
-.checkout__lista{
-    width: 60%;
-}
+
 .item__model{
     margin: 0;
 }
@@ -401,7 +404,7 @@ nav > ul > li:first-child { border-left: none; }
 .checkout__cesta{
     margin: 0;
     margin-left: 10px;
-    margin-top: 14%;
+    margin-top: 5%;
     margin-bottom: -21%;
 }
 .checkout__buttons{
@@ -450,12 +453,13 @@ nav > ul > li:first-child { border-left: none; }
 
 }
 .checkout__llista{
-    height: 80vh;
+    height: 75vh;
     width: 53%;
     max-height: 80vh;
     overflow: scroll;
     text-align: center;
     align-items: center;
+    margin-bottom: 5vh;
 }
 .checkout__llista::-webkit-scrollbar{
     display: none;
@@ -464,7 +468,9 @@ nav > ul > li:first-child { border-left: none; }
     width: 40vw;
     max-width: 100px;
 }
-
+a{
+    text-decoration: none;
+}
 
 @media (max-width: 768px) {
     .productos-container {
