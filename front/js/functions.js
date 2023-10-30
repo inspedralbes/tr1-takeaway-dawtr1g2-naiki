@@ -66,8 +66,7 @@ createApp({
         },
         tencarCheckout(){
             this.mostrarModalCorreo = false; // Cierra el modal
-
-        } ,
+        },
         guardarCorreoYContinuar(nuevoDiv) {
             // Guarda el correo ingresado y realiza la acción necesaria
            
@@ -75,7 +74,7 @@ createApp({
             console.log(user);
             const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
             if (!user.match(validRegex)) {
-                alert("Email incorrecte");
+                 document.querySelector(".checkout__modal>.modal-contenido h3").className= "error";
             } else {
                 this.mostrarModalCorreo = false; // Cierra el modal
                 this.divActivo = nuevoDiv; // Muestra la pagina de compra realizada
