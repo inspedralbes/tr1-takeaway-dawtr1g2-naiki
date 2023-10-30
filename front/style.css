@@ -455,7 +455,7 @@ nav > ul > li:first-child { border-left: none; }
     text-align: center;
     align-items: center;
 }
-.checkout::-webkit-scrollbar{
+.checkout__llista::-webkit-scrollbar{
     display: none;
 }
 .checkout button{
