@@ -31,7 +31,7 @@
                     </div>
                     <div class="cta-button-container">
                         <button class="boton__portada" @click="cambiar('tienda')">¡COMPRA JA!</button>
-                    </div>        
+                    </div>
                 </div>
             </div>
         </div>
@@ -56,9 +56,9 @@
                 </nav>
 
                 <div @click="cambiar('mostrarInicioSesion')" class="usuario">
-                    <img  src="imagen/usuario.png">
+                    <img src="imagen/usuario.png">
 
-                  </div>
+                </div>
 
                 <div @click="cesta()" class="shopping">
                     <img src="imagen/carrito.png">
@@ -95,54 +95,53 @@
             </div>
             <footer>
                 <div class="container__img">
-                    <a href="https://www.youtube.com/watch?v=8Pc0AEbfnBM&ab_channel=Marbler"><img src="imagen/instagram.png" alt="" class="logo__img"></a>
-                    <a href="https://www.youtube.com/watch?v=IxQhfoRwSGU"><img src="imagen/youtube.png" alt="" class="logo__img"></a>
-                    <a href="https://www.youtube.com/watch?v=Rk1MYMPDx3s"><img src="imagen/facebook.png" alt="" class="logo__img"></a>
-                    <a href="https://www.youtube.com/watch?v=Kyl01V1EWC8"><img src="imagen/gorjeo.png" alt="" class="logo__img"></a>
+                    <a href="https://www.youtube.com/watch?v=8Pc0AEbfnBM&ab_channel=Marbler"><img
+                            src="imagen/instagram.png" alt="" class="logo__img"></a>
+                    <a href="https://www.youtube.com/watch?v=IxQhfoRwSGU"><img src="imagen/youtube.png" alt=""
+                            class="logo__img"></a>
+                    <a href="https://www.youtube.com/watch?v=Rk1MYMPDx3s"><img src="imagen/facebook.png" alt=""
+                            class="logo__img"></a>
+                    <a href="https://www.youtube.com/watch?v=Kyl01V1EWC8"><img src="imagen/gorjeo.png" alt=""
+                            class="logo__img"></a>
                 </div>
             </footer>
         </div>
 
-        <div v-if="divActivo == 'mostrarInicioSesion'">
-            <div class="contenido-inicioSesion">
+        <div v-if="divActivo == 'mostrarInicioSesion'" class="formulario-container">
+            <div class="formulario inicio-sesion">
                 <h2>Iniciar Sesión</h2>
-                <label for="usuario">Usuario:</label>
-                <input type="text" id="usuario" v-model="nombreUsuario" required>
-                <label for="contrasena">Contraseña:</label>
-                <input type="password" id="contrasena" v-model="contrasena" required>
-                <button type="submit">Iniciar Sesión</button>
+                <form @submit="iniciarSesion">
+                    <label for="usuario">Usuario:</label>
+                    <input type="text" id="usuario" v-model="nombreUsuario" required>
+                    <label for="contrasena">Contraseña:</label>
+                    <input type="password" id="contrasena" v-model="contrasena" required>
+                    <button type="submit">Iniciar Sesión</button>
+                </form>
+                <button class="volver-comprar" @click="cambiar('tienda')">Volver al comprar</button>
+                <button @click="cambiar('RegistroUsuario')">Registrarse</button>
             </div>
-            <button @click="cambiar('tienda')">Volver al comprar</button>
-            <button @click="cambiar('RegistroUsuario')">Registrarse</button>
         </div>
-        <div v-if="divActivo == 'RegistroUsuario'">
-            <form action="procesar_registro.php" method="post">
-                <!-- Campo de Nombre -->
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required>
-                
-                <!-- Campo de Apellido -->
-                <label for="apellido">Apellido:</label>
-                <input type="text" id="apellido" name="apellido" required>
         
-                <!-- Campo de Correo Electrónico -->
-                <label for="correo">Correo Electrónico:</label>
-                <input type="email" id="correo" name="correo" required>
-
-                <!-- Campo de numero de Telefono -->
-                <label for="correo">Telefono:</label>
-                <input type="text" id="telefon" name="telefono" required>
-                
-                <!-- Campo de Contraseña -->
-                <label for="contrasena">Contraseña:</label>
-                <input type="password" id="contrasena" name="contrasena" required>
-                
-                <!-- Botón de Registro -->
-                <button type="submit">Registrarse</button>
-            </form>
-            <button @click="cambiar('tienda')">Volver al comprar</button>
-
+        <div v-if="divActivo == 'RegistroUsuario'" class="formulario-container">
+            <div class="formulario registro-usuario">
+                <h2>Registrarse</h2>
+                <form action="procesar_registro.php" method="post">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                    <label for="apellido">Apellido:</label>
+                    <input type="text" id="apellido" name="apellido" required>
+                    <label for="correo">Correo Electrónico:</label>
+                    <input type="email" id="correo" name="correo" required>
+                    <label for="telefono">Teléfono:</label>
+                    <input type="text" id="telefono" name="telefono" required>
+                    <label for="contrasena">Contraseña:</label>
+                    <input type="password" id="contrasena" name="contrasena" required>
+                    <button type="submit">Registrarse</button>
+                </form>
+                <button class="volver-comprar" @click="cambiar('tienda')">Volver al comprar</button>
+            </div>
         </div>
+
 
 
         <div v-if="divActivo == 'checkout'">
@@ -179,7 +178,7 @@
                     </div>
                     <div id="checkout-buttons">
                         <p id="checkout-total">Total del Carrito: ${{this.total}}</p>
-    
+
                         <button v-if="carrito.length > 0" @click="completar">Realizar Compra</button>
                         <button v-if="carrito.length > 0" @click="limpiarCesta">Limpiar cesta de compra</button>
                         <button @click="mostrarBotiga">Continuar Comprando</button>
@@ -196,18 +195,22 @@
                         <button @click="mostrarBotiga">Continuar Comprando</button>
                     </div>
                 </div>
-                
-                
+
+
                 <footer class="checkout__footer">
                     <div class="container__img">
-                        <a href="https://www.youtube.com/watch?v=8Pc0AEbfnBM&ab_channel=Marbler"><img src="imagen/instagram.png" alt="" class="logo__img"></a>
-                        <a href="https://www.youtube.com/watch?v=IxQhfoRwSGU"><img src="imagen/youtube.png" alt="" class="logo__img"></a>
-                        <a href="https://www.youtube.com/watch?v=Rk1MYMPDx3s"><img src="imagen/facebook.png" alt="" class="logo__img"></a>
-                        <a href="https://www.youtube.com/watch?v=Kyl01V1EWC8"><img src="imagen/gorjeo.png" alt="" class="logo__img"></a>
+                        <a href="https://www.youtube.com/watch?v=8Pc0AEbfnBM&ab_channel=Marbler"><img
+                                src="imagen/instagram.png" alt="" class="logo__img"></a>
+                        <a href="https://www.youtube.com/watch?v=IxQhfoRwSGU"><img src="imagen/youtube.png" alt=""
+                                class="logo__img"></a>
+                        <a href="https://www.youtube.com/watch?v=Rk1MYMPDx3s"><img src="imagen/facebook.png" alt=""
+                                class="logo__img"></a>
+                        <a href="https://www.youtube.com/watch?v=Kyl01V1EWC8"><img src="imagen/gorjeo.png" alt=""
+                                class="logo__img"></a>
                     </div>
                 </footer>
             </div>
-            
+
         </div>
 
 

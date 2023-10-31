@@ -477,7 +477,92 @@ nav > ul > li:first-child { border-left: none; }
 a{
     text-decoration: none;
 }
+/* Estilos para el formulario container */
+.formulario-container {
+    background-image: url('https://www.tapasmagazine.es/wp-content/uploads/2023/05/fotonoticia_20230525102017_9999-1200x800.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 
+}
+
+/* Estilos para los formularios */
+.formulario {
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 350px;
+}
+
+.formulario h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.formulario input {
+    width: 100%;
+    padding-top: 10px;
+    margin: 20px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.formulario button {
+    width: 100%;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.formulario.inicio-sesion {
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    text-align: center;
+    width: 300px;
+}
+.formulario.registro-usuario {
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    text-align: center;
+    width: 300px;
+}
+
+
+
+.formulario.inicio-sesion .volver-comprar {
+    background-color: #007bff;
+    color: #fff;
+    border: 1px solid #007bff;
+    transition: background-color 0.3s; 
+}
+.formulario.inicio-sesion .volver-comprar:hover {
+    background-color: #4CAF50;
+    color: #fff;
+}
+.formulario.registro-usuario .volver-comprar {
+    background-color: #007bff;
+    color: #fff;
+    border: 1px solid #007bff;
+    transition: background-color 0.3s; 
+}
+.formulario.registro-usuario .volver-comprar:hover {
+    background-color: #4CAF50;
+    color: #fff;
+}
 @media (max-width: 768px) {
     .productos-container {
         flex-direction: row;
@@ -505,51 +590,3 @@ header .usuario{
 header .usuario img{
     width: 35px;
 }
-.contenido-inicioSesion,
-        .contenido-registro {
-            background-color: #fff;
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            margin-top: 20px;
-        }
-
-        h2 {
-            color: #333;
-        }
-
-        label {
-            display: block;
-            margin-top: 10px;
-            color: #333;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        button {
-            width: 100%;
-            background-color: #007bff;
-            color: #fff;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-
-
-
-
