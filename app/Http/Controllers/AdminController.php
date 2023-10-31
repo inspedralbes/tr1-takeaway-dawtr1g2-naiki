@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comanda;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Validator;
 use Illuminate\Http\Request;
@@ -21,13 +22,8 @@ class AdminController extends Controller
 
         if ($validator->fails()) {
             return redirect()->route('/')->with('error','Comprova que la contrasenya i la confirmació siguin la mateixa');
-        }; 
-        // $fields = $request->validate([
-           
-
-        // ]);
+        }; ;
        
-
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -73,5 +69,21 @@ class AdminController extends Controller
         return [
             'message' => 'Log out fet'
         ];
+    }
+
+    public function mostrarPanel(){
+        $comandes=Comanda::all();
+        return view('panel',['comandes'=>$comandes]);
+
+    }
+    public function canviarEstatComanda(Request $request){
+        
+        $idComanda = $request->idComanda;
+
+        $nouEstat = $request->nouEstat;
+        DB::table('comandas')
+        ->where('id', $idComanda)
+        ->update(['estat' => $nouEstat]);
+        return redirect()->route('panel')->with('success','Estat actualitzat correctament');
     }
 }
