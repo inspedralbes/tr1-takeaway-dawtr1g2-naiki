@@ -25,6 +25,12 @@ header{
     text-align: right;
     top: 0;
 }
+.tencarCheckout{
+    float: right;
+}
+.error{
+    color:red;
+}
 footer{
     background-color: rgba(0, 0, 0, 0.6);
     display: flex;

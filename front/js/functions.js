@@ -64,41 +64,52 @@ createApp({
         },
         cambiar(nuevoDiv) {
             this.divActivo = nuevoDiv;
-        },guardarCorreoYContinuar(nuevoDiv) {
-            // Guarda el correo ingresado y realiza la acción necesaria
+        },
+        tencarCheckout(){
             this.mostrarModalCorreo = false; // Cierra el modal
-            this.divActivo = nuevoDiv; // Muestra la pagina de compra realizada
+        },
+        guardarCorreoYContinuar(nuevoDiv) {
+            // Guarda el correo ingresado y realiza la acción necesaria
+           
             let user = document.getElementById("emailUser").value;
             console.log(user);
-            if (user != null) {
-                let payload = [{ email: user }, { sabates: this.carrito }];
-                localStorage.clear();
-                const response = fetch("http://localhost:8000/api/comanda", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(payload),
-                });
-                console.log(JSON.stringify(payload))
-                console.log(response);
-                localStorage.clear();
-                this.carrito = [];
-                this.nItems = 0;
-                this.total = 0;
+            const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+            if (!user.match(validRegex)) {
+                 document.querySelector(".checkout__modal>.modal-contenido h3").className= "error";
+            } else {
+                this.mostrarModalCorreo = false; // Cierra el modal
+                this.divActivo = nuevoDiv; // Muestra la pagina de compra realizada
+                if (user != null) {
+                    let payload = [{ email: user }, { sabates: this.carrito }];
+                    localStorage.clear();
+                    const response = fetch("http://localhost:8000/api/comanda", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(payload),
+                    });
+                    console.log(JSON.stringify(payload))
+                    console.log(response);
+                    localStorage.clear();
+                    this.carrito = [];
+                    this.nItems = 0;
+                    this.total = 0;
+                }
             }
         },
-        mostrarBotiga(){
+        mostrarBotiga() {
             this.divActivo = "tienda";
         },
         completar() {
             this.mostrarModalCorreo = true;
-            
+
         },
-        limpiarCesta(){
-            this.carrito = []
-            this.nItems = [];
+        limpiarCesta() {
+            this.carrito = [];
+            this.nItems = 0;
             this.total = 0;
+            localStorage.clear();
         },
 
         cesta() {
