@@ -31,7 +31,7 @@
                     </div>
                     <div class="cta-button-container">
                         <button class="boton__portada" @click="cambiar('tienda')">¡COMPRA JA!</button>
-                    </div>        
+                    </div>
                 </div>
             </div>
         </div>
@@ -54,11 +54,6 @@
                         </li>
                     </ul>
                 </nav>
-
-                <div @click="cambiar('mostrarInicioSesion')" class="usuario">
-                    <img  src="imagen/usuario.png">
-
-                  </div>
 
                 <div @click="cesta()" class="shopping">
                     <img src="imagen/carrito.png">
@@ -95,10 +90,14 @@
             </div>
             <footer>
                 <div class="container__img">
-                    <a href="https://www.youtube.com/watch?v=8Pc0AEbfnBM&ab_channel=Marbler"><img src="imagen/instagram.png" alt="" class="logo__img"></a>
-                    <a href="https://www.youtube.com/watch?v=IxQhfoRwSGU"><img src="imagen/youtube.png" alt="" class="logo__img"></a>
-                    <a href="https://www.youtube.com/watch?v=Rk1MYMPDx3s"><img src="imagen/facebook.png" alt="" class="logo__img"></a>
-                    <a href="https://www.youtube.com/watch?v=Kyl01V1EWC8"><img src="imagen/gorjeo.png" alt="" class="logo__img"></a>
+                    <a href="https://www.youtube.com/watch?v=8Pc0AEbfnBM&ab_channel=Marbler"><img
+                            src="imagen/instagram.png" alt="" class="logo__img"></a>
+                    <a href="https://www.youtube.com/watch?v=IxQhfoRwSGU"><img src="imagen/youtube.png" alt=""
+                            class="logo__img"></a>
+                    <a href="https://www.youtube.com/watch?v=Rk1MYMPDx3s"><img src="imagen/facebook.png" alt=""
+                            class="logo__img"></a>
+                    <a href="https://www.youtube.com/watch?v=Kyl01V1EWC8"><img src="imagen/gorjeo.png" alt=""
+                            class="logo__img"></a>
                 </div>
             </footer>
         </div>
@@ -120,11 +119,11 @@
                 <!-- Campo de Nombre -->
                 <label for="nombre">Nombre:</label>
                 <input type="text" id="nombre" name="nombre" required>
-                
+
                 <!-- Campo de Apellido -->
                 <label for="apellido">Apellido:</label>
                 <input type="text" id="apellido" name="apellido" required>
-        
+
                 <!-- Campo de Correo Electrónico -->
                 <label for="correo">Correo Electrónico:</label>
                 <input type="email" id="correo" name="correo" required>
@@ -132,11 +131,11 @@
                 <!-- Campo de numero de Telefono -->
                 <label for="correo">Telefono:</label>
                 <input type="text" id="telefon" name="telefono" required>
-                
+
                 <!-- Campo de Contraseña -->
                 <label for="contrasena">Contraseña:</label>
                 <input type="password" id="contrasena" name="contrasena" required>
-                
+
                 <!-- Botón de Registro -->
                 <button type="submit">Registrarse</button>
             </form>
@@ -179,7 +178,7 @@
                     </div>
                     <div id="checkout-buttons">
                         <p id="checkout-total">Total del Carrito: ${{this.total}}</p>
-    
+
                         <button v-if="carrito.length > 0" @click="completar">Realizar Compra</button>
                         <button v-if="carrito.length > 0" @click="limpiarCesta">Limpiar cesta de compra</button>
                         <button @click="mostrarBotiga">Continuar Comprando</button>
@@ -196,18 +195,22 @@
                         <button @click="mostrarBotiga">Continuar Comprando</button>
                     </div>
                 </div>
-                
-                
+
+
                 <footer class="checkout__footer">
                     <div class="container__img">
-                        <a href="https://www.youtube.com/watch?v=8Pc0AEbfnBM&ab_channel=Marbler"><img src="imagen/instagram.png" alt="" class="logo__img"></a>
-                        <a href="https://www.youtube.com/watch?v=IxQhfoRwSGU"><img src="imagen/youtube.png" alt="" class="logo__img"></a>
-                        <a href="https://www.youtube.com/watch?v=Rk1MYMPDx3s"><img src="imagen/facebook.png" alt="" class="logo__img"></a>
-                        <a href="https://www.youtube.com/watch?v=Kyl01V1EWC8"><img src="imagen/gorjeo.png" alt="" class="logo__img"></a>
+                        <a href="https://www.youtube.com/watch?v=8Pc0AEbfnBM&ab_channel=Marbler"><img
+                                src="imagen/instagram.png" alt="" class="logo__img"></a>
+                        <a href="https://www.youtube.com/watch?v=IxQhfoRwSGU"><img src="imagen/youtube.png" alt=""
+                                class="logo__img"></a>
+                        <a href="https://www.youtube.com/watch?v=Rk1MYMPDx3s"><img src="imagen/facebook.png" alt=""
+                                class="logo__img"></a>
+                        <a href="https://www.youtube.com/watch?v=Kyl01V1EWC8"><img src="imagen/gorjeo.png" alt=""
+                                class="logo__img"></a>
                     </div>
                 </footer>
             </div>
-            
+
         </div>
 
 
@@ -219,20 +222,45 @@
 
                 <h2>Ingrese su correo</h2>
                 <input type="text" v-model="correo" id="emailUser"> <!-- Campo de entrada para el correo -->
-                <button @click="guardarCorreoYContinuar('compraConfirm')">Guardar</button>
+                <button @click="guardarCorreoYContinuar('compraConfirm')" class="guardarTicket">Guardar</button>
                 <h3 class="hidden">Mail invalid</h3>
             </div>
         </div>
 
         <div v-if="divActivo == 'compraConfirm'">
+            <header>
+                <img src="imagen/NAIKI.png" class="imagen__logo">
+            </header>
             <div id="compraConfirm">
                 <div class="modal-contenido">
-                    <h2>Compra Ralizada corretamente</h2>
-                    <button @click="cambiar('tienda')">Continuar Comprando</button>
+                    <h2>Compra Realizada corretamente</h2>
+                    <h3>Tiquet</h3>
+                    <ul class="tiquet-list">
+                        <li v-for="(actual, index) in carrito" :key="index" class="tiquet-item">
+                            <p>{{actual.quantitat}}</p>
+                            <p>{{actual.marca}} {{ actual.model }}</p>
+                            <p>{{ actual.quantitat * actual.preu }} € </p>
+                        </li>
+                    </ul>
+                    <p class="total">Total: {{this.total}} € </p>
+                    <h4>Datos del usuario: {{correo}}</h4>
+                    <button id="boton__ticket" @click="cerrarTicket('tienda')">Seguir comprando</button>
+                    <button id="boton__ticket" @click="">Estat de Producte</button>
                 </div>
             </div>
+            <footer class="footer__ticket">
+                <div class="container__img">
+                    <a href="https://www.youtube.com/watch?v=8Pc0AEbfnBM&ab_channel=Marbler"><img
+                            src="imagen/instagram.png" alt="" class="logo__img"></a>
+                    <a href="https://www.youtube.com/watch?v=IxQhfoRwSGU"><img src="imagen/youtube.png" alt=""
+                            class="logo__img"></a>
+                    <a href="https://www.youtube.com/watch?v=Rk1MYMPDx3s"><img src="imagen/facebook.png" alt=""
+                            class="logo__img"></a>
+                    <a href="https://www.youtube.com/watch?v=Kyl01V1EWC8"><img src="imagen/gorjeo.png" alt=""
+                            class="logo__img"></a>
+                </div>
+            </footer>
         </div>
-
 
     </div>
 
