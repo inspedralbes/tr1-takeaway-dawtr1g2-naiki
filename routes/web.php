@@ -17,8 +17,8 @@ Route::get('/', function(){
     return view('app');
 })->name('app');
 
-Route::post('/register', [AdminController::class, 'register'])->name('register');
-Route::post('/login', [AdminController::class, 'login'])->name('login');
+//Route::post('/register', [AdminController::class, 'register'])->name('register');
+//Route::post('/login', [AdminController::class, 'login'])->name('login');
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
