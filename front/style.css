@@ -1,3 +1,7 @@
+:root{
+    --bgHeaderFooter:  rgba(0, 0, 0, 0.6);
+    --bgButton:#007BFF;
+}
 *{
     margin: 0;
     padding: 0;
@@ -14,8 +18,12 @@ body {
     margin-bottom: 5vh;
     width: 100%;
 }
+nav button{
+    background-color:transparent;
+
+}
 header{
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: var(--bgHeaderFooter);
     display: grid;
     grid-template-columns: 1fr 40px;
     padding: 5%;
@@ -32,7 +40,7 @@ header{
     color:red;
 }
 footer{
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: var(--bgHeaderFooter);
     display: flex;
     vertical-align:middle;
     padding: 5%;
@@ -92,11 +100,14 @@ header .shopping span{
     width: 94vw;
     max-width: 500px;
     max-height: 100vh;
-    background-color:  grey;;
+    background-color:  grey;
     border: grey;
     transition: 0.5s;
     text-align: center;
     overflow: scroll;
+}
+.actiu{
+    background-color: var(--bgButton);
 }
 .cesta::-webkit-scrollbar{
     display: none;
@@ -140,7 +151,7 @@ header .shopping span{
     background-color: #E3E7E8;
 }
 .cesta .checkOut div:nth-child(2){
-    background-color: #1C1F25;
+    background-color: var(--bgHeaderFooter);
     color: #fff;
 }
 .cesta-active{
@@ -163,7 +174,7 @@ border-radius: 3px;
 
 
 button {
-    background-color: #007BFF;
+    background-color: var(--bgButton);
     color: #fff;
     border: none;
     font-size: 16px;
@@ -219,7 +230,7 @@ button {
 }
 
 .container-portada{
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: var(--bgHeaderFooter);
     backdrop-filter: blur(0.4rem);
     max-width: 84%;
     border-radius: 6px;
@@ -328,7 +339,7 @@ button {
 }
 
 .checkout button {
-    background-color: #007bff;
+    background-color: var(--bgButton);
     color: #fff;
     border: none;
     padding: 10px ;
@@ -515,7 +526,7 @@ a{
 
 .formulario button {
     width: 100%;
-    background-color: #007bff;
+    background-color: var(--bgButton);
     color: #fff;
     padding: 10px;
     border: none;
@@ -544,9 +555,9 @@ a{
 
 
 .formulario.inicio-sesion .volver-comprar {
-    background-color: #007bff;
+    background-color: var(--bgButton);
     color: #fff;
-    border: 1px solid #007bff;
+    border: 1px solid var(--bgButton);
     transition: background-color 0.3s; 
 }
 .formulario.inicio-sesion .volver-comprar:hover {
@@ -554,9 +565,9 @@ a{
     color: #fff;
 }
 .formulario.registro-usuario .volver-comprar {
-    background-color: #007bff;
+    background-color: var(--bgButton);
     color: #fff;
-    border: 1px solid #007bff;
+    border: 1px solid var(--bgButton);
     transition: background-color 0.3s; 
 }
 .formulario.registro-usuario .volver-comprar:hover {

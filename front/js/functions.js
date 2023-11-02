@@ -13,7 +13,9 @@ createApp({
             nCompra: 0,
             total: 0,
             nItems: 0,
-            mostrarMenu: false
+            mostrarMenu: false,
+            valorFiltre: null,
+            sabatesMostrar:[]
         }
     },
     methods: {
@@ -101,6 +103,21 @@ createApp({
         mostrarBotiga() {
             this.divActivo = "tienda";
         },
+        filtre(e,filtrar){
+            let buttons = document.querySelectorAll('nav button');
+            buttons.forEach(button => {
+                button.classList.remove("actiu");
+            });
+            e.target.classList.add("actiu");
+            this.sabatesMostrar = [];
+            this.sabates.forEach(sabata => {
+                if(sabata.genere==filtrar){
+                    this.sabatesMostrar.push(sabata);
+                    console.log(sabata)
+                }
+            });
+            console.log(this.sabatesMostrar);
+        },
         completar() {
             this.mostrarModalCorreo = true;
 
@@ -130,6 +147,7 @@ createApp({
 
         getSabates().then(sabates => {
             this.sabates = sabates;
+            this.sabatesMostrar = sabates;
             console.log(this.sabates);
         })
 
@@ -138,6 +156,5 @@ createApp({
             this.total += element.preu * element.quantitat;
             this.nItems += element.quantitat;
         }
-
     }
 }).mount("#app")
