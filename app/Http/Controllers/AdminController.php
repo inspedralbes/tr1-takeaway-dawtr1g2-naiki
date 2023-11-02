@@ -15,7 +15,9 @@ class AdminController extends Controller
     {   
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string',
+            'nom' => 'required|string',
+            'cognoms' => 'required|string',
+            'telefon' => 'required|string',
             'email' => 'required|string|unique:users,email',
             'password' => 'required|string|confirmed'
         ]);
@@ -25,10 +27,11 @@ class AdminController extends Controller
         }; ;
        
         $user = User::create([
-            'name' => $request->name,
+            'nom' => $request->nom,
+            'cognoms' => $request->cognoms,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'admin' => 'true',
+            'telefon' =>$request->telefon,
         ]);
 
         $token = $user->createToken('myapptoken')->plainTextToken;
