@@ -13,8 +13,7 @@ createApp({
             nCompra: 0,
             total: 0,
             nItems: 0,
-            mostrarMenu: false,
-            correo: ""
+            mostrarMenu: false
         }
     },
     methods: {
@@ -66,19 +65,13 @@ createApp({
         cambiar(nuevoDiv) {
             this.divActivo = nuevoDiv;
         },
-        cerrarTicket(nuevoDiv){
-            this.limpiarCesta();
-            this.cambiar(nuevoDiv);
-        },
         tencarCheckout(){
             this.mostrarModalCorreo = false; // Cierra el modal
         },
         guardarCorreoYContinuar(nuevoDiv) {
             // Guarda el correo ingresado y realiza la acción necesaria
            
-            this.correo = document.getElementById("emailUser").value;
             let user = document.getElementById("emailUser").value;
-            
             console.log(user);
             const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
             if (!user.match(validRegex)) {
@@ -99,7 +92,9 @@ createApp({
                     console.log(JSON.stringify(payload))
                     console.log(response);
                     localStorage.clear();
-                   
+                    this.carrito = [];
+                    this.nItems = 0;
+                    this.total = 0;
                 }
             }
         },

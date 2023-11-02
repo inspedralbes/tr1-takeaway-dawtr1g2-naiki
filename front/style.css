@@ -10,14 +10,9 @@ body {
 }
 
 
-
-
 .afegir,.eliminar{
     margin-bottom: 5vh;
     width: 100%;
-    border-radius: 6px;
-    padding: 6px;
-    margin: 2px;
 }
 header{
     background-color: rgba(0, 0, 0, 0.6);
@@ -32,8 +27,6 @@ header{
 }
 .tencarCheckout{
     float: right;
-    padding: 2%;
-    border-radius: 5px;
 }
 .error{
     color:red;
@@ -44,7 +37,7 @@ footer{
     vertical-align:middle;
     padding: 5%;
     width: 98vw;
-   
+    
 }
 .checkout__footer{
     position: fixed;
@@ -54,7 +47,6 @@ footer{
     display: flex;
     align-items: center;
     margin: auto;
-
 
 }
 .logo__img{
@@ -67,24 +59,18 @@ footer{
     color: white;
     right: 8vw;
     font-size: 0.8cm;
-    border-radius: 6px;
-    padding: 6px;
-    margin: 2px;
 }
 header .shopping{
-    position: sticky;
+    position: fixed;
     text-align: right;
     top: 1%;
     right: 14vw;
 }
 
 
-
-
 header .shopping img{
-    width: 40px;
+    width: 35px;
 }
-
 
 header .shopping span{
     background-color: #54a6fd;
@@ -98,7 +84,6 @@ header .shopping span{
     left: 80%;
     padding: 3px 10px;
 }
-
 
 .cesta{
     position: fixed;
@@ -136,7 +121,6 @@ header .shopping span{
     grid-template-columns: repeat(2, 1fr);
     height: 5vh;
 
-
     text-align: center;
 }
 .cesta .checkOut div{
@@ -163,11 +147,9 @@ header .shopping span{
     right: 5px;
 }
 
-
 #checkout .total{
     font-size: 1cm;
 }
-
 
 .item__model{
     margin: 0;
@@ -180,22 +162,20 @@ border-radius: 3px;
 }
 
 
-
-
 button {
     background-color: #007BFF;
     color: #fff;
     border: none;
     font-size: 16px;
     cursor: pointer;
-   
+    border-radius: 6px;
+    padding: 6px;
+    margin: 2px;
 }
-
 
 .button:hover {
     background-color: #0056b3;
 }
-
 
 .item{
     box-shadow: 0 45px 60px #757676;
@@ -207,7 +187,6 @@ button {
     border-radius: 5px;
     margin-left: 6px;
 }
-
 
 #lista{
     display: grid;
@@ -222,20 +201,13 @@ button {
     margin-top: 10%;
     width: 60%;
 
-
 }
-
 
 .hidden{
     display: none;
 }
 
 
-
-.footer__ticket{
-    position: fixed;
-    bottom: 0vh;
-}
 .portada {
     background: url('https://www.tapasmagazine.es/wp-content/uploads/2023/05/fotonoticia_20230525102017_9999-1200x800.jpg');
     color: #fff;
@@ -245,7 +217,6 @@ button {
     width: 100%;
     height: 100vh;
 }
-
 
 .container-portada{
     background-color: rgba(0, 0, 0, 0.6);
@@ -267,7 +238,6 @@ button {
     font-variant: small-caps;
 }
 
-
 .portada__subtitle {
     font-size: 1.5rem;
     margin-top: 10px;
@@ -281,7 +251,6 @@ button {
     color: #f0f0f0;
     margin-top: 10px;
 }
-
 
 .cta-button-container {
     margin-top: 20px;
@@ -298,7 +267,7 @@ button {
     background: rgba(0, 0, 0, 0.5);
     z-index: 1000;
   }
- 
+  
   .modal-contenido {
     background: white;
     border-radius: 5px;
@@ -306,7 +275,6 @@ button {
     padding: 20px;
     text-align: center;
   }
-
 
 .checkout{
     display: grid;
@@ -317,11 +285,9 @@ button {
     align-items: center;
 }
 
-
 .checkout label, .checkout input {
     margin: 10px 0;
 }
-
 
 .checkout input {
     padding: 8px;
@@ -340,7 +306,6 @@ button {
     font-size: 0.8cm;
 }
 
-
 .checkout button:hover {
     background-color: #0056b3;
 }
@@ -350,11 +315,9 @@ button {
     align-items: center;
 }
 
-
 .checkout label, .checkout input {
     margin: 10px 0;
 }
-
 
 .checkout input {
     padding: 8px;
@@ -363,7 +326,6 @@ button {
     width: 100%;
     max-width: 300px;
 }
-
 
 .checkout button {
     background-color: #007bff;
@@ -375,12 +337,10 @@ button {
     font-size: 16px;
     margin-top: 20px;
 
-
 }
 #checkout-buttons button{
     margin: 5px;
 }
-
 
 .checkout button:hover {
     background-color: #0056b3;
@@ -394,8 +354,6 @@ nav{
 .sub-menu-parent { position: static; }
 
 
-
-
 .sub-menu-parent:focus .sub-menu,
 .sub-menu-parent:focus-within .sub-menu,
 .sub-menu-parent:hover .sub-menu {
@@ -404,23 +362,19 @@ nav{
   z-index: 1;
 }
 
-
 /* presentational */
 nav a { color: #d7e9eb; display: block; padding: 0.5em 1em; text-decoration: none; }
 nav a:hover { color: #54a6fd; }
 nav ul,
 nav ul li { list-style-type: none; padding: 0; margin: 0; }
 
-
 nav > ul { text-align: center; }
 nav > ul > li { display: inline-block;  }
 nav > ul > li:first-child { border-left: none; }
 
-
 .sub-menu {
   background: #DDD;
 }
-
 
 .boton__portada{
     background: #03a9f4;
@@ -437,8 +391,6 @@ nav > ul > li:first-child { border-left: none; }
     top: 5px;
     left: -3px;
 }
-
-
 
 
 .titol__check{
@@ -480,7 +432,6 @@ nav > ul > li:first-child { border-left: none; }
     margin: 0;
 }
 
-
 .text__color{
     margin: 2px;
 }
@@ -505,7 +456,6 @@ nav > ul > li:first-child { border-left: none; }
     margin-left: auto;
     margin-right: auto;
     margin: 3%;
-
 
 }
 .checkout__llista{
@@ -593,6 +543,26 @@ a{
 
 
 
+.formulario.inicio-sesion .volver-comprar {
+    background-color: #007bff;
+    color: #fff;
+    border: 1px solid #007bff;
+    transition: background-color 0.3s; 
+}
+.formulario.inicio-sesion .volver-comprar:hover {
+    background-color: #4CAF50;
+    color: #fff;
+}
+.formulario.registro-usuario .volver-comprar {
+    background-color: #007bff;
+    color: #fff;
+    border: 1px solid #007bff;
+    transition: background-color 0.3s; 
+}
+.formulario.registro-usuario .volver-comprar:hover {
+    background-color: #4CAF50;
+    color: #fff;
+}
 @media (max-width: 768px) {
     .productos-container {
         flex-direction: row;
@@ -620,51 +590,3 @@ header .usuario{
 header .usuario img{
     width: 35px;
 }
-.contenido-inicioSesion,
-        .contenido-registro {
-            background-color: #fff;
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            margin-top: 20px;
-        }
-
-        h2 {
-            color: #333;
-        }
-
-        label {
-            display: block;
-            margin-top: 10px;
-            color: #333;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        button {
-            width: 100%;
-            background-color: #007bff;
-            color: #fff;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-
-
-
-
