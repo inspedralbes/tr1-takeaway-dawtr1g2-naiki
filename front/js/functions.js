@@ -14,7 +14,16 @@ createApp({
             total: 0,
             nItems: 0,
             sabatesMostrar: [],
-            mostrarMenu: false
+            mostrarMenu: false,
+
+            registro:{
+                nom:null,
+                cognoms:null,
+                email:null,
+                telefon:null,
+                password:null,
+                password_confirmation:null,
+            }
         }
     },
     methods: {
@@ -137,6 +146,17 @@ createApp({
 
             })
 
+        },
+        registrar(){
+            if(this.register.password != this.register.password_confirmation){
+                document.getElementById(formRegister).innerHTML="<h2 class='error'>Les constrasenyes no coïncideixen</h2>"+document.getElementById(formRegister).innerHTML
+            }else{
+            var formulari = new FormData();
+            formulari.append("nom",this.register.nom);
+            formulari.append("cognoms",this.register.cognoms);
+            formulari.append("email",this.register.email);
+            }
+            
         }
 
     },
