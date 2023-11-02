@@ -151,9 +151,14 @@ header .shopping span{
 }
 .cesta .item{
     float: none;
-    margin-left: auto;
+    display: flex;
     margin-right: auto;
     background-color: #E3E7E8;
+    width: 40vh;
+    margin: 2%;
+}
+.cesta__text{
+    margin: auto;
 }
 .cesta .checkOut div:nth-child(2){
     background-color: #1C1F25;
@@ -162,7 +167,6 @@ header .shopping span{
 .cesta-active{
     right: 5px;
 }
-
 
 #checkout .total{
     font-size: 1cm;
@@ -173,9 +177,6 @@ header .shopping span{
     margin: 0;
 }
 .item__img{
-margin-left: auto;
-margin-right: auto;
-width: 100%;
 border-radius: 3px;
 }
 
@@ -438,6 +439,11 @@ nav > ul > li:first-child { border-left: none; }
     left: -3px;
 }
 
+
+.img__lista{
+    height: 41vw;
+    width: 90%;
+}
 
 
 

@@ -69,18 +69,21 @@
                     <button id="btnCheckout" @click="cambiar('checkout')">Checkout</button>
                 </div>
                 <div class="cesta__item item" v-for="(actual, index) in carrito">
-                    <img class="item__img" :src="actual.imatge" height="184" width="184" alt="">
-                    <h6 class="item__model">{{ actual.model }}</h6>
-                    <p class="item__color">{{actual.color}}</p>
-                    <p class="item__quantitat">Quantitat: {{actual.quantitat}}</p>
-                    <p class="item__preu">Preu/u: {{actual.preu}}€</p>
+                    <img class="item__img img__cesta" :src="actual.imatge" height="184" width="184" alt="">
+                    <div class="cesta__text">
+                        <h6 class="item__model">{{ actual.model }}</h6>
+                        <p class="item__color">{{actual.color}}</p>
+                        <p class="item__quantitat">Quantitat: {{actual.quantitat}}</p>
+                        <p class="item__preu">Preu/u: {{actual.preu}}€</p>
+                        <button class="eliminar" @click="eliminar(actual)">Treure</button>
+                    </div>
 
-                    <button class="eliminar" @click="eliminar(actual)">Treure</button>
+                    
                 </div>
             </div>
             <div id="lista">
                 <div class="llista__item item" v-for="(actual, index) in sabates">
-                    <img class="item__img" :src="actual.imatge" height="184" width="184" alt="">
+                    <img class="item__img img__lista" :src="actual.imatge" height="184" width="184" alt="">
                     <h2 class="item__model">{{ actual.model }}</h2>
                     <p class="item__color">{{actual.color}}</p>
                     <p class="item__preu">Preu/u: {{actual.preu}}€</p>
@@ -94,7 +97,7 @@
                             src="imagen/instagram.png" alt="" class="logo__img"></a>
                     <a href="https://www.youtube.com/watch?v=IxQhfoRwSGU"><img src="imagen/youtube.png" alt=""
                             class="logo__img"></a>
-                    <a href="https://www.youtube.com/watch?v=Rk1MYMPDx3s"><img src="imagen/facebook.png" alt=""
+                    <a href="https://www.youtube.com/watch?v=_YjKboT4I40"><img src="imagen/facebook.png" alt=""
                             class="logo__img"></a>
                     <a href="https://www.youtube.com/watch?v=Kyl01V1EWC8"><img src="imagen/gorjeo.png" alt=""
                             class="logo__img"></a>
@@ -102,46 +105,6 @@
             </footer>
         </div>
 
-        <div v-if="divActivo == 'mostrarInicioSesion'">
-            <div class="contenido-inicioSesion">
-                <h2>Iniciar Sesión</h2>
-                <label for="usuario">Usuario:</label>
-                <input type="text" id="usuario" v-model="nombreUsuario" required>
-                <label for="contrasena">Contraseña:</label>
-                <input type="password" id="contrasena" v-model="contrasena" required>
-                <button type="submit">Iniciar Sesión</button>
-            </div>
-            <button @click="cambiar('tienda')">Volver al comprar</button>
-            <button @click="cambiar('RegistroUsuario')">Registrarse</button>
-        </div>
-        <div v-if="divActivo == 'RegistroUsuario'">
-            <form action="procesar_registro.php" method="post">
-                <!-- Campo de Nombre -->
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required>
-
-                <!-- Campo de Apellido -->
-                <label for="apellido">Apellido:</label>
-                <input type="text" id="apellido" name="apellido" required>
-
-                <!-- Campo de Correo Electrónico -->
-                <label for="correo">Correo Electrónico:</label>
-                <input type="email" id="correo" name="correo" required>
-
-                <!-- Campo de numero de Telefono -->
-                <label for="correo">Telefono:</label>
-                <input type="text" id="telefon" name="telefono" required>
-
-                <!-- Campo de Contraseña -->
-                <label for="contrasena">Contraseña:</label>
-                <input type="password" id="contrasena" name="contrasena" required>
-
-                <!-- Botón de Registro -->
-                <button type="submit">Registrarse</button>
-            </form>
-            <button @click="cambiar('tienda')">Volver al comprar</button>
-
-        </div>
 
 
         <div v-if="divActivo == 'checkout'">
@@ -164,22 +127,26 @@
 
             <div v-if="divActivo == 'checkout'" class="checkout-container checkout">
                 <div class="checkout__cesta" v-if="carrito.length > 0">
+                    <div class="container__preuTotal">
+                        <p id="checkout-total">Total del Carrito: ${{this.total}}</p>
+                        <button v-if="carrito.length > 0" @click="completar">Realizar Compra</button>
+                    </div>
                     <h2>Cesta de la compra</h2>
                     <div class="checkout__llista">
+                       
                         <div class="checkout__item" v-for="(actual, index) in carrito">
                             <img class="item__img" :src="actual.imatge" height="184" width="184" alt="">
-                            <h3 class="item__model">{{ actual.model }}</h3>
-                            <p class="item__color">{{actual.color}}</p>
-                            <p class="item__quantitat">Quantitat: {{actual.quantitat}}</p>
-                            <p class="item__preu">Preu/u: {{actual.preu}}€</p>
+                            <div class="cesta__item">
+                                <h3 class="item__model">{{ actual.model }}</h3>
+                                <p class="item__color">{{actual.color}}</p>
+                                <p class="item__quantitat">Quantitat: {{actual.quantitat}}</p>
+                                <p class="item__preu">Preu/u: {{actual.preu}}€</p>
 
-                            <button class="eliminar" @click="eliminar(actual)">Treure</button>
+                                <button class="eliminar" @click="eliminar(actual)">Treure</button>
+                            </div>
                         </div>
                     </div>
-                    <div id="checkout-buttons">
-                        <p id="checkout-total">Total del Carrito: ${{this.total}}</p>
-
-                        <button v-if="carrito.length > 0" @click="completar">Realizar Compra</button>
+                    <div id="checkout-buttons">                      
                         <button v-if="carrito.length > 0" @click="limpiarCesta">Limpiar cesta de compra</button>
                         <button @click="mostrarBotiga">Continuar Comprando</button>
                     </div>
@@ -203,7 +170,7 @@
                                 src="imagen/instagram.png" alt="" class="logo__img"></a>
                         <a href="https://www.youtube.com/watch?v=IxQhfoRwSGU"><img src="imagen/youtube.png" alt=""
                                 class="logo__img"></a>
-                        <a href="https://www.youtube.com/watch?v=Rk1MYMPDx3s"><img src="imagen/facebook.png" alt=""
+                        <a href="https://www.youtube.com/watch?v=_YjKboT4I40"><img src="imagen/facebook.png" alt=""
                                 class="logo__img"></a>
                         <a href="https://www.youtube.com/watch?v=Kyl01V1EWC8"><img src="imagen/gorjeo.png" alt=""
                                 class="logo__img"></a>
@@ -222,7 +189,7 @@
 
                 <h2>Ingrese su correo</h2>
                 <input type="text" v-model="correo" id="emailUser"> <!-- Campo de entrada para el correo -->
-                <button @click="guardarCorreoYContinuar('compraConfirm')" class="guardarTicket">Guardar</button>
+                <button @click="guardarCorreoYContinuar('compraConfirm')">Guardar</button>
                 <h3 class="hidden">Mail invalid</h3>
             </div>
         </div>
@@ -254,13 +221,14 @@
                             src="imagen/instagram.png" alt="" class="logo__img"></a>
                     <a href="https://www.youtube.com/watch?v=IxQhfoRwSGU"><img src="imagen/youtube.png" alt=""
                             class="logo__img"></a>
-                    <a href="https://www.youtube.com/watch?v=Rk1MYMPDx3s"><img src="imagen/facebook.png" alt=""
+                    <a href="https://www.youtube.com/watch?v=_YjKboT4I40"><img src="imagen/facebook.png" alt=""
                             class="logo__img"></a>
                     <a href="https://www.youtube.com/watch?v=Kyl01V1EWC8"><img src="imagen/gorjeo.png" alt=""
                             class="logo__img"></a>
                 </div>
             </footer>
         </div>
+
 
     </div>
 
