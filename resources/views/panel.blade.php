@@ -1,7 +1,7 @@
 <!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma-rtl.min.css"> 
-
+<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 <title>Document</title>
     </head> <body>
 
@@ -13,8 +13,11 @@
     <p>{{$comanda->id}}</p> 
     <p>{{$comanda->usuari}}</p> 
     <p>{{$comanda->estat}}</p>
-        <button id="mostrar-{{$comanda->id}}">Mostrar comanda</button> 
-        <button class="js-modal-trigger" data-target="modal-js-estat{{$comanda->id}}">Editar Estat</button>
+    <div class="ButtonComanda">
+    <button id="mostrar-{{$comanda->id}}">Mostrar comanda</button> 
+    <button class="js-modal-trigger" data-target="modal-js-estat{{$comanda->id}}">Editar Estat</button>
+    </div>
+        
 
             <div id="modal-js-estat{{$comanda->id}}" class="modal">
                 <div class="modal-background"></div>
