@@ -1,5 +1,6 @@
 import { getSabates } from "./communicatonManagar.js";
 
+
 const { createApp } = Vue
 
 createApp({
