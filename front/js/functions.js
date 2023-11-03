@@ -198,7 +198,8 @@ createApp({
                 body: formulari,
             })
             response = await response.json();
-            
+            this.token = response.token;
+            this.cambiar("tienda")
 
 
         },
