@@ -16,13 +16,13 @@ createApp({
             sabatesMostrar: [],
             mostrarMenu: false,
 
-            registro:{
-                nom:null,
-                cognoms:null,
-                email:null,
-                telefon:null,
-                password:null,
-                password_confirmation:null,
+            register: {
+                nom: null,
+                cognoms: null,
+                email: null,
+                telefon: null,
+                password: null,
+                password_confirmation: null,
             }
         }
     },
@@ -92,15 +92,13 @@ createApp({
                 if (user != null) {
                     let payload = [{ email: user }, { sabates: this.carrito }];
                     localStorage.clear();
-                    const response = fetch("http://localhost:8000/api/comanda", {
+                    fetch("http://127.0.0.1:8000/api/comanda", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
                         },
                         body: JSON.stringify(payload),
                     });
-                    console.log(JSON.stringify(payload))
-                    console.log(response);
                     localStorage.clear();
                     this.carrito = [];
                     this.nItems = 0;
@@ -147,17 +145,64 @@ createApp({
             })
 
         },
-        registrar(){
-            if(this.register.password != this.register.password_confirmation){
-                document.getElementById(formRegister).innerHTML="<h2 class='error'>Les constrasenyes no coïncideixen</h2>"+document.getElementById(formRegister).innerHTML
-            }else{
+        async registrar() {
+
             var formulari = new FormData();
-            formulari.append("nom",this.register.nom);
-            formulari.append("cognoms",this.register.cognoms);
-            formulari.append("email",this.register.email);
-            }
+            formulari.append("nom", this.register.nom);
+            formulari.append("cognoms", this.register.cognoms);
+            formulari.append("email", this.register.email);
+            formulari.append("telefon", this.register.telefon);
+            formulari.append("password", this.register.password);
+            formulari.append("password_confirmation", this.register.password_confirmation);
+            console.log(this.register);
+
+            let response = await fetch("http://localhost:8000/api/register", {
+                method: "POST",
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                },
+                body: formulari,
+            })
+
+            response = await response.json();
+            if (response.error == 2) {
+                document.getElementById('errorContrasenya').classList.add("hidden");
+                document.getElementById('errorEmail').classList.remove("hidden");
+            }else if (response.error ==1){
+                document.getElementById('errorContrasenya').classList.remove("hidden");
+                document.getElementById('errorEmail').classList.add("hidden");
             
-        }
+            } else {
+
+                this.cambiar('mostrarInicioSesion');
+
+            }
+
+
+
+
+
+        },
+        async login() {
+
+            var formulari = new FormData();
+
+            formulari.append("email", this.register.email);
+            formulari.append("password", this.register.password);
+
+            let response = await fetch("http://localhost:8000/api/login", {
+                method: "POST",
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                },
+                body: formulari,
+            })
+            response = await response.json();
+            
+
+
+        },
+
 
     },
     created() {
