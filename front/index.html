@@ -71,7 +71,7 @@
                 <div class="cesta__item item" v-for="(actual, index) in carrito">
                     <img class="item__img img__cesta" :src="actual.imatge" height="184" width="184" alt="">
                     <div class="cesta__text">
-                        <h6 class="item__model">{{ actual.model }}</h6>
+                        <h3 class="item__model">{{ actual.model }}</h3>
                         <p class="item__color">{{actual.color}}</p>
                         <p class="item__quantitat">Quantitat: {{actual.quantitat}}</p>
                         <p class="item__preu">Preu/u: {{actual.preu}}€</p>
@@ -129,7 +129,7 @@
                 <div class="checkout__cesta" v-if="carrito.length > 0">
                     <div class="container__preuTotal">
                         <p id="checkout-total">Total del Carrito: ${{this.total}}</p>
-                        <button v-if="carrito.length > 0" @click="completar">Realizar Compra</button>
+                        <button v-if="carrito.length > 0" @click="completar" class="finalizarCompra">Realizar Compra</button>
                     </div>
                     <h2>Cesta de la compra</h2>
                     <div class="checkout__llista">
@@ -137,17 +137,19 @@
                         <div class="checkout__item" v-for="(actual, index) in carrito">
                             <img class="item__img" :src="actual.imatge" height="184" width="184" alt="">
                             <div class="cesta__item">
-                                <h3 class="item__model">{{ actual.model }}</h3>
-                                <p class="item__color">{{actual.color}}</p>
-                                <p class="item__quantitat">Quantitat: {{actual.quantitat}}</p>
-                                <p class="item__preu">Preu/u: {{actual.preu}}€</p>
+                                <div class="cesta__text">
+                                    <h3 class="item__model">{{ actual.model }}</h3>
+                                    <p class="item__color">{{actual.color}}</p>
+                                    <p class="item__quantitat">Quantitat: {{actual.quantitat}}</p>
+                                    <p class="item__preu">Preu/u: {{actual.preu}}€</p>
 
                                 <button class="eliminar" @click="eliminar(actual)">Treure</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div id="checkout-buttons">                      
-                        <button v-if="carrito.length > 0" @click="limpiarCesta">Limpiar cesta de compra</button>
+                    <div class="container__buttons">                      
+                        <button v-if="carrito.length > 0" @click="limpiarCesta" class="checkout__buttons">Limpiar cesta de compra</button>
                         <button @click="mostrarBotiga">Continuar Comprando</button>
                     </div>
                 </div>
@@ -201,6 +203,7 @@
             <div id="compraConfirm">
                 <div class="modal-contenido">
                     <h2>Compra Realizada corretamente</h2>
+                    <h4>Datos del usuario: {{correo}}</h4>
                     <h3>Tiquet</h3>
                     <ul class="tiquet-list">
                         <li v-for="(actual, index) in carrito" :key="index" class="tiquet-item">
@@ -210,9 +213,10 @@
                         </li>
                     </ul>
                     <p class="total">Total: {{this.total}} € </p>
-                    <h4>Datos del usuario: {{correo}}</h4>
-                    <button id="boton__ticket" @click="cerrarTicket('tienda')">Seguir comprando</button>
-                    <button id="boton__ticket" @click="">Estat de Producte</button>
+                    <div>
+                        <button class="boton__ticket" @click="cerrarTicket('tienda')">Seguir comprando</button>
+                        <button class="boton__ticket" @click="">Estat de Producte</button>
+                    </div>
                 </div>
             </div>
             <footer class="footer__ticket">
