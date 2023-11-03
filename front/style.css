@@ -188,8 +188,13 @@ button {
     background-color: #0056b3;
 }
 
+.elementoSombra {
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  }
 .item{
-    box-shadow: 0 45px 60px #757676;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.3s ease; /* Agregar una transición para suavizar el cambio */
+    outline: none; /* Elimina el borde predeterminado */
     background-color: lightsteelblue;
     padding: 18px;
     float: left;

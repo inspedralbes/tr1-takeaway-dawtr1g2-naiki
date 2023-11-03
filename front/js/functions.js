@@ -14,7 +14,8 @@ createApp({
             total: 0,
             nItems: 0,
             sabatesMostrar: [],
-            mostrarMenu: false
+            mostrarMenu: false,
+            elementoConSombra: false,
         }
     },
     methods: {
@@ -34,6 +35,7 @@ createApp({
             localStorage.setItem("carrito", JSON.stringify(this.carrito));
             this.total += zapato.preu;
             this.nItems++;
+            this.elementoConSombra = true;
         },
         eliminar(zapato) {
             const index = this.carrito.findIndex(element => element.model === zapato.model);
