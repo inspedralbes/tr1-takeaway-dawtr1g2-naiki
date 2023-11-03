@@ -159,6 +159,7 @@ header .shopping span{
 }
 .cesta__text{
     margin: auto;
+    width: 30vw;
 }
 .cesta .checkOut div:nth-child(2){
     background-color: #1C1F25;
@@ -337,8 +338,8 @@ button {
 .container__buttons{
     position: fixed;
     display: flex;
-    margin-top: -32vh;
-    margin-left: 3vh;
+    left: 11%;
+    top: 80%;
 }
 #checkout-total{
     font-size: 0.8cm;
@@ -368,19 +369,6 @@ button {
     max-width: 300px;
 }
 
-
-.checkout button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px ;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 20px;
-
-
-}
 #checkout-buttons button{
     margin: 5px;
 }
@@ -465,14 +453,15 @@ nav > ul > li:first-child { border-left: none; }
     width: 33vh;
 }
 .checkout__cesta{
-    margin: 0;
-    margin-left: 10px;
     margin-top: 5%;
+    text-align: center;
     margin-bottom: -21%;
 }
 .checkout__buttons{
     position: static;
-    margin-left: 40%;
+    padding: 4%;
+    border-radius: 5px;
+    margin: 4px;
 }
 .item__checkout{
     background-color: lightsteelblue;
@@ -516,13 +505,12 @@ nav > ul > li:first-child { border-left: none; }
 
 }
 .checkout__llista{
-    height: 75vh;
+    height: 54vh;
     width: 100%;
     max-height: 80vh;
     overflow: scroll;
     text-align: center;
-    align-items: center;
-    margin-bottom: 5vh;
+    margin-bottom:11vh;
 }
 .checkout__llista::-webkit-scrollbar{
     display: none;
@@ -583,8 +571,10 @@ a{
 }
 
 .cesta__item{
-    margin-top: 17px;
+    margin: auto;
 }
 .finalizarCompra{
     width: 100%;
+    padding: 3%;
+    border-radius: 4px;
 }

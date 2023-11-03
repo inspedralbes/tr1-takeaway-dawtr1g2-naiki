@@ -150,7 +150,7 @@
                     </div>
                     <div class="container__buttons">                      
                         <button v-if="carrito.length > 0" @click="limpiarCesta" class="checkout__buttons">Limpiar cesta de compra</button>
-                        <button @click="mostrarBotiga">Continuar Comprando</button>
+                        <button @click="mostrarBotiga" class="checkout__buttons">Continuar Comprando</button>
                     </div>
                 </div>
                 <div class="checkout__cesta" v-if="carrito.length == 0">
