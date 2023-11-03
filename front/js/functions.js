@@ -15,7 +15,7 @@ createApp({
             nItems: 0,
             sabatesMostrar: [],
             mostrarMenu: false,
-
+            token: null,
             register: {
                 nom: null,
                 cognoms: null,
@@ -55,6 +55,13 @@ createApp({
             this.nItems--;
 
 
+        },
+        btnUsuario() {
+            if (this.token == null) {
+                this.cambiar('mostrarInicioSesion');
+            }else{
+                alert("logejat");
+            }
         },
         checkout() {
             if (this.carrito.length == 0) {
@@ -168,10 +175,10 @@ createApp({
             if (response.error == 2) {
                 document.getElementById('errorContrasenya').classList.add("hidden");
                 document.getElementById('errorEmail').classList.remove("hidden");
-            }else if (response.error ==1){
+            } else if (response.error == 1) {
                 document.getElementById('errorContrasenya').classList.remove("hidden");
                 document.getElementById('errorEmail').classList.add("hidden");
-            
+
             } else {
 
                 this.cambiar('mostrarInicioSesion');
