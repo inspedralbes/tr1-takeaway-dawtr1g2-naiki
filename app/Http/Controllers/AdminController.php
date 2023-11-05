@@ -14,7 +14,6 @@ class AdminController extends Controller
     public function register(Request $request)
     {   
         
-        //return ("TEST");
         $validator = Validator::make($request->all(), [
             'nom' => 'required|string',
             'cognoms' => 'required|string',
@@ -50,7 +49,6 @@ class AdminController extends Controller
             'telefon' =>$request->telefon,
         ]);
 
-        $token = $user->createToken('myapptoken')->plainTextToken;
 
         $response = [
             'user' => $user,
@@ -87,10 +85,14 @@ class AdminController extends Controller
     }
     public function logout(Request $request)
     {
-        auth()->user()->tokens()->delete();
-        return [
+        //auth()->user()->tokens()->delete();
+        DB::table('personal_access_tokens')->where('token','=', $request->token)->delete();
+    
+        $response = [
             'message' => 'Log out fet'
         ];
+        return (json_encode($response));
+        
     }
 
     public function mostrarPanel(){
