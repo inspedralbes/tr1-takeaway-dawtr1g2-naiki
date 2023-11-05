@@ -60,8 +60,31 @@ createApp({
             if (this.token == null) {
                 this.cambiar('mostrarInicioSesion');
             }else{
-                alert("logejat");
+                if (document.querySelector(".menuUsuariActiu")==null){
+                    document.querySelector(".menuUsuari").classList.add("menuUsuariActiu");
+                }else{
+                    document.querySelector(".menuUsuari").classList.remove("menuUsuariActiu");
+
+                }
             }
+        },
+        async logout(){
+            let token = new FormData();
+            token.append("token",this.token);
+            let response = await fetch("http://127.0.0.1:8000/api/logout", {
+                        method: "POST",
+                        headers: {
+                            "Authorization": 'Bearer {'+this.token+'}',
+                            "Content-Type": "application/json",
+
+                        },
+                        body: token,
+                        
+                    });
+            response = await response.json();
+            console.log(response);
+            this.cambiar("portada");
+            this.token = null;
         },
         checkout() {
             if (this.carrito.length == 0) {

@@ -601,3 +601,20 @@ header .usuario{
 header .usuario img{
     width: 35px;
 }
+
+.menuUsuari{
+    position: fixed;
+    float: right;
+    left: 65vw;
+    width: 32vw;
+    top: -20vh;
+    text-align: center;
+    background-color: var(--bgHeaderFooter)
+}
+.menuUsuariActiu{
+    top: inherit;
+}
+.menuUsuari button{
+    width: 90%;
+
+}
