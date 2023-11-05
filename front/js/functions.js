@@ -16,6 +16,7 @@ createApp({
             sabatesMostrar: [],
             mostrarMenu: false,
             token: null,
+            user: null,
             register: {
                 nom: null,
                 cognoms: null,
@@ -59,28 +60,28 @@ createApp({
         btnUsuario() {
             if (this.token == null) {
                 this.cambiar('mostrarInicioSesion');
-            }else{
-                if (document.querySelector(".menuUsuariActiu")==null){
+            } else {
+                if (document.querySelector(".menuUsuariActiu") == null) {
                     document.querySelector(".menuUsuari").classList.add("menuUsuariActiu");
-                }else{
+                } else {
                     document.querySelector(".menuUsuari").classList.remove("menuUsuariActiu");
 
                 }
             }
         },
-        async logout(){
+        async logout() {
             let token = new FormData();
-            token.append("token",this.token);
+            token.append("token", this.token);
             let response = await fetch("http://127.0.0.1:8000/api/logout", {
-                        method: "POST",
-                        headers: {
-                            "Authorization": 'Bearer {'+this.token+'}',
-                            "Content-Type": "application/json",
+                method: "POST",
+                headers: {
+                    "Authorization": 'Bearer {' + this.token + '}',
+                    "Content-Type": "application/json",
 
-                        },
-                        body: token,
-                        
-                    });
+                },
+                body: token,
+
+            });
             response = await response.json();
             console.log(response);
             this.cambiar("portada");
@@ -110,8 +111,12 @@ createApp({
         },
         guardarCorreoYContinuar(nuevoDiv) {
             // Guarda el correo ingresado y realiza la acción necesaria
-
-            let user = document.getElementById("emailUser").value;
+            let user = null;
+            if (this.token == null) {
+                user = document.getElementById("emailUser").value;
+            } else {
+                user = this.user.email;
+            }
             console.log(user);
             const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
             if (!user.match(validRegex)) {
@@ -154,8 +159,11 @@ createApp({
             console.log(this.sabatesMostrar);
         },
         completar() {
-            this.mostrarModalCorreo = true;
-
+            if (this.token == null) {
+                this.mostrarModalCorreo = true;
+            } else {
+                this.guardarCorreoYContinuar('compraConfirm');
+            }
         },
         limpiarCesta() {
             this.carrito = [];
@@ -229,6 +237,7 @@ createApp({
             })
             response = await response.json();
             this.token = response.token;
+            this.user = response.user;
             this.cambiar("tienda")
 
 
