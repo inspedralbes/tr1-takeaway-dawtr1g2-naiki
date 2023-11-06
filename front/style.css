@@ -618,3 +618,20 @@ a{
     padding: 3%;
     border-radius: 4px;
 }
+
+.menuUsuari{
+    position: fixed;
+    float: right;
+    left: 65vw;
+    width: 32vw;
+    top: -20vh;
+    text-align: center;
+    background-color: var(--bgHeaderFooter)
+}
+.menuUsuariActiu{
+    top: inherit;
+}
+.menuUsuari button{
+    width: 90%;
+
+}

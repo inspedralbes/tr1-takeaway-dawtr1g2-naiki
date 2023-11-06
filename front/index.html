@@ -55,7 +55,7 @@
                     </ul>
                 </nav>
 
-                <div @click="cambiar('mostrarInicioSesion')" class="usuario">
+                <div @click="btnUsuario()" class="usuario">
                     <img src="imagen/usuario.png">
 
                 </div>
@@ -65,7 +65,11 @@
                     <span class="cuantitat">{{this.nItems}}</span>
                 </div>
             </header>
+            <div class="menuUsuari">
+                <button>Veure comandas</button>
+                <button @click="logout()">Logout</button>
 
+            </div>
             <div class="cesta">
                 <h1>Carrito</h1>
                 <button class="closeShopping">X</button>
@@ -110,6 +114,42 @@
             </footer>
         </div>
 
+        <div v-if="divActivo == 'mostrarInicioSesion'" class="formulario-container">
+            <div class="formulario inicio-sesion formLogin">
+                <h2>Iniciar Sesión</h2>
+                    <label for="usuario">Usuario:</label>
+                    <input type="text" id="usuario" v-model="register.email" required>
+                    <label for="contrasena">Contraseña:</label>
+                    <input type="password" id="contrasenaLogin" v-model="register.password" required>
+                    <button type="submit" @click="login()">Iniciar Sesión</button>
+                <button class="volver-comprar" @click="cambiar('tienda')">Volver al comprar</button>
+                <button @click="cambiar('RegistroUsuario')">Registrarse</button>
+            </div>
+        </div>
+        
+        <div v-if="divActivo == 'RegistroUsuario'" class="formulario-container">
+            <div class="formulario registro-usuario" id="formRegister">
+                <h2 class='error hidden' id="errorContrasenya">Les constrasenyes no coïncideixen</h2>
+                <h2 class='error hidden' id="errorEmail">Email ja esta en ús</h2>
+
+                <h2>Registrarse</h2>
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nom" required v-model="register.nom">
+                    <label for="apellido">Apellido:</label>
+                    <input type="text" id="apellido" name="cognoms" required  v-model="register.cognoms">
+                    <label for="correo">Correo Electrónico:</label>
+                    <input type="email" id="correo" name="email" required  v-model="register.email" >
+                    <label for="telefono">Teléfono:</label>
+                    <input type="text" id="telefono" name="telefon" required  v-model="register.telefon">
+                    <label for="contrasena">Contraseña:</label>
+                    <input type="password" id="contrasena" name="password" required  v-model="register.password"> 
+                    <label for="contrasena">Confirmación de contraseña:</label>
+                    <input type="password" id="contrasena" name="password_confirmation" required  v-model="register.password_confirmation">
+                    <button @click="registrar()">Registrarse</button>
+                <button @click="cambiar('mostrarInicioSesion')">Iniciar sesion</button>
+                <button class="volver-comprar" @click="cambiar('tienda')">Volver al comprar</button>
+            </div>
+        </div>
 
 
 
