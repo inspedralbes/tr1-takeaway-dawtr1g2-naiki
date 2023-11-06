@@ -75,7 +75,12 @@ header .shopping{
     right: 14vw;
 }
 
-
+header .usuario{
+    position: fixed;
+    right: 25vw;
+    text-align: right;
+    top: 1%;
+}
 header .shopping img{
     width: 35px;
 }
