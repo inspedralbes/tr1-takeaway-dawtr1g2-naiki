@@ -111,7 +111,24 @@ class AdminController extends Controller
         return redirect()->route('panel')->with('success','Estat actualitzat correctament');
     }
 
-    public function crearNouProducte(Request $request, $idComanda){
+    public function loginAdmin(Request $request){
+        $fields = $request->validate([
+            'email' => 'required|string',
+            'password' => 'required|string'
+
+        ]);
+        $user = User::where('email', $fields['email'])->first();
+        if (!Hash::check($fields['password'], $user->password)) {
+            return redirect()->route('/')->with('error','Email o contraseña incorrecta');
+
+        }
+
+        if ($user->admin==0) {
+            return redirect()->route('/')->with('error','Este usuario no es admin');
+        }
         
+        $token = $user->createToken('myapptoken')->plainTextToken;
+
+        return redirect()->route('panel')->with('token',$token);
     }
 }

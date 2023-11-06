@@ -15,6 +15,10 @@ use App\Http\Controllers\AdminController;
 
 Route::get('/panel',[AdminController::class,'mostrarPanel'])->name('panel');
 Route::post('/updateEstat',[AdminController::class,'canviarEstatComanda'])->name('updateEstat');
+Route::get('/',function(){
+    return view('app');
+})->name('/');
+Route::post('/loginAdmin',[AdminController::class,'loginAdmin'])->name('loginAdmin');
 
 //Route::post('/register', [AdminController::class, 'register'])->name('register');
 //Route::post('/login', [AdminController::class, 'login'])->name('login');
