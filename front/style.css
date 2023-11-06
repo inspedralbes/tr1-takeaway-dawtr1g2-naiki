@@ -146,9 +146,15 @@ header .shopping span{
 }
 .cesta .item{
     float: none;
-    margin-left: auto;
+    display: flex;
     margin-right: auto;
     background-color: #E3E7E8;
+    width: 38vh;
+    margin: 2%;
+}
+.cesta__text{
+    margin: auto;
+    width: 30vw;
 }
 .cesta .checkOut div:nth-child(2){
     background-color: var(--bgHeaderFooter);
@@ -162,13 +168,14 @@ header .shopping span{
     font-size: 1cm;
 }
 
+.boton__ticket{
+    padding: 2%;
+    margin: 4px;
+}
 .item__model{
     margin: 0;
 }
 .item__img{
-margin-left: auto;
-margin-right: auto;
-width: 100%;
 border-radius: 3px;
 }
 
@@ -307,11 +314,11 @@ button {
     width: 100%;
     max-width: 300px;
 }
-#checkout-buttons{
-    position: absolute;
-    display: grid;
-    margin-top: -73vh;
-    margin-left: 26vh;
+.container__buttons{
+    position: fixed;
+    display: flex;
+    left: 11%;
+    top: 80%;
 }
 #checkout-total{
     font-size: 0.8cm;
@@ -338,17 +345,6 @@ button {
     max-width: 300px;
 }
 
-.checkout button {
-    background-color: var(--bgButton);
-    color: #fff;
-    border: none;
-    padding: 10px ;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 20px;
-
-}
 #checkout-buttons button{
     margin: 5px;
 }
@@ -404,6 +400,13 @@ nav > ul > li:first-child { border-left: none; }
 }
 
 
+.img__lista{
+    height: 41vw;
+    width: 90%;
+}
+
+
+
 .titol__check{
     position: relative;
     margin-inline: -25vh;
@@ -419,14 +422,15 @@ nav > ul > li:first-child { border-left: none; }
     width: 33vh;
 }
 .checkout__cesta{
-    margin: 0;
-    margin-left: 10px;
     margin-top: 5%;
+    text-align: center;
     margin-bottom: -21%;
 }
 .checkout__buttons{
     position: static;
-    margin-left: 40%;
+    padding: 4%;
+    border-radius: 5px;
+    margin: 4px;
 }
 .item__checkout{
     background-color: lightsteelblue;
@@ -460,31 +464,26 @@ nav > ul > li:first-child { border-left: none; }
 .checkout__item{
     background-color: lightsteelblue;
     padding: 20px;
-    float: left;
+    float: none;
     text-align: center;
-    width: 35vw;
+    width: 80vw;
     border-radius: 5px;
-    margin-left: auto;
-    margin-right: auto;
     margin: 3%;
+    display: flex;
 
 }
 .checkout__llista{
-    height: 75vh;
-    width: 53%;
+    height: 54vh;
+    width: 100%;
     max-height: 80vh;
     overflow: scroll;
     text-align: center;
-    align-items: center;
-    margin-bottom: 5vh;
+    margin-bottom:11vh;
 }
 .checkout__llista::-webkit-scrollbar{
     display: none;
 }
-.checkout button{
-    width: 40vw;
-    max-width: 100px;
-}
+
 a{
     text-decoration: none;
 }
@@ -592,12 +591,30 @@ a{
 .imagen-usuario {
     width: 40px; /* Ajusta el tamaño de la imagen de usuario */
   }
-header .usuario{
-    position: fixed;
-    right: 25vw;
-    text-align: right;
-    top: 1%;
+
+
+.btnCheckout{
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
 }
-header .usuario img{
-    width: 35px;
+
+.guardarTicket{
+    margin: 2%;
+    padding: 7px;
+    border-radius: 4px;
+}
+.container__preuTotal{
+    margin: 2%;
+    text-align: center;
+    display: block;
+}
+
+.cesta__item{
+    margin: auto;
+}
+.finalizarCompra{
+    width: 100%;
+    padding: 3%;
+    border-radius: 4px;
 }
