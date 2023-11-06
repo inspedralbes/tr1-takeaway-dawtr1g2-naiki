@@ -17,6 +17,10 @@ createApp({
             mostrarMenu: false,
             token: null,
             user: null,
+            ticket: {
+                carrito : [],
+                total : null,
+            },
             register: {
                 nom: null,
                 cognoms: null,
@@ -138,14 +142,9 @@ createApp({
                         },
                         body: JSON.stringify(payload),
                     });
-                    localStorage.clear();
                     this.ticket.carrito = this.carrito;
-                    this.ticket.carrito = this.carrito;
-                    this.ticket.carrito = this.carrito;
-
-                    this.carrito = [];
-                    this.nItems = 0;
-                    this.total = 0;
+                    this.ticket.total = this.total;
+                    this.limpiarCesta();
                 }
             }
         },

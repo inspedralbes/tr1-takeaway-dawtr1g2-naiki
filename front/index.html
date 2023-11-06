@@ -250,13 +250,13 @@
                     <h4>Datos del usuario: {{correo}}</h4>
                     <h3>Tiquet</h3>
                     <ul class="tiquet-list">
-                        <li v-for="(actual, index) in carrito" :key="index" class="tiquet-item">
+                        <li v-for="(actual, index) in ticket.carrito" :key="index" class="tiquet-item">
                             <p>{{actual.quantitat}}</p>
                             <p>{{actual.marca}} {{ actual.model }}</p>
                             <p>{{ actual.quantitat * actual.preu }} € </p>
                         </li>
                     </ul>
-                    <p class="total">Total: {{this.total}} € </p>
+                    <p class="total">Total: {{this.ticket.total}} € </p>
                     <div>
                         <button class="boton__ticket" @click="cambiar('tienda')">Seguir comprando</button>
                         <button v-if="this.token!=null" class="boton__ticket" @click="">Estat de Producte</button>
