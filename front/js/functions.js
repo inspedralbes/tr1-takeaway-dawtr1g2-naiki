@@ -15,6 +15,16 @@ createApp({
             nItems: 0,
             sabatesMostrar: [],
             mostrarMenu: false,
+            token: null,
+            user: null,
+            register: {
+                nom: null,
+                cognoms: null,
+                email: null,
+                telefon: null,
+                password: null,
+                password_confirmation: null,
+            },
             aplicarTransicion: false,
         }
     },
@@ -51,6 +61,36 @@ createApp({
             setTimeout(() => { this.aplicarTransicion = false; }, 500);
 
         },
+        btnUsuario() {
+            if (this.token == null) {
+                this.cambiar('mostrarInicioSesion');
+            } else {
+                if (document.querySelector(".menuUsuariActiu") == null) {
+                    document.querySelector(".menuUsuari").classList.add("menuUsuariActiu");
+                } else {
+                    document.querySelector(".menuUsuari").classList.remove("menuUsuariActiu");
+
+                }
+            }
+        },
+        async logout() {
+            let token = new FormData();
+            token.append("token", this.token);
+            let response = await fetch("http://127.0.0.1:8000/api/logout", {
+                method: "POST",
+                headers: {
+                    "Authorization": 'Bearer {' + this.token + '}',
+                    "Content-Type": "application/json",
+
+                },
+                body: token,
+
+            });
+            response = await response.json();
+            console.log(response);
+            this.cambiar("portada");
+            this.token = null;
+        },
         checkout() {
             if (this.carrito.length == 0) {
                 alert("Carrito vacio");
@@ -75,8 +115,12 @@ createApp({
         },
         guardarCorreoYContinuar(nuevoDiv) {
             // Guarda el correo ingresado y realiza la acción necesaria
-
-            let user = document.getElementById("emailUser").value;
+            let user = null;
+            if (this.token == null) {
+                user = document.getElementById("emailUser").value;
+            } else {
+                user = this.user.email;
+            }
             console.log(user);
             const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
             if (!user.match(validRegex)) {
@@ -87,16 +131,18 @@ createApp({
                 if (user != null) {
                     let payload = [{ email: user }, { sabates: this.carrito }];
                     localStorage.clear();
-                    const response = fetch("http://localhost:8000/api/comanda", {
+                    fetch("http://127.0.0.1:8000/api/comanda", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
                         },
                         body: JSON.stringify(payload),
                     });
-                    console.log(JSON.stringify(payload))
-                    console.log(response);
                     localStorage.clear();
+                    this.ticket.carrito = this.carrito;
+                    this.ticket.carrito = this.carrito;
+                    this.ticket.carrito = this.carrito;
+
                     this.carrito = [];
                     this.nItems = 0;
                     this.total = 0;
@@ -121,8 +167,11 @@ createApp({
             console.log(this.sabatesMostrar);
         },
         completar() {
-            this.mostrarModalCorreo = true;
-
+            if (this.token == null) {
+                this.mostrarModalCorreo = true;
+            } else {
+                this.guardarCorreoYContinuar('compraConfirm');
+            }
         },
         limpiarCesta() {
             this.carrito = [];
@@ -141,7 +190,71 @@ createApp({
 
             })
 
-        }
+        },
+        async registrar() {
+
+            var formulari = new FormData();
+            formulari.append("nom", this.register.nom);
+            formulari.append("cognoms", this.register.cognoms);
+            formulari.append("email", this.register.email);
+            formulari.append("telefon", this.register.telefon);
+            formulari.append("password", this.register.password);
+            formulari.append("password_confirmation", this.register.password_confirmation);
+            console.log(this.register);
+
+            let response = await fetch("http://localhost:8000/api/register", {
+                method: "POST",
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                },
+                body: formulari,
+            })
+
+            response = await response.json();
+            if (response.error == 2) {
+                document.getElementById('errorContrasenya').classList.add("hidden");
+                document.getElementById('errorEmail').classList.remove("hidden");
+            } else if (response.error == 1) {
+                document.getElementById('errorContrasenya').classList.remove("hidden");
+                document.getElementById('errorEmail').classList.add("hidden");
+
+            } else {
+
+                this.cambiar('mostrarInicioSesion');
+
+            }
+
+
+
+
+
+        },
+        async login() {
+
+            var formulari = new FormData();
+
+            formulari.append("email", this.register.email);
+            formulari.append("password", this.register.password);
+
+            let response = await fetch("http://localhost:8000/api/login", {
+                method: "POST",
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                },
+                body: formulari,
+            })
+            response = await response.json();
+
+            this.token = response.token;
+            this.user = response.user;
+            if (this.token == null) {
+                document.getElementById("errorLogin").classList.remove("hidden");
+            } else {
+                this.cambiar("tienda")
+            }
+
+        },
+
 
     },
     created() {
