@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comanda;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Validator;
 use Illuminate\Http\Request;
@@ -12,36 +13,48 @@ class AdminController extends Controller
 {
     public function register(Request $request)
     {   
-
+        
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string',
-            'email' => 'required|string|unique:users,email',
+            'nom' => 'required|string',
+            'cognoms' => 'required|string',
+            'telefon' => 'required|string',
             'password' => 'required|string|confirmed'
+        ]);
+        if ($validator->fails()) {
+            $response = [
+                'error' => 1,
+                'missatge' => 'Comprova que la contrasenya i la confirmació siguin la mateixa'
+            ];
+            return (json_encode($response));
+        };
+        
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|string|unique:users,email',
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('/')->with('error','Comprova que la contrasenya i la confirmació siguin la mateixa');
-        }; 
-        // $fields = $request->validate([
-           
+            $response = [
+                'error' => 2,
+                'missatge' => 'Email ja esta en ús'
+            ];
+            return (json_encode($response));
 
-        // ]);
+        };
        
-
         $user = User::create([
-            'name' => $request->name,
+            'nom' => $request->nom,
+            'cognoms' => $request->cognoms,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'admin' => 'true',
+            'telefon' =>$request->telefon,
         ]);
 
-        $token = $user->createToken('myapptoken')->plainTextToken;
 
         $response = [
             'user' => $user,
-            'token' => $token
+            'missatge' => 'Compte creat correctament'
         ];
-        return ($response);
+        return (json_encode($response));
 
     }
 
@@ -54,7 +67,11 @@ class AdminController extends Controller
         ]);
         $user = User::where('email', $fields['email'])->first();
         if (!Hash::check($fields['password'], $user->password)) {
-            return redirect()->route('app')->with('error','Email o contrasenya incorrecte');
+            $response = [
+                'user' => $user,
+                'missatge' => 'Email o contrasenya incorrecte'
+            ];
+            return (json_encode($response));
         }
         
         $token = $user->createToken('myapptoken')->plainTextToken;
@@ -63,16 +80,34 @@ class AdminController extends Controller
             'user' => $user,
             'token' => $token
         ];
-        $comandes=Comanda::all();
-        return view('panel',['sessio' => $response,'comandes'=>$comandes]);
-
+        return (json_encode($response));
 
     }
     public function logout(Request $request)
     {
-        auth()->user()->tokens()->delete();
-        return [
+        //auth()->user()->tokens()->delete();
+        DB::table('personal_access_tokens')->where('token','=', $request->token)->delete();
+    
+        $response = [
             'message' => 'Log out fet'
         ];
+        return (json_encode($response));
+        
+    }
+
+    public function mostrarPanel(){
+        $comandes=Comanda::all();
+        return view('panel',['comandes'=>$comandes]);
+
+    }
+    public function canviarEstatComanda(Request $request){
+        
+        $idComanda = $request->idComanda;
+
+        $nouEstat = $request->nouEstat;
+        DB::table('comandas')
+        ->where('id', $idComanda)
+        ->update(['estat' => $nouEstat]);
+        return redirect()->route('panel')->with('success','Estat actualitzat correctament');
     }
 }

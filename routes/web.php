@@ -13,9 +13,8 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-Route::get('/', function(){
-    return view('app');
-})->name('app');
+Route::get('/panel',[AdminController::class,'mostrarPanel'])->name('panel');
+Route::post('/updateEstat',[AdminController::class,'canviarEstatComanda'])->name('updateEstat');
 
 //Route::post('/register', [AdminController::class, 'register'])->name('register');
 //Route::post('/login', [AdminController::class, 'login'])->name('login');
@@ -25,10 +24,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::post('/panel', function(){
-        return view('panel');
-    })->name('panel');
 
 
-});
