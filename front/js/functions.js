@@ -15,7 +15,7 @@ createApp({
             nItems: 0,
             sabatesMostrar: [],
             mostrarMenu: false,
-            elementoConSombra: false,
+            aplicarTransicion: false,
         }
     },
     methods: {
@@ -35,7 +35,8 @@ createApp({
             localStorage.setItem("carrito", JSON.stringify(this.carrito));
             this.total += zapato.preu;
             this.nItems++;
-            this.elementoConSombra = true;
+            this.aplicarTransicion = true;
+            setTimeout(() => { this.aplicarTransicion = false; }, 500);
         },
         eliminar(zapato) {
             const index = this.carrito.findIndex(element => element.model === zapato.model);
@@ -46,7 +47,8 @@ createApp({
             localStorage.setItem("carrito", JSON.stringify(this.carrito));
             this.total -= zapato.preu;
             this.nItems--;
-
+            this.aplicarTransicion = true;
+            setTimeout(() => { this.aplicarTransicion = false; }, 500);
 
         },
         checkout() {

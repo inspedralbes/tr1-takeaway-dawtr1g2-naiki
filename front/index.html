@@ -73,7 +73,7 @@
                     <div class="total">{{this.total}} € </div>
                     <button id="btnCheckout" @click="cambiar('checkout')">Checkout</button>
                 </div>
-                <div class="cesta__item item" v-for="(actual, index) in carrito">
+                <div :class="['cesta__item item', { 'transicion': aplicarTransicion }]" v-for="(actual, index) in carrito">
                     <img class="item__img" :src="actual.imatge" height="184" width="184" alt="">
                     <h6 class="item__model">{{ actual.model }}</h6>
                     <p class="item__color">{{actual.color}}</p>
@@ -84,7 +84,7 @@
                 </div>
             </div>
             <div id="lista">
-                <div class="llista__item item" :class="{ 'elementoSombra': elementoConSombra }" v-for="(actual, index) in sabatesMostrar">
+                <div :class="['llista__item item', { 'transicion': aplicarTransicion }]" v-for="(actual, index) in sabatesMostrar">
                     <img class="item__img" :src="actual.imatge" height="184" width="184" alt="">
                     <h2 class="item__model">{{ actual.model }}</h2>
                     <p class="item__color">{{actual.color}}</p>
