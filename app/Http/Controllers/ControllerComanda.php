@@ -22,7 +22,7 @@ class ControllerComanda extends Controller
         $payload = json_decode($request->getContent(), true);
         $sabates = $payload[1]["sabates"];
         $email = $payload[0]["email"];
-
+        $comandaValida = false;
         $comanda = new Comanda();
         $comanda->usuari = $email;
         $comanda->estat = "En preparacio";
@@ -51,8 +51,15 @@ class ControllerComanda extends Controller
             $lineaComanda->color =  $sabata["color"];
             $lineaComanda->quantitat =  $sabata["quantitat"];
             $lineaComanda->preu = $sabata["preu"];
-            $lineaComanda->save();
 
+            if (! $sabata["quantitat"]<=0) {
+                $lineaComanda->save();
+                $comandaValida = true;
+            }
+
+        }
+        if(!$comandaValida){
+            return 'Error en la comanda';
         }
         $comanda = DB::table('linea_comandas')->where('idComanda','=', $idComanda)->get();
         Mail::to($email)->send(new \App\Mail\Comanda($comanda));
@@ -70,4 +77,7 @@ class ControllerComanda extends Controller
 
     }
 
+    public function veuraComanda(){
+
+    }
 }
