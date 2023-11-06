@@ -135,6 +135,10 @@ createApp({
                         body: JSON.stringify(payload),
                     });
                     localStorage.clear();
+                    this.ticket.carrito = this.carrito;
+                    this.ticket.carrito = this.carrito;
+                    this.ticket.carrito = this.carrito;
+
                     this.carrito = [];
                     this.nItems = 0;
                     this.total = 0;
@@ -236,10 +240,14 @@ createApp({
                 body: formulari,
             })
             response = await response.json();
+
             this.token = response.token;
             this.user = response.user;
-            this.cambiar("tienda")
-
+            if (this.token == null) {
+                document.getElementById("errorLogin").classList.remove("hidden");
+            } else {
+                this.cambiar("tienda")
+            }
 
         },
 

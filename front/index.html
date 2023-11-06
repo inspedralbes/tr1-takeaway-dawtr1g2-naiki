@@ -116,6 +116,7 @@
 
         <div v-if="divActivo == 'mostrarInicioSesion'" class="formulario-container">
             <div class="formulario inicio-sesion formLogin">
+                <h3 class="error hidden" id="errorLogin">Contrasenya o email incorrecte</h3>
                 <h2>Iniciar Sesión</h2>
                     <label for="usuario">Usuario:</label>
                     <input type="text" id="usuario" v-model="register.email" required>
@@ -257,8 +258,8 @@
                     </ul>
                     <p class="total">Total: {{this.total}} € </p>
                     <div>
-                        <button class="boton__ticket" @click="cerrarTicket('tienda')">Seguir comprando</button>
-                        <button class="boton__ticket" @click="">Estat de Producte</button>
+                        <button class="boton__ticket" @click="cambiar('tienda')">Seguir comprando</button>
+                        <button v-if="this.token!=null" class="boton__ticket" @click="">Estat de Producte</button>
                     </div>
                 </div>
             </div>
