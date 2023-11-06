@@ -117,7 +117,7 @@ createApp({
         tencarCheckout() {
             this.mostrarModalCorreo = false; // Cierra el modal
         },
-        guardarCorreoYContinuar(nuevoDiv) {
+        async guardarCorreoYContinuar(nuevoDiv) {
             // Guarda el correo ingresado y realiza la acción necesaria
             let user = null;
             if (this.token == null) {

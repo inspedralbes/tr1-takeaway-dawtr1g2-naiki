@@ -77,7 +77,7 @@
                     <div class="total">{{this.total}} € </div>
                     <button id="btnCheckout" @click="cambiar('checkout')">Checkout</button>
                 </div>
-                <div :class="['cesta__item item', { 'transicion': aplicarTransicion }]" v-for="(actual, index) in carrito">
+                <div :class="'cesta__item item'" v-for="(actual, index) in carrito">
                     <img class="item__img img__cesta" :src="actual.imatge" height="184" width="184" alt="">
                     <div class="cesta__text">
                         <h3 class="item__model">{{ actual.model }}</h3>
