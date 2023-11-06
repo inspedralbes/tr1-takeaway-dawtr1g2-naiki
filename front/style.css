@@ -1,0 +1,620 @@
+:root{
+    --bgHeaderFooter:  rgba(0, 0, 0, 0.6);
+    --bgButton:#007BFF;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #E3E7E8;
+    max-width: 100%;
+    max-height: 98vh;
+}
+
+
+.afegir,.eliminar{
+    margin-bottom: 5vh;
+    width: 100%;
+}
+nav button{
+    background-color:transparent;
+
+}
+header{
+    background-color: var(--bgHeaderFooter);
+    display: grid;
+    grid-template-columns: 1fr 40px;
+    padding: 5%;
+    width: 91vw;
+    border-radius: 0 0 45px 12px;
+    position: sticky;
+    text-align: right;
+    top: 0;
+}
+.tencarCheckout{
+    float: right;
+}
+.error{
+    color:red;
+}
+footer{
+    background-color: var(--bgHeaderFooter);
+    display: flex;
+    vertical-align:middle;
+    padding: 5%;
+    width: 98vw;
+    
+}
+.checkout__footer{
+    position: fixed;
+    bottom: 0vh;
+}
+.container__img{
+    display: flex;
+    align-items: center;
+    margin: auto;
+
+}
+.logo__img{
+    height: 40px;
+    margin: 2px;
+}
+.closeShopping{
+    position: absolute;
+    top: 1vh;
+    color: white;
+    right: 8vw;
+    font-size: 0.8cm;
+}
+header .shopping{
+    position: fixed;
+    text-align: right;
+    top: 1%;
+    right: 14vw;
+}
+
+
+header .shopping img{
+    width: 35px;
+}
+
+header .shopping span{
+    background-color: #54a6fd;
+    border-radius: 50%;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    color: #fff;
+    position: absolute;
+    top: -5px;
+    left: 80%;
+    padding: 3px 10px;
+}
+
+.cesta{
+    position: fixed;
+    top:0;
+    right: -100%;
+    width: 94vw;
+    max-width: 500px;
+    max-height: 100vh;
+    background-color:  grey;
+    border: grey;
+    transition: 0.5s;
+    text-align: center;
+    overflow: scroll;
+}
+.actiu{
+    background-color: var(--bgButton);
+}
+.cesta::-webkit-scrollbar{
+    display: none;
+}
+.cesta h1{
+    color: #fff;
+    font-weight: 100;
+    margin: 0;
+    padding: 0 20px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+.cesta .item:last-child{
+    margin-bottom: 10vh;
+}
+.cesta .checkOut{
+    width: 100%;
+    position: sticky;
+    top: 95vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    height: 5vh;
+
+    text-align: center;
+}
+.cesta .checkOut div{
+    background-color: #54a6fd;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+.cesta .item{
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #E3E7E8;
+}
+.cesta .checkOut div:nth-child(2){
+    background-color: var(--bgHeaderFooter);
+    color: #fff;
+}
+.cesta-active{
+    right: 5px;
+}
+
+#checkout .total{
+    font-size: 1cm;
+}
+
+.item__model{
+    margin: 0;
+}
+.item__img{
+margin-left: auto;
+margin-right: auto;
+width: 100%;
+border-radius: 3px;
+}
+
+
+button {
+    background-color: var(--bgButton);
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 6px;
+    padding: 6px;
+    margin: 2px;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+.item{
+    box-shadow: 0 45px 60px #757676;
+    background-color: lightsteelblue;
+    padding: 18px;
+    float: left;
+    text-align: center;
+    width: 32vw;
+    border-radius: 5px;
+    margin-left: 6px;
+}
+
+#lista{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 5vh;
+    margin-left: 6%;
+    width: 89vw;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+#carrito{
+    margin-top: 10%;
+    width: 60%;
+
+}
+
+.hidden{
+    display: none;
+}
+
+
+.portada {
+    background: url('https://www.tapasmagazine.es/wp-content/uploads/2023/05/fotonoticia_20230525102017_9999-1200x800.jpg');
+    color: #fff;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow: hidden;
+    width: 100%;
+    height: 100vh;
+}
+
+.container-portada{
+    background-color: var(--bgHeaderFooter);
+    backdrop-filter: blur(0.4rem);
+    max-width: 84%;
+    border-radius: 6px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    margin: 200px auto;
+    border: 1px solid #ffffff40;
+    text-align: center;
+    padding: 20px;
+    margin-left: 10px;
+}
+.portada__title {
+    font-size: 3rem;
+    margin: 0;
+    text-align: center;
+    margin-top: 43px;
+    font-variant: small-caps;
+}
+
+.portada__subtitle {
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
+.info-title {
+    font-size: 1rem;
+    color: #03a9f4;
+}
+.info-text {
+    font-size: 1rem;
+    color: #f0f0f0;
+    margin-top: 10px;
+}
+
+.cta-button-container {
+    margin-top: 20px;
+}
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+  
+  .modal-contenido {
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
+  }
+
+.checkout{
+    display: grid;
+}
+.checkout form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.checkout label, .checkout input {
+    margin: 10px 0;
+}
+
+.checkout input {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 300px;
+}
+#checkout-buttons{
+    position: absolute;
+    display: grid;
+    margin-top: -73vh;
+    margin-left: 26vh;
+}
+#checkout-total{
+    font-size: 0.8cm;
+}
+
+.checkout button:hover {
+    background-color: #0056b3;
+}
+.checkout form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.checkout label, .checkout input {
+    margin: 10px 0;
+}
+
+.checkout input {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 300px;
+}
+
+.checkout button {
+    background-color: var(--bgButton);
+    color: #fff;
+    border: none;
+    padding: 10px ;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+
+}
+#checkout-buttons button{
+    margin: 5px;
+}
+
+.checkout button:hover {
+    background-color: #0056b3;
+}
+nav{
+    position: relative;
+    margin: 0;
+    top: 39%;
+    left: 3%;
+}
+.sub-menu-parent { position: static; }
+
+
+.sub-menu-parent:focus .sub-menu,
+.sub-menu-parent:focus-within .sub-menu,
+.sub-menu-parent:hover .sub-menu {
+  visibility: visible; /* shows sub-menu */
+  opacity: 1;
+  z-index: 1;
+}
+
+/* presentational */
+nav a { color: #d7e9eb; display: block; padding: 0.5em 1em; text-decoration: none; }
+nav a:hover { color: #54a6fd; }
+nav ul,
+nav ul li { list-style-type: none; padding: 0; margin: 0; }
+
+nav > ul { text-align: center; }
+nav > ul > li { display: inline-block;  }
+nav > ul > li:first-child { border-left: none; }
+
+.sub-menu {
+  background: #DDD;
+}
+
+.boton__portada{
+    background: #03a9f4;
+    padding: 10px 20px;
+    border-radius: 5px
+}
+.boton__portada:hover {
+    background-color: #0288d1;
+    transform: scale(1.1);
+}
+.imagen__logo{
+    height: 39px;
+    position: absolute;
+    top: 5px;
+    left: -3px;
+}
+
+
+.titol__check{
+    position: relative;
+    margin-inline: -25vh;
+    top: 58%;
+}
+.titol__producte{
+    margin-left: 4%
+}
+.container__check{
+    background: #757676;
+    border-radius: 5px;
+    margin: 0;
+    width: 33vh;
+}
+.checkout__cesta{
+    margin: 0;
+    margin-left: 10px;
+    margin-top: 5%;
+    margin-bottom: -21%;
+}
+.checkout__buttons{
+    position: static;
+    margin-left: 40%;
+}
+.item__checkout{
+    background-color: lightsteelblue;
+    padding: 20px;
+    text-align: center;
+    width: 35vw;
+    border-radius: 5px;
+    position: relative;
+    margin-right: 3vh;
+    height: 40vh;
+    right: 8px;
+}
+.text__model{
+    margin: 0;
+}
+
+.text__color{
+    margin: 2px;
+}
+.text__quantitat{
+    margin: 4px;
+}
+.text__preu{
+    margin: 4px;
+}
+.checkout-container{
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+}
+.checkout__item{
+    background-color: lightsteelblue;
+    padding: 20px;
+    float: left;
+    text-align: center;
+    width: 35vw;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    margin: 3%;
+
+}
+.checkout__llista{
+    height: 75vh;
+    width: 53%;
+    max-height: 80vh;
+    overflow: scroll;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 5vh;
+}
+.checkout__llista::-webkit-scrollbar{
+    display: none;
+}
+.checkout button{
+    width: 40vw;
+    max-width: 100px;
+}
+a{
+    text-decoration: none;
+}
+/* Estilos para el formulario container */
+.formulario-container {
+    background-image: url('https://www.tapasmagazine.es/wp-content/uploads/2023/05/fotonoticia_20230525102017_9999-1200x800.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+}
+
+/* Estilos para los formularios */
+.formulario {
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 350px;
+}
+
+.formulario h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.formulario input {
+    width: 100%;
+    padding-top: 10px;
+    margin: 20px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.formulario button {
+    width: 100%;
+    background-color: var(--bgButton);
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.formulario.inicio-sesion {
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    text-align: center;
+    width: 300px;
+}
+.formulario.registro-usuario {
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    text-align: center;
+    width: 300px;
+}
+
+
+
+.formulario.inicio-sesion .volver-comprar {
+    background-color: var(--bgButton);
+    color: #fff;
+    border: 1px solid var(--bgButton);
+    transition: background-color 0.3s; 
+}
+.formulario.inicio-sesion .volver-comprar:hover {
+    background-color: #4CAF50;
+    color: #fff;
+}
+.formulario.registro-usuario .volver-comprar {
+    background-color: var(--bgButton);
+    color: #fff;
+    border: 1px solid var(--bgButton);
+    transition: background-color 0.3s; 
+}
+.formulario.registro-usuario .volver-comprar:hover {
+    background-color: #4CAF50;
+    color: #fff;
+}
+@media (max-width: 768px) {
+    .productos-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .producto {
+        width: calc(50% - 20px);
+    }
+}
+@media (max-width: 480px) {
+    .producto {
+        width: 100%;
+    }
+}
+.imagen-usuario {
+    width: 40px; /* Ajusta el tamaño de la imagen de usuario */
+  }
+header .usuario{
+    position: fixed;
+    right: 25vw;
+    text-align: right;
+    top: 1%;
+}
+header .usuario img{
+    width: 35px;
+}
+
+.menuUsuari{
+    position: fixed;
+    float: right;
+    left: 65vw;
+    width: 32vw;
+    top: -20vh;
+    text-align: center;
+    background-color: var(--bgHeaderFooter)
+}
+.menuUsuariActiu{
+    top: inherit;
+}
+.menuUsuari button{
+    width: 90%;
+
+}
