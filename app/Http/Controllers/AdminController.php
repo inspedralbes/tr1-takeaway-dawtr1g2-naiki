@@ -110,4 +110,8 @@ class AdminController extends Controller
         ->update(['estat' => $nouEstat]);
         return redirect()->route('panel')->with('success','Estat actualitzat correctament');
     }
+
+    public function crearNouProducte(Request $request, $idComanda){
+        
+    }
 }
