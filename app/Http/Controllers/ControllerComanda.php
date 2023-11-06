@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comanda;
 use App\Models\LineaComanda;
+use App\Models\Sabates;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -22,7 +23,6 @@ class ControllerComanda extends Controller
         $payload = json_decode($request->getContent(), true);
         $sabates = $payload[1]["sabates"];
         $email = $payload[0]["email"];
-        $comandaValida = false;
         $comanda = new Comanda();
         $comanda->usuari = $email;
         $comanda->estat = "En preparacio";
@@ -43,25 +43,27 @@ class ControllerComanda extends Controller
             $lineaComanda->idComanda = $idComanda;
             $lineaComanda->numItem = $numItem;
             $numItem++;
-            $lineaComanda->marca  = $sabata["marca"];
-            $lineaComanda->model =  $sabata["model"];
+
+            $sabataQuery = Sabates::find( $sabata["id"]);
+
+             $lineaComanda->preu = $sabataQuery->preu;
+             $lineaComanda->marca  = $sabata["marca"];
+             $lineaComanda->model =  $sabata["model"];
             $lineaComanda->genere =  $sabata["genere"];
             $lineaComanda->talla =  $sabata["talla"];
-            $lineaComanda->imatge =  $sabata["imatge"];
-            $lineaComanda->color =  $sabata["color"];
-            $lineaComanda->quantitat =  $sabata["quantitat"];
-            $lineaComanda->preu = $sabata["preu"];
+             $lineaComanda->imatge =  $sabata["imatge"];
+             $lineaComanda->color =  $sabata["color"];
+             $lineaComanda->quantitat =  $sabata["quantitat"];
 
-            if (! $sabata["quantitat"]<=0) {
-                $lineaComanda->save();
-                $comandaValida = true;
-            }
+            if ( $sabata["quantitat"]<=0) {
+                 $lineaComanda->quantitat =  -$sabata["quantitat"];
+             }
+         $lineaComanda->save();
 
         }
-        if(!$comandaValida){
-            return 'Error en la comanda';
-        }
+        
         $comanda = DB::table('linea_comandas')->where('idComanda','=', $idComanda)->get();
+        $comanda = LineaComanda::first();
         Mail::to($email)->send(new \App\Mail\Comanda($comanda));
 
     }
