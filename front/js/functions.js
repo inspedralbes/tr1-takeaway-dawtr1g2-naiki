@@ -1,132 +1,35 @@
-import { getSabates } from "./communicatonManagar.js";
+let currentSlide = 0;
+const slides = document.querySelectorAll('.carousel-slide');
 
+function mostrarSiguiente() {
+    slides[currentSlide].style.display = 'none';
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].style.display = 'block';
+}
 
-const { createApp } = Vue
+function mostrarAnterior() {
+    slides[currentSlide].style.display = 'none';
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    slides[currentSlide].style.display = 'block';
+}
 
-createApp({
-    data() {
-        return {
-            divActivo: 'portada',
-            mostrarModalLogin: false,
-            mostrarModalCorreo: false,
-            sabates: [],
-            carrito: localStorage.getItem("carrito") != null ? JSON.parse(localStorage.getItem("carrito")) : [],
-            nCompra: 0,
-            total: 0,
-            nItems: 0,
-        }
-    },
-    methods: {
-        afegir(zapato) {
-            const index = this.carrito.findIndex(element => element.model === zapato.model);
+// Mostrar la primera imagen al cargar la página
+slides[currentSlide].style.display = 'block';
 
-            if (index == -1) {
-                zapato.quantitat = 1;
-                zapato.talla = 38;
+// Configurar un temporizador para avanzar automáticamente
+setInterval(mostrarSiguiente, 3000);
 
-                zapato.created_at = "NOW()"
-                zapato.updated_at = "NOW()"
-                this.carrito.push(zapato);
-            } else {
-                this.carrito[index].quantitat++;
-            }
-            localStorage.setItem("carrito", JSON.stringify(this.carrito));
-            this.total += zapato.preu;
-            this.nItems++;
-        },
-        eliminar(zapato) {
-            const index = this.carrito.findIndex(element => element.model === zapato.model);
-            this.carrito[index].quantitat--;
-            if (this.carrito[index].quantitat == 0) {
-                this.carrito.splice(index, 1);
-            }
-            localStorage.setItem("carrito", JSON.stringify(this.carrito));
-            this.total -= zapato.preu;
-            this.nItems--;
+// Mostrar los botones de flecha cuando se pasa el ratón sobre el carrusel
+const carousel = document.querySelector('.carousel');
+carousel.addEventListener('mouseover', () => {
+    document.querySelectorAll('.carousel-button').forEach((button) => {
+        button.style.display = 'block';
+    });
+});
 
-
-        },
-        checkout() {
-            if (this.carrito.length == 0) {
-                alert("Carrito vacio");
-            } else {
-
-
-                document.getElementById("btnCheckout").className = "hidden";
-                document.getElementById("lista").className = "hidden";
-                document.getElementById("carrito").className = "hidden";
-                document.getElementById("checkout").className = "";
-            }
-        },
-        mostrar(idDiv) {
-            if (this.divActivo == idDiv) return true;
-            else return false;
-        },
-        cambiar(nuevoDiv) {
-            this.divActivo = nuevoDiv;
-        },guardarCorreoYContinuar(nuevoDiv) {
-            // Guarda el correo ingresado y realiza la acción necesaria
-            this.mostrarModalCorreo = false; // Cierra el modal
-            this.divActivo = nuevoDiv; // Muestra la pagina de compra realizada
-            let user = document.getElementById("emailUser").value;
-            console.log(user);
-            if (user != null) {
-                let payload = [{ email: user }, { sabates: this.carrito }];
-                localStorage.clear();
-                const response = fetch("http://localhost:8000/api/comanda", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(payload),
-                });
-                console.log(JSON.stringify(payload))
-                console.log(response);
-                localStorage.clear();
-                this.carrito = [];
-                this.nItems = 0;
-                this.total = 0;
-            }
-        },
-        mostrarBotiga(){
-            this.divActivo = "tienda";
-        },
-        completar() {
-            this.mostrarModalCorreo = true;
-            
-        },
-        limpiarCesta(){
-            this.carrito = []
-            this.nItems = [];
-            this.total = 0;
-        },
-
-        cesta() {
-            let closeShopping = document.querySelector('.closeShopping');
-
-            document.querySelector(".cesta").classList.add("cesta-active");
-
-            closeShopping.addEventListener('click', () => {
-                document.querySelector(".cesta").classList.remove("cesta-active");
-
-            })
-
-        }
-
-    },
-    created() {
-
-
-        getSabates().then(sabates => {
-            this.sabates = sabates;
-            console.log(this.sabates);
-        })
-
-        for (let index = 0; index < this.carrito.length; index++) {
-            const element = this.carrito[index];
-            this.total += element.preu * element.quantitat;
-            this.nItems += element.quantitat;
-        }
-
-    }
-}).mount("#app")
+// Ocultar los botones de flecha cuando se retira el ratón del carrusel
+carousel.addEventListener('mouseout', () => {
+    document.querySelectorAll('.carousel-button').forEach((button) => {
+        button.style.display = 'none';
+    });
+});

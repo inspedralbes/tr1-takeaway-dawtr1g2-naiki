@@ -1,183 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
-        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style.css">
-
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Carrusel de Imágenes</title>
 </head>
-
 <body>
-
-
-    <div id="app">
-
-        <div v-if="divActivo == 'portada'">
-            <div class="portada">
-                <div class="container-portada">
-                    <h1 class="portada__title">Bienvenido a NAIKI</h1>
-                    <p class="portada__subtitle">Tu Destino Deportivo</p>
-                    <div class="info-box">
-                        <h2 class="info-title">Horario de la Tienda</h2>
-                        <p class="info-text">Lunes a Viernes: 9:00 AM - 7:00 PM</p>
-                        <p class="info-text">Sábados: 10:00 AM - 4:00 PM</p>
-                    </div>
-                    <div class="cta-button-container">
-                        <button class="boton__portada" @click="cambiar('tienda')">¡COMPRA JA!</button>
-                    </div>        
-                </div>
-            </div>
+    <div class="carousel">
+        <div class="carousel-slide">
+            <img src="https://www.reasonwhy.es/media/library/nike_lil_nas_x.jpg" alt="Imagen 1">
+            <button class="carousel-button prev-button" onclick="mostrarAnterior()">&lt;</button>
+            <button class="carousel-button next-button" onclick="mostrarSiguiente()">&gt;</button>
         </div>
-
-
-
-        <div v-if="divActivo == 'tienda'">
-            <header>
-                <img src="imagen/NAIKI.png" class="imagen__logo">
-                <nav>
-                    <ul>
-                        <li class="sub-menu-parent" tab-index="0">
-                            <a href="#">Home</a>
-                        </li>
-                        <li class="sub-menu-parent" tab-index="0">
-                            <a href="#">Done</a>
-                        </li>
-                        <li class="sub-menu-parent" tab-index="0">
-                            <a href="#">Nen/a</a>
-                        </li>
-                    </ul>
-                </nav>
-                <div @click="cesta()" class="shopping">
-                    <img src="imagen/carrito.png">
-                    <span class="cuantitat">{{this.nItems}}</span>
-                </div>
-            </header>
-
-            <div class="cesta">
-                <h1>Carrito</h1>
-                <button class="closeShopping">X</button>
-                <div class="cesta__checkOut checkOut">
-                    <div class="total">{{this.total}} € </div>
-                    <button id="btnCheckout" @click="cambiar('checkout')">Checkout</button>
-                </div>
-                <div class="cesta__item item" v-for="(actual, index) in carrito">
-                    <img class="item__img" :src="actual.imatge" height="184" width="184" alt="">
-                    <h6 class="item__model">{{ actual.model }}</h6>
-                    <p class="item__color">{{actual.color}}</p>
-                    <p class="item__quantitat">quantitat: {{actual.quantitat}}</p>
-                    <p class="item__preu">Preu/u: {{actual.preu}}€</p>
-
-                    <button class="eliminar" @click="eliminar(actual)">Treure</button>
-                </div>
-
-
-            </div>
-            <div class="carousel-container">
-                <div class="carousel">
-                    <img src="https://www.reasonwhy.es/media/library/nike_lil_nas_x.jpg" alt="Image 1">
-                    <img src="https://www.ben-jerrys.es/files/live/sites/systemsite/files/whats-new/30072_chunky_dunky_NIKE/30072_NIKE_OGFB.png" alt="Image 2">
-                    <img src="https://www.blockzeit.com/wp-content/uploads/2023/05/images-2023-05-30T112142.880.jpeg" alt="Image 3">
-                </div>
-                <div class="carousel-nav">
-                    <button id="prev-slide" class="carousel-button"> &lt; </button>
-                    <button id="next-slide" class="carousel-button"> &gt; </button>
-                </div>
-            </div>
-            <div id="lista">
-                <div class="llista__item item" v-for="(actual, index) in sabates">
-                    <img class="item__img" :src="actual.imatge" height="184" width="184" alt="">
-                    <h2 class="item__model">{{ actual.model }}</h2>
-                    <p class="item__color">{{actual.color}}</p>
-                    <p class="item__preu">Preu/u: {{actual.preu}}€</p>
-
-                    <button @click="afegir(actual)" class="afegir">Afegir</button>
-                </div>
-            </div>
-
-
+        <div class="carousel-slide">
+            <img src="https://www.blockzeit.com/wp-content/uploads/2023/05/images-2023-05-30T112142.880.jpeg" alt="Imagen 2">
+            <button class="carousel-button prev-button" onclick="mostrarAnterior()">&lt;</button>
+            <button class="carousel-button next-button" onclick="mostrarSiguiente()">&gt;</button>
         </div>
-
-        <div v-if="divActivo == 'checkout'">
-            <header>
-                <img src="imagen/NAIKI.png" class="imagen__logo">
-                <nav>
-                    <ul>
-                        <li class="sub-menu-parent" tab-index="0">
-                            <a href="#">Home</a>
-                        </li>
-                        <li class="sub-menu-parent" tab-index="0">
-                            <a href="#">Done</a>
-                        </li>
-                        <li class="sub-menu-parent" tab-index="0">
-                            <a href="#">Nen/a</a>
-                        </li>
-                    </ul>
-                </nav>
-            </header>
-
-            <div v-if="divActivo == 'checkout'" class="checkout-container checkout">
-                <div class="checkout__cesta" v-if="carrito.length > 0">
-                    <h2>Cesta de la compra</h2>
-                    <div class="checkout__llista">
-                        <div class="checkout__item" v-for="(actual, index) in carrito">
-                            <img class="item__img" :src="actual.imatge" height="184" width="184" alt="">
-                            <h6 class="item__model">{{ actual.model }}</h6>
-                            <p class="item__color">{{actual.color}}</p>
-                            <p class="item__quantitat">quantitat: {{actual.quantitat}}</p>
-                            <p class="item__preu">Preu/u: {{actual.preu}}€</p>
-
-                            <button class="eliminar" @click="eliminar(actual)">Treure</button>
-                        </div>
-                    </div>
-
-
-
-                </div>
-                <div id="checkout-buttons">
-                    <p id="checkout-total">Total del Carrito: ${{this.total}}</p>
-
-                    <button v-if="carrito.length > 0" @click="completar">Realizar Compra</button>
-                    <button v-if="carrito.length > 0" @click="limpiarCesta">Limpiar cesta de compra</button>
-                    <button @click="mostrarBotiga">Continuar Comprando</button>
-                </div>
-            </div>
-
-
-
+        <div class="carousel-slide">
+            <img src="https://media.karousell.com/media/photos/products/2021/9/15/nike__ben_and_jerrys_sb_dunk_l_1631716286_71eeee31.jpg" alt="Imagen 3">
+            <button class="carousel-button prev-button" onclick="mostrarAnterior()">&lt;</button>
+            <button class="carousel-button next-button" onclick="mostrarSiguiente()">&gt;</button>
         </div>
-
-
-
-        <!-- Página de Modal Login -->
-        <div v-if="mostrarModalCorreo" class="modal">
-            <div class="modal-contenido">
-                <h2>Ingrese su correo</h2>
-                <input type="text" v-model="correo" id="emailUser"> <!-- Campo de entrada para el correo -->
-                <button @click="guardarCorreoYContinuar('compraConfirm')">Guardar</button>
-            </div>
-        </div>
-
-        <div v-if="divActivo == 'compraConfirm'">
-            <div id="compraConfirm">
-                <div class="modal-contenido">
-                    <h2>Compra Ralizada corretamente</h2>
-                    <button @click="cambiar('tienda')">Continuar Comprando</button>
-                </div>
-            </div>
-        </div>
-
-
     </div>
-
-    <script src="js/functions.js" type="module"> </script>
-
+    <script src="js/functions.js"></script>
 </body>
-
 </html>
