@@ -148,6 +148,15 @@ createApp({
                 }
             }
         },
+        quitarFiltre(){
+            this.mostrarBotiga();
+            let buttons = document.querySelectorAll('nav button');
+            buttons.forEach(button => {
+                button.classList.remove("actiu");
+            });
+            this.sabatesMostrar = this.sabates;
+
+        },
         mostrarBotiga() {
             this.divActivo = "tienda";
         }, filtre(e, filtrar) {

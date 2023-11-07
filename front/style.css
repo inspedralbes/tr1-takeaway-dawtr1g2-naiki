@@ -17,10 +17,14 @@ body {
 .afegir,.eliminar{
     margin-bottom: 5vh;
     width: 100%;
+    border-radius: 6px;
+    padding: 6px;
+    margin: 2px;
 }
 nav button{
     background-color:transparent;
-
+    margin: 2vw;
+    padding: 6px;
 }
 header{
     background-color: var(--bgHeaderFooter);
@@ -56,7 +60,7 @@ footer{
     display: flex;
     align-items: center;
     margin: auto;
-
+    margin-left: 13vh;
 }
 .logo__img{
     height: 40px;
@@ -68,6 +72,9 @@ footer{
     color: white;
     right: 8vw;
     font-size: 0.8cm;
+    padding: 6px;
+    margin: 2vw;
+    border-radius: 9px;
 }
 header .shopping{
     position: fixed;
@@ -193,9 +200,6 @@ button {
     border: none;
     font-size: 16px;
     cursor: pointer;
-    border-radius: 6px;
-    padding: 6px;
-    margin: 2px;
 }
 
 .button:hover {
@@ -230,7 +234,7 @@ button {
     row-gap: 5vh;
     margin-left: 6%;
     width: 89vw;
-    margin-top: 15px;
+    margin-top: 15vh;
     margin-bottom: 15px;
 }
 #carrito{
@@ -636,4 +640,8 @@ a{
 .menuUsuari button{
     width: 90%;
 
+}
+
+.return{
+    position: absolute;
 }

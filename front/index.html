@@ -37,7 +37,9 @@
         </div>
 
         <header v-if="divActivo != 'portada' && divActivo!='compraConfirm'">
-            <img src="imagen/NAIKI.png" class="imagen__logo">
+            <div @click="quitarFiltre()" class="return">
+                <img src="imagen/NAIKI.png" class="imagen__logo">
+            </div>
             <nav>
                 <ul>
                     <li class="sub-menu-parent" tab-index="0">
@@ -70,8 +72,10 @@
 
             </div>
             <div class="cesta">
-                <h1>Carrito</h1>
-                <button class="closeShopping">X</button>
+                <div class="header__cesta">
+                    <h1>Carrito</h1>
+                    <button class="closeShopping">X</button>
+                </div>
                 <div class="cesta__checkOut checkOut">
                     <div class="total">{{this.total}} € </div>
                     <button id="btnCheckout" @click="cambiar('checkout')">Checkout</button>
