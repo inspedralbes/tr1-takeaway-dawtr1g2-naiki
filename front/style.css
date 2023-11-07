@@ -29,9 +29,10 @@ header{
     padding: 5%;
     width: 91vw;
     border-radius: 0 0 45px 12px;
-    position: sticky;
+    position: fixed;
     text-align: right;
     top: 0;
+    z-index: 1;
 }
 .tencarCheckout{
     float: right;
@@ -72,7 +73,7 @@ header .shopping{
     position: fixed;
     text-align: right;
     top: 1%;
-    right: 14vw;
+    right: 15vw;
 }
 
 header .usuario{
@@ -110,6 +111,7 @@ header .shopping span{
     transition: 0.5s;
     text-align: center;
     overflow: scroll;
+    z-index: 1;
 }
 .actiu{
     background-color: var(--bgButton);
@@ -202,11 +204,11 @@ button {
 
 .transicion:hover{
     transition: 0.5s;
-    transform:scale(1.15,1.15);
+    transform:scale(1.1,1.1);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   }
 .item{
-    
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     transition: box-shadow 0.3s ease; /* Agregar una transición para suavizar el cambio */
     outline: none; /* Elimina el borde predeterminado */
     background-color: lightsteelblue;
@@ -216,8 +218,10 @@ button {
     width: 32vw;
     border-radius: 5px;
     margin-left: 6px;
-    transition: 1s;
+}
 
+#llista .item{
+    transition: 1s;
 }
 
 #lista{
@@ -369,8 +373,8 @@ button {
 nav{
     position: relative;
     margin: 0;
-    top: 39%;
-    left: 3%;
+    top: 4vw;
+    left: 3vw;
 }
 .sub-menu-parent { position: static; }
 
@@ -407,10 +411,9 @@ nav > ul > li:first-child { border-left: none; }
     transform: scale(1.1);
 }
 .imagen__logo{
-    height: 39px;
+    height: 9vw;
     position: absolute;
-    top: 5px;
-    left: -3px;
+    top: 2vw;
 }
 
 
@@ -586,21 +589,6 @@ a{
 .formulario.registro-usuario .volver-comprar:hover {
     background-color: #4CAF50;
     color: #fff;
-}
-@media (max-width: 768px) {
-    .productos-container {
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-
-    .producto {
-        width: calc(50% - 20px);
-    }
-}
-@media (max-width: 480px) {
-    .producto {
-        width: 100%;
-    }
 }
 .imagen-usuario {
     width: 40px; /* Ajusta el tamaño de la imagen de usuario */

@@ -36,35 +36,34 @@
             </div>
         </div>
 
+        <header v-if="divActivo != 'portada' && divActivo!='compraConfirm'">
+            <img src="imagen/NAIKI.png" class="imagen__logo">
+            <nav>
+                <ul>
+                    <li class="sub-menu-parent" tab-index="0">
+                        <button @click="filtre($event,'Hombre')">Home</button>
+                    </li>
+                    <li class="sub-menu-parent" tab-index="0">
+                        <button @click="filtre($event,'Mujer')">Dona</button>
+                    </li>
+                    <li class="sub-menu-parent" tab-index="0">
+                        <button @click="filtre($event,'Nen/a')">Nen/a</button>
+                    </li>
+                </ul>
+            </nav>
 
+            <div @click="btnUsuario()" class="usuario">
+                <img src="imagen/usuario.png">
+
+            </div>
+
+            <div @click="cesta()" class="shopping">
+                <img src="imagen/carrito.png">
+                <span class="cuantitat">{{this.nItems}}</span>
+            </div>
+        </header>
 
         <div v-if="divActivo == 'tienda'">
-            <header>
-                <img src="imagen/NAIKI.png" class="imagen__logo">
-                <nav>
-                    <ul>
-                        <li class="sub-menu-parent" tab-index="0">
-                            <button @click="filtre($event,'Hombre')">Home</button>
-                        </li>
-                        <li class="sub-menu-parent" tab-index="0">
-                            <button @click="filtre($event,'Mujer')">Dona</button>
-                        </li>
-                        <li class="sub-menu-parent" tab-index="0">
-                            <button @click="filtre($event,'Nen/a')">Nen/a</button>
-                        </li>
-                    </ul>
-                </nav>
-
-                <div @click="btnUsuario()" class="usuario">
-                    <img src="imagen/usuario.png">
-
-                </div>
-
-                <div @click="cesta()" class="shopping">
-                    <img src="imagen/carrito.png">
-                    <span class="cuantitat">{{this.nItems}}</span>
-                </div>
-            </header>
             <div class="menuUsuari">
                 <button>Veure comandas</button>
                 <button @click="logout()">Logout</button>
@@ -155,22 +154,6 @@
 
 
         <div v-if="divActivo == 'checkout'">
-            <header>
-                <img src="imagen/NAIKI.png" class="imagen__logo">
-                <nav>
-                    <ul>
-                        <li class="sub-menu-parent" tab-index="0">
-                            <a href="#">Home</a>
-                        </li>
-                        <li class="sub-menu-parent" tab-index="0">
-                            <a href="#">Done</a>
-                        </li>
-                        <li class="sub-menu-parent" tab-index="0">
-                            <a href="#">Nen/a</a>
-                        </li>
-                    </ul>
-                </nav>
-            </header>
 
             <div v-if="divActivo == 'checkout'" class="checkout-container checkout">
                 <div class="checkout__cesta" v-if="carrito.length > 0">

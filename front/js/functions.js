@@ -151,6 +151,7 @@ createApp({
         mostrarBotiga() {
             this.divActivo = "tienda";
         }, filtre(e, filtrar) {
+            this.mostrarBotiga();
             let buttons = document.querySelectorAll('nav button');
             buttons.forEach(button => {
                 button.classList.remove("actiu");
@@ -178,7 +179,6 @@ createApp({
             this.total = 0;
             localStorage.clear();
         },
-
         cesta() {
             let closeShopping = document.querySelector('.closeShopping');
 
