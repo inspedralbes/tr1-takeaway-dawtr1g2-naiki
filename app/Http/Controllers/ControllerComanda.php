@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comanda;
 use App\Models\LineaComanda;
 use App\Models\Sabates;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -63,10 +64,22 @@ class ControllerComanda extends Controller
         }
         
         $comanda = DB::table('linea_comandas')->where('idComanda','=', $idComanda)->get();
-        $comanda = LineaComanda::first();
-        Mail::to($email)->send(new \App\Mail\Comanda($comanda));
-
+        //Mail::to($email)->send(new \App\Mail\Comanda($comanda));
+        
+        $data["email"] = $email;
+        $data["title"] = "Gràcies per la teva compra!";
+        $data["body"] = "Rebut de la compra";
+        $data["comanda"] = $comanda;
+        
+        $pdf = Pdf::loadView('comanda', $data);
+  
+        Mail::send('bodycomanda', $data, function($message)use($data, $pdf) {
+            $message->to($data["email"], $data["email"])
+                    ->subject($data["title"])
+                    ->attachData($pdf->output(), "text.pdf");
+        });
     }
+    
 
     public function canviarEstatComanda(Request $request){
         
@@ -74,7 +87,7 @@ class ControllerComanda extends Controller
 
         $nouEstat = $request->nouEstat;
         DB::table('comandas')
-        ->where('idComanda', $idComanda)
+        ->where('id', $idComanda)
         ->update(['estat' => $nouEstat]);
 
     }
