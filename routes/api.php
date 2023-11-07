@@ -35,7 +35,7 @@ Route::post('/logout', [AdminController::class, 'logout']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     //Route::get('/comanda', [ControllerComanda::class, 'getComanda']);
-    //Route::patch('/comanda', [ControllerComanda::class, 'canviarEstatComanda']);
+    Route::patch('/comanda', [ControllerComanda::class, 'canviarEstatComanda']);
    // Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
 
 
