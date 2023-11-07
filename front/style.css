@@ -40,6 +40,8 @@ header{
 }
 .tencarCheckout{
     float: right;
+    padding: 2%;
+    border-radius: 4px;
 }
 .error{
     color:red;
@@ -80,12 +82,12 @@ header .shopping{
     position: fixed;
     text-align: right;
     top: 1%;
-    right: 15vw;
+    right: 13%;
 }
 
 header .usuario{
     position: fixed;
-    right: 25vw;
+    right: 22%;
     text-align: right;
     top: 1%;
 }
@@ -443,7 +445,7 @@ nav > ul > li:first-child { border-left: none; }
     width: 33vh;
 }
 .checkout__cesta{
-    margin-top: 5%;
+
     text-align: center;
     margin-bottom: -21%;
 }
@@ -481,8 +483,10 @@ nav > ul > li:first-child { border-left: none; }
     position: absolute;
     overflow: hidden;
     width: 100%;
+    top: 10vh;
 }
 .checkout__item{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     background-color: lightsteelblue;
     padding: 20px;
     float: none;

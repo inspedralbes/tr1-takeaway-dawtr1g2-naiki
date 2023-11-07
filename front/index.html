@@ -54,12 +54,12 @@
                 </ul>
             </nav>
 
-            <div @click="btnUsuario()" class="usuario">
+            <div  @click="btnUsuario()" class="usuario">
                 <img src="imagen/usuario.png">
 
             </div>
 
-            <div @click="cesta()" class="shopping">
+            <div v-if="divActivo != 'checkout'" @click="cesta()" class="shopping">
                 <img src="imagen/carrito.png">
                 <span class="cuantitat">{{this.nItems}}</span>
             </div>
@@ -225,7 +225,7 @@
 
                 <h2>Ingrese su correo</h2>
                 <input type="text" v-model="correo" id="emailUser"> <!-- Campo de entrada para el correo -->
-                <button @click="guardarCorreoYContinuar('compraConfirm')">Guardar</button>
+                <button @click="guardarCorreoYContinuar('compraConfirm')" class="guardarConfirmar">Guardar</button>
                 <h3 class="hidden">Mail invalid</h3>
             </div>
         </div>
