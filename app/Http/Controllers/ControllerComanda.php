@@ -9,6 +9,8 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 class ControllerComanda extends Controller
 {
     public function getComanda()
@@ -63,13 +65,33 @@ class ControllerComanda extends Controller
 
         }
         
-        $comanda = DB::table('linea_comandas')->where('idComanda','=', $idComanda)->get();
+        $lineasComanda = DB::table('linea_comandas')->where('idComanda','=', $idComanda)->get();
+        $comanda = Comanda::find('id',$idComanda);
         //Mail::to($email)->send(new \App\Mail\Comanda($comanda));
-        
+        $qrData = [
+            'Ticket ID' => $comanda->id,
+            'Email' => $comanda->usuari,
+          ];
+          $jsonQrCode = json_encode($qrData);
+          $qrCode = QrCode::size(300)->generate($jsonQrCode);
+      
+          $qrCodeFileName = 'ticket_' . $comanda->id . '_qr.svg';
+      
+          try {
+            Storage::disk('pdf')->put('/qr' . $qrCodeFileName, $qrCode);
+      
+            $imagePath = 'qr/' . $qrCodeFileName;
+            $comanda->qr = $imagePath;
+            $comanda->save();
+          } catch (\Exception $e) {
+            \Log::error('Error al almacenar el código QR: ' . $e->getMessage());
+            return response()->json(['error' => 'Error al almacenar el código QR'], 500);
+          }
+
         $data["email"] = $email;
         $data["title"] = "Gràcies per la teva compra!";
         $data["body"] = "Rebut de la compra";
-        $data["comanda"] = $comanda;
+        $data["comanda"] = $lineasComanda;
         
         $pdf = Pdf::loadView('comanda', $data);
   
