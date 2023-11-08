@@ -112,8 +112,9 @@ class ControllerComanda extends Controller
 
         $nouEstat = $request->nouEstat;
         DB::table('comandas')
-            ->where('id', $idComanda)
-            ->update(['estat' => $nouEstat]);
+        ->where('id', $idComanda)
+        ->update(['estat' => $nouEstat]);
+        return redirect()->route('panel')->with('success','Estat actualitzat correctament');
 
     }
 

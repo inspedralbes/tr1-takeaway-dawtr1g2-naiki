@@ -17,7 +17,7 @@ use App\Http\Controllers\AdminController;
 //Route::post('/updateEstat',[AdminController::class,'canviarEstatComanda'])->name('updateEstat');
 Route::get('/',function(){
     return view('app');
-})->name('/');
+})->name('app');
 
 Route::get('/panel',function(){
     return view('panel',['token' => session('token'),'comandes'=>session('comandes')]);
@@ -30,14 +30,13 @@ Route::post('/loginAdmin',[AdminController::class,'loginAdmin'])->name('loginAdm
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::middleware('auth:sanctum')->patch('/comanda', [ControllerComanda::class, 'canviarEstatComanda'])->name("updateEstat");
-   
+Route::patch('/comanda', [ControllerComanda::class, 'canviarEstatComanda('.session('request').')'])->name("updateEstat");
+
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::get('/comanda', [ControllerComanda::class, 'getComanda']);
     Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
-    Route::patch('/comanda', [ControllerComanda::class, 'canviarEstatComanda'])->name('updateEstat');
 
 
 });

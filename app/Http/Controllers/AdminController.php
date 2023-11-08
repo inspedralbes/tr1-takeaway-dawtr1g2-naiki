@@ -100,16 +100,8 @@ class AdminController extends Controller
         return view('panel',['comandes'=>$comandes]);
 
     }
-    public function canviarEstatComanda(Request $request){
-        
-        $idComanda = $request->idComanda;
-
-        $nouEstat = $request->nouEstat;
-        DB::table('comandas')
-        ->where('id', $idComanda)
-        ->update(['estat' => $nouEstat]);
-        return redirect()->route('panel')->with('success','Estat actualitzat correctament');
-    }
+    
+   
 
     public function loginAdmin(Request $request){
         $fields = $request->validate([

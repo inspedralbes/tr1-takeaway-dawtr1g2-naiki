@@ -5,9 +5,11 @@
 <title>Document</title> 
 </head>
   <h1>{{$token}}</h1>
-  <body> @foreach ($comandes as $comanda) @if (session('success')) 
-    <h1>{{session('success')}} </h1> 
-    @endif 
+  @if (session('success')) 
+  <h1>{{session('success')}} </h1> 
+  @endif 
+  <body> 
+    @foreach ($comandes as $comanda) 
     <div class="comanda"> 
       <p>{{$comanda->id}}</p> 
     <p>{{$comanda->usuari}}</p>
@@ -21,9 +23,10 @@
       <div class="modal-content">
         <div class="box">
         <button class="modal-close is-large" aria-label="close"></button>
-        <form method='POST' action="{{route('updateEstat')}}">
+        <form method='PATCH' action="{{route('updateEstat')}}">
           @csrf
-          @method('POST')
+          @method('PATCH')
+          <input type="hidden" name="token" value="{{$token}}">
           <input type="hidden" name="idComanda" value="{{$comanda->id}}">
           <input type="text" name="nouEstat">
           <button type="submit">Guardar</button>
