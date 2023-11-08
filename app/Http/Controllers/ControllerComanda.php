@@ -118,11 +118,21 @@ class ControllerComanda extends Controller
             //Return if the user is logged in or not from the token
             [$id, $token] = explode('|', $checkToken, 2);
             $accessToken = PersonalAccessToken::find($id);
+            
             if ($accessToken != null) {
                 if (hash_equals($accessToken->token, hash('sha256', $token))) {
+
                     $userId = $accessToken->tokenable_id;
+                }else{
+                    return redirect()->route('app')->with('error','Sessió expirada');
                 }
+            }else{
+                return redirect()->route('app')->with('error','Sessió expirada');
+
             }
+
+        }else{
+            return redirect()->route('app')->with('error','Sessió expirada');
 
         }
         $nouEstat = $request->nouEstat;
