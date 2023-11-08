@@ -30,22 +30,9 @@ createApp({
                 password_confirmation: null,
             },
             aplicarTransicion: false,
-            paginaActual: 1,
-            sabatesPagina: 4,
         }
     },
     methods: {
-        canviaPagina(direccio) {
-            if (direccio === -1) {
-              if (this.paginaActual > 1) {
-                this.paginaActual--;
-              }
-            } else {
-              if (this.paginaActual < this.totalPagina) {
-                this.paginaActual++;
-              }
-            }
-        },
         afegir(zapato) {
             const index = this.carrito.findIndex(element => element.model === zapato.model);
 
@@ -294,15 +281,5 @@ createApp({
             this.nItems += element.quantitat;
         }
 
-    },
-    computed: {
-        paginacioSabates() {
-          const iniciIndex = (this.paginaActual - 1) * this.sabatesPagina;
-          const finalIndex = iniciIndex + this.sabatesPagina;
-          return this.sabatesMostrar.slice(iniciIndex, finalIndex);
-        },
-        totalPagina() {
-          return Math.ceil(this.sabatesMostrar.length / this.sabatesPagina);
-        },
-      }
+    }
 }).mount("#app")

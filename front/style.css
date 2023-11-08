@@ -13,29 +13,6 @@ body {
     max-height: 98vh;
 }
 
-.paginacio {
-    text-align: center;
-    margin-top: 20px;
-    display: contents;
-  }
-  
-  .paginacio button {
-    background-color: #007BFF; 
-    color: #fff; 
-    font-size: 18px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    margin: 5px;
-    cursor: pointer;
-    display: inline-block; 
-  }
-  
-  .paginacio button:disabled {
-    background-color: #ccc; 
-    cursor: not-allowed;
-  }
-  
 
 .afegir,.eliminar{
     margin-bottom: 5vh;
