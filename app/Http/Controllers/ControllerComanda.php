@@ -6,11 +6,14 @@ use App\Models\Comanda;
 use App\Models\LineaComanda;
 use App\Models\Sabates;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Sanctum\PersonalAccessToken;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Validator;
 
 class ControllerComanda extends Controller
 {
@@ -107,13 +110,28 @@ class ControllerComanda extends Controller
 
     public function canviarEstatComanda(Request $request)
     {
+        $checkToken = session()->get('token');
+        //$result = PersonalAccessToken::where('token', Hash::make($token))->first();
+        //$idComanda = $request->idComanda;
+        if ( !($checkToken == null ||  $checkToken == "" ||  $checkToken == "null") ) {
 
-        $idComanda = $request->idComanda;
+            //Return if the user is logged in or not from the token
+            [$id, $token] = explode('|', $checkToken, 2);
+            $accessToken = PersonalAccessToken::find($id);
+            if ($accessToken != null) {
+                if (hash_equals($accessToken->token, hash('sha256', $token))) {
+                    $userId = $accessToken->tokenable_id;
+                }
+            }
 
+        }
         $nouEstat = $request->nouEstat;
+        $idComanda = $request->idComanda;
         DB::table('comandas')
         ->where('id', $idComanda)
         ->update(['estat' => $nouEstat]);
+        session()->put('comandes', Comanda::all());
+        session()->save();
         return redirect()->route('panel')->with('success','Estat actualitzat correctament');
 
     }

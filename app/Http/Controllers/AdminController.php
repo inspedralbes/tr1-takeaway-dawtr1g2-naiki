@@ -116,12 +116,16 @@ class AdminController extends Controller
         }
 
         if ($user->admin==0) {
-            return redirect()->route('/')->with('error','Este usuario no es admin');
+            return redirect()->route('app')->with('error','Este usuario no es admin');
         }
         
         $token = $user->createToken('myapptoken')->plainTextToken;
         $comandes=Comanda::all();
+        
+        session()->put('token', $token);
+        session()->put('comandes', $comandes);
 
-        return redirect()->route('panel')->with(['token' => $token,'comandes'=>$comandes]);
+        session()->save();
+        return redirect()->route('panel');
     }
 }

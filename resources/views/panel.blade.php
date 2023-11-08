@@ -1,15 +1,15 @@
 <!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <link rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma-rtl.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma-rtl.min.css">
 
 <title>Document</title> 
 </head>
-  <h1>{{$token}}</h1>
+  <h1>{{session()->get('token')}}</h1>
   @if (session('success')) 
   <h1>{{session('success')}} </h1> 
   @endif 
   <body> 
-    @foreach ($comandes as $comanda) 
+    @foreach (session()->get('comandes') as $comanda) 
     <div class="comanda"> 
       <p>{{$comanda->id}}</p> 
     <p>{{$comanda->usuari}}</p>
@@ -23,10 +23,10 @@
       <div class="modal-content">
         <div class="box">
         <button class="modal-close is-large" aria-label="close"></button>
-        <form method='PATCH' action="{{route('updateEstat')}}">
+
+        <form method='POST' action="{{route('updateEstat')}}">
           @csrf
           @method('PATCH')
-          <input type="hidden" name="token" value="{{$token}}">
           <input type="hidden" name="idComanda" value="{{$comanda->id}}">
           <input type="text" name="nouEstat">
           <button type="submit">Guardar</button>
