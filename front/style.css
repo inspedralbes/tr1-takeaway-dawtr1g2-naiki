@@ -71,13 +71,13 @@ header{
 }
 footer{
     background-color: var(--bgHeaderFooter);
-    height: 10vh;
+    height: 11vh;
 }
 .container__img{
     margin-left: -4vw;
     vertical-align: middle;
     padding: 5vw;
-    width: 98vw;
+    width: 95vw;
     display: flex;
     place-content: center;
     height: 4vh;
@@ -90,7 +90,7 @@ footer{
     position: absolute;
     top: 1vh;
     color: white;
-    right: 8vw;
+    right: 0vw;
     font-size: 0.8cm;
     padding: 6px;
     margin: 2vw;
@@ -100,12 +100,12 @@ header .shopping{
     position: fixed;
     text-align: right;
     top: 1%;
-    right: 13%;
+    right: 7%;
 }
 
 header .usuario{
     position: fixed;
-    right: 22%;
+    right: 17%;
     text-align: right;
     top: 1%;
 }
@@ -183,7 +183,7 @@ header .shopping span{
     display: flex;
     margin-right: auto;
     background-color: #E3E7E8;
-    width: 38vh;
+    width: 35vh;
     margin: 2%;
 }
 .cesta__text{
@@ -195,7 +195,7 @@ header .shopping span{
     color: #fff;
 }
 .cesta-active{
-    right: 5px;
+    right: 2px;
 }
 
 #checkout .total{
@@ -358,9 +358,9 @@ button {
     max-width: 300px;
 }
 .container__buttons{
-    position: fixed;
+    position: absolute;
     display: flex;
-    left: 12vw;
+    left: 7vw;
     top: 84vh;
 }
 #checkout-total{
@@ -502,7 +502,7 @@ nav > ul > li:first-child { border-left: none; }
     overflow: hidden;
     width: 100%;
     margin-top: 10vh;
-    margin-bottom: 12vh;
+    margin-bottom: 10vh;
 }
 .checkout__item{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
