@@ -102,12 +102,12 @@
 
                     <button @click="afegir(actual)" class="afegir">Afegir</button>
                 </div>
-                <div class="paginacio">
-                    <button @click="canviaPagina(-1)" :disabled="paginaActual === 1">Anterior</button>
-                    <button @click="canviaPagina(1)" :disabled="paginaActual === totalPagina">Següent</button>
-                  </div>
+                
             </div>
-            
+            <div class="paginacio">
+                <button @click="canviaPagina(-1)" :disabled="paginaActual === 1">Anterior</button>
+                <button @click="canviaPagina(1)" :disabled="paginaActual === totalPagina">Següent</button>
+              </div>
         </div>
         <footer  v-if="divActivo != 'portada' && divActivo != 'mostrarInicioSesion'">
             <div class="container__img">

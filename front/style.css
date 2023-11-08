@@ -15,10 +15,9 @@ body {
 
 .paginacio {
     text-align: center;
-    display: flex;
-    position: absolute;
-    top:193vw;
-    left: 22vw;
+    margin-top: 1vw;
+    margin-left: auto;
+    margin-right: auto;
   }
   
   .paginacio button {
@@ -70,23 +69,20 @@ header{
     color:red;
 }
 footer{
-    position: absolute;
     background-color: var(--bgHeaderFooter);
     display: flex;
     vertical-align:middle;
-    padding: 5%;
+    padding: 5vw;
     width: 98vw;
-    top:91vh;
+    display: grid;
+    place-content: center;
 }
 .checkout__footer{
     position: fixed;
     bottom: 0vh;
 }
 .container__img{
-    display: flex;
-    align-items: center;
-    margin: auto;
-    margin-left: 25vw;
+    margin-left: -8vw;
 }
 .logo__img{
     height: 40px;
