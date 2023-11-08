@@ -162,6 +162,7 @@ createApp({
             }
         },
         quitarFiltre(){
+            this.paginaActual = 1;
             this.mostrarBotiga();
             let buttons = document.querySelectorAll('nav button');
             buttons.forEach(button => {
@@ -173,6 +174,7 @@ createApp({
         mostrarBotiga() {
             this.divActivo = "tienda";
         }, filtre(e, filtrar) {
+            this.paginaActual= 1;
             this.mostrarBotiga();
             let buttons = document.querySelectorAll('nav button');
             buttons.forEach(button => {
