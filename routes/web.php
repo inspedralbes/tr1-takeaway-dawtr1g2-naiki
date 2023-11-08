@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ControllerComanda;
+use App\Http\Controllers\ControllerSabates;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 /*
@@ -24,8 +25,12 @@ Route::get('/panel',function(){
 
 Route::post('/loginAdmin',[AdminController::class,'loginAdmin'])->name('loginAdmin');
 Route::patch('/comanda', [ControllerComanda::class, 'canviarEstatComanda'])->name("updateEstat");
-Route::get('/comanda', [ControllerComanda::class, 'getComanda']);
 
+Route::get('/sabates', function(){
+    return view('sabates');
+})->name('sabates');
+
+Route::post('/sabates',[ControllerSabates::class,'crearSabata'])->name('crearSabata');
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

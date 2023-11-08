@@ -120,10 +120,7 @@ class ControllerComanda extends Controller
             $accessToken = PersonalAccessToken::find($id);
             
             if ($accessToken != null) {
-                if (hash_equals($accessToken->token, hash('sha256', $token))) {
-
-                    $userId = $accessToken->tokenable_id;
-                }else{
+                if (! hash_equals($accessToken->token, hash('sha256', $token))) {
                     return redirect()->route('app')->with('error','Sessió expirada');
                 }
             }else{

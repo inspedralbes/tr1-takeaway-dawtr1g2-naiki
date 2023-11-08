@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comanda;
+use App\Models\Sabates;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -121,11 +122,13 @@ class AdminController extends Controller
         
         $token = $user->createToken('myapptoken')->plainTextToken;
         $comandes=Comanda::all();
-        
+        $sabates = Sabates::all();
+
+        session()->put('sabates', $sabates);
         session()->put('token', $token);
         session()->put('comandes', $comandes);
-
         session()->save();
+        
         return redirect()->route('panel');
     }
 }

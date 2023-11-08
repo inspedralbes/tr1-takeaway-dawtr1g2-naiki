@@ -10,7 +10,7 @@ class ControllerSabates extends Controller
         $sabates = Sabates::all();
         return $sabates;
     }
-    public function createSabates(Request $request){
+    public function crearSabata(Request $request){
         $sabata = new Sabates;
         $sabata->marca = $request->marca;
         $sabata->model = $request->model;
@@ -18,9 +18,11 @@ class ControllerSabates extends Controller
         $sabata->preu = $request->preu;
 
         $sabata->talles = $request->talles;
-        $sabata->color  = $request->color;  
-        $sabata->imatge = $request->imatge;
+        $sabata->color  = $request->color; 
+        $sabata->imatge = "img"; 
         $sabata->save();
-        return $sabata;
+        session()->put("sabates", Sabates::all());
+        session()->save();
+        return redirect()->route("sabates");
     }
 }
