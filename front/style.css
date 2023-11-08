@@ -15,8 +15,9 @@ body {
 
 .paginacio {
     text-align: center;
-    margin-top: 20px;
-    display: contents;
+    display: flex;
+    position: absolute;
+    top:152vw;
   }
   
   .paginacio button {
@@ -68,12 +69,13 @@ header{
     color:red;
 }
 footer{
+    position: absolute;
     background-color: var(--bgHeaderFooter);
     display: flex;
     vertical-align:middle;
     padding: 5%;
     width: 98vw;
-    
+    top:90vh;
 }
 .checkout__footer{
     position: fixed;
