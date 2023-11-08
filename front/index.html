@@ -109,18 +109,7 @@
                 <button @click="canviaPagina(1)" :disabled="paginaActual === totalPagina">Següent</button>
               </div>
         </div>
-        <footer  v-if="divActivo != 'portada' && divActivo != 'mostrarInicioSesion'">
-            <div class="container__img">
-                <a href="https://www.youtube.com/watch?v=8Pc0AEbfnBM&ab_channel=Marbler"><img
-                        src="imagen/instagram.png" alt="" class="logo__img"></a>
-                <a href="https://www.youtube.com/watch?v=IxQhfoRwSGU"><img src="imagen/youtube.png" alt=""
-                        class="logo__img"></a>
-                <a href="https://www.youtube.com/watch?v=_YjKboT4I40"><img src="imagen/facebook.png" alt=""
-                        class="logo__img"></a>
-                <a href="https://www.youtube.com/watch?v=Kyl01V1EWC8"><img src="imagen/gorjeo.png" alt=""
-                        class="logo__img"></a>
-            </div>
-        </footer>
+        
         <div v-if="divActivo == 'mostrarInicioSesion'" class="formulario-container">
             <div class="formulario inicio-sesion formLogin">
                 <h3 class="error hidden" id="errorLogin">Contrasenya o email incorrecte</h3>
@@ -242,7 +231,18 @@
                 </div>
             </div>
         </div>
-
+        <footer  v-if="divActivo != 'portada' && divActivo != 'mostrarInicioSesion'">
+            <div class="container__img">
+                <a href="https://www.youtube.com/watch?v=8Pc0AEbfnBM&ab_channel=Marbler"><img
+                        src="imagen/instagram.png" alt="" class="logo__img"></a>
+                <a href="https://www.youtube.com/watch?v=IxQhfoRwSGU"><img src="imagen/youtube.png" alt=""
+                        class="logo__img"></a>
+                <a href="https://www.youtube.com/watch?v=_YjKboT4I40"><img src="imagen/facebook.png" alt=""
+                        class="logo__img"></a>
+                <a href="https://www.youtube.com/watch?v=Kyl01V1EWC8"><img src="imagen/gorjeo.png" alt=""
+                        class="logo__img"></a>
+            </div>
+        </footer>
 
     </div>
 

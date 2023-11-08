@@ -15,9 +15,10 @@ body {
 
 .paginacio {
     text-align: center;
-    margin-top: 1vw;
+    margin-top: 2vw;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 2vh;
   }
   
   .paginacio button {
@@ -70,19 +71,16 @@ header{
 }
 footer{
     background-color: var(--bgHeaderFooter);
-    display: flex;
-    vertical-align:middle;
-    padding: 5vw;
-    width: 98vw;
-    display: grid;
-    place-content: center;
-}
-.checkout__footer{
-    position: fixed;
-    bottom: 0vh;
+    height: 10vh;
 }
 .container__img{
-    margin-left: -8vw;
+    margin-left: -4vw;
+    vertical-align: middle;
+    padding: 5vw;
+    width: 98vw;
+    display: flex;
+    place-content: center;
+    height: 4vh;
 }
 .logo__img{
     height: 40px;
@@ -257,6 +255,7 @@ button {
     margin-left: 6%;
     width: 89vw;
     margin-top: 13vh;
+    margin-bottom: 2vh;
 
 }
 #carrito{
@@ -361,8 +360,8 @@ button {
 .container__buttons{
     position: fixed;
     display: flex;
-    left: 7vw;
-    top: 79vh;
+    left: 12vw;
+    top: 84vh;
 }
 #checkout-total{
     font-size: 0.8cm;
@@ -500,10 +499,10 @@ nav > ul > li:first-child { border-left: none; }
     margin: 4px;
 }
 .checkout-container{
-    position: absolute;
     overflow: hidden;
     width: 100%;
-    top: 10vh;
+    margin-top: 10vh;
+    margin-bottom: 12vh;
 }
 .checkout__item{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -643,6 +642,7 @@ a{
     margin: 2%;
     text-align: center;
     display: block;
+    margin-top: 10vw;
 }
 
 .cesta__item{
