@@ -14,11 +14,15 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-Route::get('/panel',[AdminController::class,'mostrarPanel'])->name('panel');
 //Route::post('/updateEstat',[AdminController::class,'canviarEstatComanda'])->name('updateEstat');
 Route::get('/',function(){
     return view('app');
 })->name('/');
+
+Route::get('/panel',function(){
+    return view('panel',['token' => session('token'),'comandes'=>session('comandes')]);
+})->name('panel');
+
 Route::post('/loginAdmin',[AdminController::class,'loginAdmin'])->name('loginAdmin');
 
 

@@ -4,7 +4,7 @@
 
 <title>Document</title> 
 </head>
-
+  <h1>{{$token}}</h1>
   <body> @foreach ($comandes as $comanda) @if (session('success')) 
     <h1>{{session('success')}} </h1> 
     @endif 

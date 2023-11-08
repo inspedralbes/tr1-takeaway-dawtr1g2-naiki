@@ -13,6 +13,7 @@
     <form action="{{ route('loginAdmin') }}" method="POST">
         @csrf
         @method ('POST')
+        
         <label for="email">Email</label>
         <input type="email" name="email">
         <label for="password">Password</label>

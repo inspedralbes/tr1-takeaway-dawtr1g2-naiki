@@ -128,7 +128,8 @@ class AdminController extends Controller
         }
         
         $token = $user->createToken('myapptoken')->plainTextToken;
+        $comandes=Comanda::all();
 
-        return redirect()->route('panel')->with('token',$token);
+        return redirect()->route('panel')->with(['token' => $token,'comandes'=>$comandes]);
     }
 }
