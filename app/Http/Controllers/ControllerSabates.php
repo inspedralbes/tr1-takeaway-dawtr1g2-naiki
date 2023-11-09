@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sabates;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\PersonalAccessToken;
 
 class ControllerSabates extends Controller
@@ -63,7 +64,10 @@ class ControllerSabates extends Controller
 
         $sabata->talles = $request->talles;
         $sabata->color = $request->color;
+
+
         if ($request->img != null) {
+            Storage::disk('sabates')->delete($sabata->imatge);
             $new = $request->model . '_' . $request->color . '.jpg';
             $src = $request->file('img')->storeAs('imagen', $new, ['disk' => 'sabates']);
             $sabata->imatge = $src;
