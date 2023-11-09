@@ -5,6 +5,8 @@ const { createApp } = Vue
 createApp({
     data() {
         return {
+            //Link per el fetch, si estas a labs es canvia la variable linkFetch a ../ si es en local es canvia athis.fetchLink+ 
+            fetchLink: "http://localhost:8000",
             divActivo: 'portada',
             mostrarModalLogin: false,
             mostrarModalCorreo: false,
@@ -104,7 +106,7 @@ createApp({
         async logout() {
             let token = new FormData();
             token.append("token", this.token);
-            let response = await fetch("http://127.0.0.1:8000/api/logout", {
+            let response = await fetch(this.fetchLink+"/api/logout", {
                 method: "POST",
                 headers: {
                     "Authorization": 'Bearer {' + this.token + '}',
@@ -161,7 +163,7 @@ createApp({
                 if (user != null) {
                     let payload = [{ email: user }, { sabates: this.carrito }];
                     localStorage.clear();
-                    fetch("http://127.0.0.1:8000/api/comanda", {
+                    fetch(this.fetchLink+"/api/comanda", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
@@ -246,7 +248,7 @@ createApp({
             formulari.append("password_confirmation", this.register.password_confirmation);
             console.log(this.register);
 
-            let response = await fetch("http://localhost:8000/api/register", {
+            let response = await fetch(this.fetchLink+"/api/register", {
                 method: "POST",
                 headers: {
                     "Access-Control-Allow-Origin": "*",
@@ -275,7 +277,7 @@ createApp({
         },
         async comandasUsuari() {
 
-            let response = await fetch("http://localhost:8000/api/comanda", {
+            let response = await fetch(this.fetchLink+"/api/comanda", {
                 method: "GET",
                 headers: {
                     "Access-Control-Allow-Origin": "*",
@@ -303,7 +305,7 @@ createApp({
             formulari.append("email", this.register.email);
             formulari.append("password", this.register.password);
 
-            let response = await fetch("http://localhost:8000/api/login", {
+            let response = await fetch(this.fetchLink+"/api/login", {
                 method: "POST",
                 headers: {
                     "Access-Control-Allow-Origin": "*",
@@ -322,7 +324,7 @@ createApp({
 
         },
         async mostrarProductos(comandaSelect) {
-            let response = await fetch("http://localhost:8000/api/lineasComanda", {
+            let response = await fetch(this.fetchLink+"/api/lineasComanda", {
                 method: "POST",
                 headers: {
                     "Authorization": 'Bearer {' + this.token + '}',
@@ -342,7 +344,7 @@ createApp({
             if (confirm("Estas segur que vols cancelar aquesta comanda?")) {
 
 
-                let response = await fetch("http://localhost:8000/api/comanda", {
+                let response = await fetch(this.fetchLink+"/api/comanda", {
                     method: "DELETE",
                     headers: {
                         "Authorization": 'Bearer {' + this.token + '}',
