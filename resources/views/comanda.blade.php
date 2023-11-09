@@ -21,7 +21,7 @@ $total += $sabata->preu * $sabata->quantitat;
 <p id="checkout-total">Total del Carrito: {{$total}}</p>
 <div>
     <h2>QR</h2>
-    <img class="item__img" src="{{ public_path('/').$comanda->qr }}" height="184" width="184" alt=""> 
+    <img class="item__img" src="{{ public_path('/').$sabata->qr }}" height="184" width="184" alt=""> 
 </div>
 </body>
 

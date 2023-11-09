@@ -106,15 +106,15 @@ button {
     <a href="{{ route('panel') }}">Comandes</a>
     <a href="{{ route('sabates') }}">Sabates</a>
   </nav>
-    @foreach (session()->get('comandes') as $comanda)
+    @foreach (session()->get('comandes') as $sabata)
         <div class="comanda">
-            <p>{{ $comanda->id }}</p>
-            <p>{{ $comanda->usuari }}</p>
-            <p>{{ $comanda->estat }}</p>
-            <button id="mostrar-{{ $comanda->id }}">Mostrar comanda</button>
-            <button class="js-modal-trigger" data-target="modal-js-estat{{ $comanda->id }}">Editar Estat</button>
+            <p>{{ $sabata->id }}</p>
+            <p>{{ $sabata->usuari }}</p>
+            <p>{{ $sabata->estat }}</p>
+            <button id="mostrar-{{ $sabata->id }}">Mostrar comanda</button>
+            <button class="js-modal-trigger" data-target="modal-js-estat{{ $sabata->id }}">Editar Estat</button>
 
-            <div id="modal-js-estat{{ $comanda->id }}" class="modal">
+            <div id="modal-js-estat{{ $sabata->id }}" class="modal">
                 <div class="modal-background"></div>
 
                 <div class="modal-content">
@@ -124,7 +124,7 @@ button {
                         <form method='POST' action="{{ route('updateEstat') }}">
                             @csrf
                             @method('PATCH')
-                            <input type="hidden" name="idComanda" value="{{ $comanda->id }}">
+                            <input type="hidden" name="idComanda" value="{{ $sabata->id }}">
                             <input type="text" name="nouEstat">
                             <button type="submit">Guardar</button>
                         </form>

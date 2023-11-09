@@ -31,6 +31,7 @@ Route::get('/sabates', function(){
 })->name('sabates');
 
 Route::post('/sabates',[ControllerSabates::class,'crearSabata'])->name('crearSabata');
+Route::patch('/sabates',[ControllerSabates::class,'updateSabata'])->name('updateSabata');
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
