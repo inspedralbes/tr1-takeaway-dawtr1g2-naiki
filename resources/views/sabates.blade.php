@@ -20,6 +20,7 @@
         <nav>
             <a href="{{ route('panel') }}">Comandes</a>
             <a href="{{ route('sabates') }}">Sabates</a>
+            <a href="{{ route('logoutAdmin') }}">Logout</a>
         </nav>
         <form method="POST" enctype="multipart/form-data" action="{{route('crearSabata')}}">
             @csrf

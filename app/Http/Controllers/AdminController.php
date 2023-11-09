@@ -102,7 +102,16 @@ class AdminController extends Controller
 
     }
     
-   
+    public function logoutAdmin(Request $request)
+    {
+        DB::table('personal_access_tokens')->where('token','=', session()->get('token'))->delete();
+        
+        
+        session()->forget('token');
+        session()->save();
+        return redirect()->route('app')->with('error','Sessió tencada');
+        
+    }
 
     public function loginAdmin(Request $request){
         $fields = $request->validate([
@@ -112,7 +121,7 @@ class AdminController extends Controller
         ]);
         $user = User::where('email', $fields['email'])->first();
         if (!Hash::check($fields['password'], $user->password)) {
-            return redirect()->route('/')->with('error','Email o contraseña incorrecta');
+            return redirect()->route('app')->with('error','Email o contraseña incorrecta');
 
         }
 
