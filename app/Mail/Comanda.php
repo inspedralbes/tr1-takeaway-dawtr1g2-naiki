@@ -17,6 +17,7 @@ class Comanda extends Mailable
      * Create a new message instance.
      */
     public $comanda;
+    //public $sab ;
     public function __construct($comanda)
     {
        $this->comanda = $comanda;

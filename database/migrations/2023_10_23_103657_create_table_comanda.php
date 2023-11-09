@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("usuari");
             $table->string("estat");
-
+            $table->string("qr")->nullable();
             $table->timestamps();
 
         });

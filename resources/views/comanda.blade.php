@@ -4,25 +4,25 @@
 </script> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
     integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="style.css"> 
-</head>
+<link rel="stylesheet" href="style.css"> </head> @php $total=0; @endphp <body>
+
+<div> <h2>Cesta de la compra</h2>
+@foreach ($lineasComanda as $sabata)
 @php
-$total = 0;
+$total += $sabata->preu * $sabata->quantitat;
 @endphp
- <body>
-    
-    <div> <h2>Cesta de la compra</h2> 
-    @foreach ($comanda as $sabata)
-    @php
-    $total += $sabata->preu * $sabata->quantitat;
-    @endphp 
-     <div> <img class="item__img" :src="sabata.imatge" height="184" width="184" alt=""> 
-     <h4>{{$sabata->model}}</h4>
-<p>{{$sabata->model}} </p> 
-<p>Quantitat: {{$sabata->quantitat}}</p> 
-<p>Preu/u: {{$sabata->preu}} €</p>
-    </div>
-     @endforeach 
-     <p id="checkout-total">Total del Carrito: {{$total}}</p> 
-    </body> 
-    </html>
+<div>
+    <h4>{{$sabata->model}}</h4>
+    <p>{{$sabata->model}} </p>
+    <p>Quantitat: {{$sabata->quantitat}}</p>
+    <p>Preu/u: {{$sabata->preu}} €</p>
+</div>
+@endforeach
+<p id="checkout-total">Total del Carrito: {{$total}}</p>
+<div>
+    <h2>QR</h2>
+    <img class="item__img" src="{{ public_path('/').$sabata->qr }}" height="184" width="184" alt=""> 
+</div>
+</body>
+
+</html>
