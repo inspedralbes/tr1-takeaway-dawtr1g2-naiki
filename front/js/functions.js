@@ -1,6 +1,6 @@
 import { getSabates } from "./communicatonManagar.js";
 
-const { createApp } = Vue
+const { createApp } = Vue;
 
 createApp({
     data() {
@@ -9,7 +9,7 @@ createApp({
             mostrarModalLogin: false,
             mostrarModalCorreo: false,
             sabates: [],
-            carrito: localStorage.getItem("carrito") != null ? JSON.parse(localStorage.getItem("carrito")) : [],
+            carrito: [],
             nCompra: 0,
             total: 0,
             nItems: 0,
@@ -30,32 +30,54 @@ createApp({
     methods: {
         afegir(zapato) {
             const index = this.carrito.findIndex(element => element.model === zapato.model);
-
+        
             if (index == -1) {
                 zapato.quantitat = 1;
                 zapato.talla = 38;
-
-                zapato.created_at = "NOW()"
-                zapato.updated_at = "NOW()"
+                zapato.created_at = "NOW()";
+                zapato.updated_at = "NOW()";
                 this.carrito.push(zapato);
             } else {
-                this.carrito[index].quantitat++;
+                if (this.carrito[index].quantitat > 0) {
+                    this.carrito[index].quantitat++;
+                } else {
+                    this.carrito[index].quantitat = 1;
+                }
             }
+            
+            localStorage.setItem("carrito", JSON.stringify(this.carrito));
+            this.total += zapato.preu;
+            this.nItems++;
+        },
+        quitarCantidad(zapato) {
+            const index = this.carrito.findIndex(element => element.model === zapato.model);
+            if (this.carrito[index].quantitat > 1) {
+                this.carrito[index].quantitat--;
+            } else {
+                this.carrito.splice(index, 1);
+            }
+            localStorage.setItem("carrito", JSON.stringify(this.carrito));
+            this.total -= zapato.preu;
+            this.nItems--;
+        },
+
+        anadirCantidad(zapato) {
+            const index = this.carrito.findIndex(element => element.model === zapato.model);
+            this.carrito[index].quantitat++;
             localStorage.setItem("carrito", JSON.stringify(this.carrito));
             this.total += zapato.preu;
             this.nItems++;
         },
         eliminar(zapato) {
             const index = this.carrito.findIndex(element => element.model === zapato.model);
-            this.carrito[index].quantitat--;
-            if (this.carrito[index].quantitat == 0) {
+            if (this.carrito[index].quantitat > 1) {
+                this.carrito[index].quantitat--;
+            } else {
                 this.carrito.splice(index, 1);
             }
             localStorage.setItem("carrito", JSON.stringify(this.carrito));
             this.total -= zapato.preu;
             this.nItems--;
-
-
         },
         btnUsuario() {
             if (this.token == null) {
@@ -246,20 +268,15 @@ createApp({
 
     },
     created() {
-
-
         getSabates().then(sabates => {
             this.sabates = sabates;
             this.sabatesMostrar = sabates;
-
-            console.log(this.sabates);
-        })
+        });
 
         for (let index = 0; index < this.carrito.length; index++) {
             const element = this.carrito[index];
             this.total += element.preu * element.quantitat;
             this.nItems += element.quantitat;
         }
-
     }
-}).mount("#app")
+}).mount("#app");
