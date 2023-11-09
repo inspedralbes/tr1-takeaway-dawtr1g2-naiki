@@ -212,7 +212,11 @@
 
         <div v-if="divActivo == 'compraConfirm'">
             <div id="compraConfirm">
-                <div class="modal-contenido">
+                
+                <div class="container__ticket">
+                    <div class="container__ImagenTicket">
+                        <img src="imagen/NAIKI.png" alt="" class="imagenTicket">
+                    </div>
                     <h2>Compra Realizada corretamente</h2>
                     <h4>Datos del usuario: {{correo}}</h4>
                     <h3>Tiquet</h3>
@@ -223,7 +227,7 @@
                             <p>{{ actual.quantitat * actual.preu }} € </p>
                         </li>
                     </ul>
-                    <p class="total">Total: {{this.ticket.total}} € </p>
+                    <h2 class="total">Total: {{this.ticket.total}} € </h2>
                     <div>
                         <button class="boton__ticket" @click="cambiar('tienda')">Seguir comprando</button>
                         <button v-if="this.token!=null" class="boton__ticket" @click="">Estat de Producte</button>
