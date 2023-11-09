@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comanda;
+use App\Models\LineaComanda;
 use App\Models\Sabates;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -102,7 +103,16 @@ class AdminController extends Controller
 
     }
     
-   
+    public function logoutAdmin(Request $request)
+    {
+        DB::table('personal_access_tokens')->where('token','=', session()->get('token'))->delete();
+        
+        
+        session()->forget('token');
+        session()->save();
+        return redirect()->route('app')->with('error','Sessió tencada');
+        
+    }
 
     public function loginAdmin(Request $request){
         $fields = $request->validate([
@@ -112,7 +122,7 @@ class AdminController extends Controller
         ]);
         $user = User::where('email', $fields['email'])->first();
         if (!Hash::check($fields['password'], $user->password)) {
-            return redirect()->route('/')->with('error','Email o contraseña incorrecta');
+            return redirect()->route('app')->with('error','Email o contraseña incorrecta');
 
         }
 
@@ -123,10 +133,12 @@ class AdminController extends Controller
         $token = $user->createToken('myapptoken')->plainTextToken;
         $comandes=Comanda::all();
         $sabates = Sabates::all();
-
+        $lineasComanda =LineaComanda::all();
         session()->put('sabates', $sabates);
         session()->put('token', $token);
         session()->put('comandes', $comandes);
+        session()->put('lineaComandes', $lineasComanda);
+
         session()->save();
         
         return redirect()->route('panel');

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ControllerComanda;
 use App\Http\Controllers\ControllerSabates;
+use App\Mail\Comanda;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 /*
@@ -32,6 +33,7 @@ Route::get('/sabates', function(){
 
 Route::post('/sabates',[ControllerSabates::class,'crearSabata'])->name('crearSabata');
 Route::patch('/sabates',[ControllerSabates::class,'updateSabata'])->name('updateSabata');
+Route::get('/logoutAdmin',[AdminController::class,'logoutAdmin'])->name('logoutAdmin');
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

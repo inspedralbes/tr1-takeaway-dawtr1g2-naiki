@@ -20,6 +20,7 @@
         <nav>
             <a href="{{ route('panel') }}">Comandes</a>
             <a href="{{ route('sabates') }}">Sabates</a>
+            <a href="{{ route('logoutAdmin') }}">Logout</a>
         </nav>
         <form method="POST" enctype="multipart/form-data" action="{{route('crearSabata')}}">
             @csrf
@@ -50,9 +51,9 @@
             <h3 class="item__model"> {{$sabata->model}}</h3>
             <p class="item__color">{{$sabata->color}}</p>
             <p class="item__preu">Preu/u: {{$sabata->preu}}€</p>
-            <button class="js-modal-trigger danger" data-target="modal-js-estat{{ $sabata->id }}">Editar</button>
+            <button class="js-modal-trigger danger" data-target="modal-js-sabata{{ $sabata->id }}">Editar</button>
 
-            <div id="modal-js-estat{{ $sabata->id }}" class="modal">
+            <div id="modal-js-sabata{{ $sabata->id }}" class="modal">
                 <div class="modal-background"></div>
 
                 <div class="modal-content">

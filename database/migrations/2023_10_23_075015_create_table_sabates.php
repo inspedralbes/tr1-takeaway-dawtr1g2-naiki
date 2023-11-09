@@ -5,8 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -21,9 +20,12 @@ return new class extends Migration
             $table->string("talles");
             $table->string("color");
             $table->string("imatge");
+            $table->string("descripcio");
             $table->timestamps();
 
         });
+
+
         DB::table('sabates')->insert([
             [
                 'id' => 1,
@@ -34,8 +36,7 @@ return new class extends Migration
                 'talles' => '40,41,42',
                 'color' => 'Blanco',
                 'imatge' => 'imagen/adidas-superstar.jpg',
-                'created_at' => DB::raw('NOW()'),
-                'updated_at' => DB::raw('NOW()'),
+                'descripcio' => 'Las clásicas Adidas Superstar en blanco para hombres. Un icono de estilo urbano.'
             ],
             [
                 'id' => 2,
@@ -46,8 +47,7 @@ return new class extends Migration
                 'talles' => '41,42,43',
                 'color' => 'Negro',
                 'imatge' => 'imagen/nike-negro.jpg',
-                'created_at' => DB::raw('NOW()'),
-                'updated_at' => DB::raw('NOW()'),
+                'descripcio' => 'Zapatillas Nike Air Max en negro para hombres. Amortiguación y estilo en cada paso.'
             ],
             [
                 'id' => 3,
@@ -58,8 +58,7 @@ return new class extends Migration
                 'talles' => '35,36,37',
                 'color' => 'Rosa',
                 'imatge' => 'imagen/puma-zapatillas-cali-sport-mix.jpg',
-                'created_at' => DB::raw('NOW()'),
-                'updated_at' => DB::raw('NOW()'),
+                'descripcio' => 'Zapatillas Puma Cali en rosa para mujeres. Modernidad y frescura en cada detalle.'
             ],
             [
                 'id' => 4,
@@ -70,8 +69,7 @@ return new class extends Migration
                 'talles' => '39,40,41',
                 'color' => 'Blanco',
                 'imatge' => 'imagen/zapatos-reebok-classic.jpg',
-                'created_at' => DB::raw('NOW()'),
-                'updated_at' => DB::raw('NOW()'),
+                'descripcio' => 'Los clásicos Reebok Classic Leather en blanco para hombres. Comodidad atemporal.'
             ],
             [
                 'id' => 5,
@@ -82,8 +80,7 @@ return new class extends Migration
                 'talles' => '36,37,38',
                 'color' => 'Azul',
                 'imatge' => 'imagen/nike-negro.jpg',
-                'created_at' => DB::raw('NOW()'),
-                'updated_at' => DB::raw('NOW()'),
+                'descripcio' => 'Las icónicas Converse Chuck Taylor en azul para todos. Un estilo que nunca pasa de moda.'
             ],
             [
                 'id' => 6,
@@ -94,8 +91,7 @@ return new class extends Migration
                 'talles' => '38,39,40',
                 'color' => 'Negro',
                 'imatge' => 'imagen/converse-chuck.jpg',
-                'created_at' => DB::raw('NOW()'),
-                'updated_at' => DB::raw('NOW()'),
+                'descripcio' => 'Zapatillas Vans Old Skool en negro para todos. Elegancia y confort en cada paso.'
             ],
             [
                 'id' => 7,
@@ -106,8 +102,7 @@ return new class extends Migration
                 'talles' => '40,41,42',
                 'color' => 'Gris',
                 'imatge' => 'imagen/vans-old-skool.jpg',
-                'created_at' => DB::raw('NOW()'),
-                'updated_at' => DB::raw('NOW()'),
+                'descripcio' => 'Zapatillas New Balance 574 en gris para hombres. Estilo y rendimiento en perfecta armonía.'
             ],
             [
                 'id' => 8,
@@ -118,8 +113,7 @@ return new class extends Migration
                 'talles' => '35,36,37',
                 'color' => 'Blanco',
                 'imatge' => 'imagen/new-balance-gris.jpg',
-                'created_at' => DB::raw('NOW()'),
-                'updated_at' => DB::raw('NOW()'),
+                'descripcio' => 'Las elegantes Adidas Stan Smith en blanco para mujeres. Un toque de estilo clásico.'
             ],
             [
                 'id' => 9,
@@ -130,8 +124,7 @@ return new class extends Migration
                 'talles' => '41,42,43',
                 'color' => 'Rojo',
                 'imatge' => 'imagen/adidas-stan-smith.jpg',
-                'created_at' => DB::raw('NOW()'),
-                'updated_at' => DB::raw('NOW()'),
+                'descripcio' => 'Zapatillas Nike Blazer en rojo para hombres. Conquista las calles con estilo.'
             ],
             [
                 'id' => 10,
@@ -142,8 +135,7 @@ return new class extends Migration
                 'talles' => '35,36,37',
                 'color' => 'Negro',
                 'imatge' => 'imagen/nike-blacer-rojo.jpg',
-                'created_at' => DB::raw('NOW()'),
-                'updated_at' => DB::raw('NOW()'),
+                'descripcio' => 'Zapatillas Puma Suede en negro para mujeres. Elegancia y sofisticación en cada paso.'
             ],
             [
                 'id' => 11,
@@ -154,8 +146,7 @@ return new class extends Migration
                 'talles' => '39,40,41',
                 'color' => 'Verde',
                 'imatge' => 'imagen/puma_suere_negras.jpg',
-                'created_at' => DB::raw('NOW()'),
-                'updated_at' => DB::raw('NOW()'),
+                'descripcio' => 'Zapatillas Reebok Nano en verde para hombres. Rendimiento y estilo sin límites.'
             ],
             [
                 'id' => 12,
@@ -166,8 +157,7 @@ return new class extends Migration
                 'talles' => '36,37,38',
                 'color' => 'Negro',
                 'imatge' => 'imagen/reebok-zapatillas-nano-x.jpg',
-                'created_at' => DB::raw('NOW()'),
-                'updated_at' => DB::raw('NOW()'),
+                'descripcio' => 'Converse One Star en negro para todos. Un clásico reinventado para todas las ocasiones.'
             ],
             [
                 'id' => 13,
@@ -178,8 +168,7 @@ return new class extends Migration
                 'talles' => '38,39,40',
                 'color' => 'Azul',
                 'imatge' => 'imagen/converse-onestar.jpg',
-                'created_at' => DB::raw('NOW()'),
-                'updated_at' => DB::raw('NOW()'),
+                'descripcio' => 'Zapatillas Vans Sk8-Hi en azul para todos. Estilo y confort en cada aventura.'
             ],
             [
                 'id' => 14,
@@ -190,8 +179,7 @@ return new class extends Migration
                 'talles' => '40,41,42',
                 'color' => 'Gris',
                 'imatge' => 'imagen/vans-sk8.jpg',
-                'created_at' => DB::raw('NOW()'),
-                'updated_at' => DB::raw('NOW()'),
+                'descripcio' => 'Zapatillas New Balance 990 en gris para hombres. La combinación perfecta de estilo y rendimiento.'
             ],
             [
                 'id' => 15,
@@ -202,8 +190,7 @@ return new class extends Migration
                 'talles' => '35,36,37',
                 'color' => 'Rosa',
                 'imatge' => 'imagen/new-balance-990-azul.jpg',
-                'created_at' => DB::raw('NOW()'),
-                'updated_at' => DB::raw('NOW()'),
+                'descripcio' => 'Adidas Gazelle en rosa para mujeres. Un toque de color y estilo en cada paso.'
             ],
             [
                 'id' => 16,
@@ -214,8 +201,7 @@ return new class extends Migration
                 'talles' => '41,42,43',
                 'color' => 'Blanco',
                 'imatge' => 'imagen/adidas-gazelle.jpg',
-                'created_at' => DB::raw('NOW()'),
-                'updated_at' => DB::raw('NOW()'),
+                'descripcio' => 'Zapatillas Nike Air Force 1 en blanco para hombres. Eleva tu estilo a nuevas alturas.'
             ],
             [
                 'id' => 17,
@@ -226,8 +212,7 @@ return new class extends Migration
                 'talles' => '35,36,37',
                 'color' => 'Azul',
                 'imatge' => 'imagen/nike-air-force-1.jpg',
-                'created_at' => DB::raw('NOW()'),
-                'updated_at' => DB::raw('NOW()'),
+                'descripcio' => 'Zapatillas Puma Future Rider en azul para mujeres. Un toque retro con un estilo moderno.'
             ],
             [
                 'id' => 18,
@@ -238,8 +223,7 @@ return new class extends Migration
                 'talles' => '39,40,41',
                 'color' => 'Negro',
                 'imatge' => 'imagen/puma-future-rider.jpg',
-                'created_at' => DB::raw('NOW()'),
-                'updated_at' => DB::raw('NOW()'),
+                'descripcio' => 'Zapatillas Reebok Zig Kinetica en negro para hombres. Un diseño innovador para un rendimiento excepcional.'
             ],
             [
                 'id' => 19,
@@ -250,8 +234,7 @@ return new class extends Migration
                 'talles' => '36,37,38',
                 'color' => 'Blanco',
                 'imatge' => 'imagen/puma-future-rider.jpg',
-                'created_at' => DB::raw('NOW()'),
-                'updated_at' => DB::raw('NOW()'),
+                'descripcio' => 'Converse Jack Purcell en blanco para todos. Elegancia casual para cualquier ocasión.'
             ],
             [
                 'id' => 20,
@@ -262,8 +245,7 @@ return new class extends Migration
                 'talles' => '38,39,40',
                 'color' => 'Gris',
                 'imatge' => 'imagen/vans-Era-gris.jpg',
-                'created_at' => DB::raw('NOW()'),
-                'updated_at' => DB::raw('NOW()'),
+                'descripcio' => 'Zapatillas Vans Era en gris para todos. Estilo clásico y versatilidad en cada paso.'
             ],
             [
                 'id' => 21,
@@ -274,8 +256,7 @@ return new class extends Migration
                 'talles' => '28,29,30',
                 'color' => 'Blanc',
                 'imatge' => 'imagen/adidas-superstar-nen.jpg',
-                'created_at' => DB::raw('NOW()'),
-                'updated_at' => DB::raw('NOW()'),
+                'descripcio' => 'Adidas Superstar en blanco para niños/as. Un inicio a la moda desde temprana edad.'
             ],
             [
                 'id' => 22,
@@ -286,8 +267,7 @@ return new class extends Migration
                 'talles' => '28,29,30',
                 'color' => 'Negre',
                 'imatge' => 'imagen/nike-air-max-nen.jpg',
-                'created_at' => DB::raw('NOW()'),
-                'updated_at' => DB::raw('NOW()'),
+                'descripcio' => 'Zapatillas Nike Air Max en negro para niños/as. Comodidad y estilo desde pequeños.'
             ],
             [
                 'id' => 23,
@@ -298,8 +278,7 @@ return new class extends Migration
                 'talles' => '25,26,27',
                 'color' => 'Rosa',
                 'imatge' => 'imagen/puma-cali-nen.jpg',
-                'created_at' => DB::raw('NOW()'),
-                'updated_at' => DB::raw('NOW()'),
+                'descripcio' => 'Zapatillas Puma Cali en rosa para niños/as. Estilo y diversión en cada paso.'
             ],
             [
                 'id' => 24,
@@ -310,9 +289,9 @@ return new class extends Migration
                 'talles' => '25,26,27',
                 'color' => 'Blanc',
                 'imatge' => 'imagen/reebok-classic-nen.jpg',
-                'created_at' => DB::raw('NOW()'),
-                'updated_at' => DB::raw('NOW()'),
+                'descripcio' => 'Zapatillas Reebok Classic Leather en blanco para niños/as. Comodidad y estilo desde pequeños.'
             ],
+            
             [
                 'id' => 25,
                 'marca' => 'Converse',
@@ -322,8 +301,7 @@ return new class extends Migration
                 'talles' => '28,29,30',
                 'color' => 'Blau',
                 'imatge' => 'imagen/converse-chuck-nen.jpg',
-                'created_at' => DB::raw('NOW()'),
-                'updated_at' => DB::raw('NOW()'),
+                'descripcio' => 'Las clásicas Chuck Taylor de Converse en azul para niños/as. Estilo atemporal desde temprana edad.'
             ],
             [
                 'id' => 26,
@@ -334,8 +312,7 @@ return new class extends Migration
                 'talles' => '25,26,27',
                 'color' => 'Negre',
                 'imatge' => 'imagen/vans-old-skool-nen.jpg',
-                'created_at' => DB::raw('NOW()'),
-                'updated_at' => DB::raw('NOW()'),
+                'descripcio' => 'Zapatillas Vans Old Skool en negro para niños/as. Un toque de estilo skater desde pequeños.'
             ],
             [
                 'id' => 27,
@@ -346,8 +323,7 @@ return new class extends Migration
                 'talles' => '28,29,30',
                 'color' => 'Gris',
                 'imatge' => 'imagen/new-balance-574-nen.jpg',
-                'created_at' => DB::raw('NOW()'),
-                'updated_at' => DB::raw('NOW()'),
+                'descripcio' => 'Zapatillas New Balance 574 en gris para niños/as. Comodidad y estilo en cada paso.'
             ],
             [
                 'id' => 28,
@@ -358,8 +334,7 @@ return new class extends Migration
                 'talles' => '25,26,27',
                 'color' => 'Blanc',
                 'imatge' => 'imagen/adidas-stan-smith-nen.jpg',
-                'created_at' => DB::raw('NOW()'),
-                'updated_at' => DB::raw('NOW()'),
+                'descripcio' => 'Las icónicas Stan Smith de Adidas en blanco para niños/as. Un clásico reinventado.'
             ],
             [
                 'id' => 29,
@@ -370,8 +345,7 @@ return new class extends Migration
                 'talles' => '28,29,30',
                 'color' => 'Vermell',
                 'imatge' => 'imagen/nike-blazer-nen.jpg',
-                'created_at' => DB::raw('NOW()'),
-                'updated_at' => DB::raw('NOW()'),
+                'descripcio' => 'Zapatillas Nike Blazer en rojo para niños/as. Estilo y confort para los más pequeños.'
             ],
             [
                 'id' => 30,
@@ -382,11 +356,12 @@ return new class extends Migration
                 'talles' => '25,26,27',
                 'color' => 'Negre',
                 'imatge' => 'imagen/puma-suede-nen.jpg',
-                'created_at' => DB::raw('NOW()'),
-                'updated_at' => DB::raw('NOW()'),
-            ],
+                'descripcio' => 'Zapatillas Puma Suede en negro para niños/as. Elegancia y comodidad desde el principio.'
+            ]
         ]);
-        
+
+
+
     }
 
     /**

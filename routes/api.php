@@ -31,10 +31,10 @@ Route::post('/login', [AdminController::class, 'login']);
 //Route::post('/register', [AdminController::class, 'register']);
 
 Route::post('/logout', [AdminController::class, 'logout']);
+Route::get('/comanda', [ControllerComanda::class, 'getComanda'])->name("getComandas");
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
-    //Route::get('/comanda', [ControllerComanda::class, 'getComanda']);
    // Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
 
 
