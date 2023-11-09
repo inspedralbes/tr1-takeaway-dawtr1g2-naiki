@@ -14,11 +14,11 @@ body {
 }
 
 .paginacio {
-    text-align: center;
-    margin-top: 2vw;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 2vh;
+    position: absolute;
+   text-align: center;
+   margin-top: 191vw;
+   margin-left: 20vw;
+
   }
   
   .paginacio button {
@@ -37,7 +37,10 @@ body {
     background-color: #a9a9a9; 
     cursor: not-allowed;
   }
-  
+  .button-container {
+    display: flex;
+    align-items: center;
+}
 
 .afegir,.eliminar{
     margin-bottom: 5vh;
@@ -63,8 +66,9 @@ header{
 }
 .tencarModal{
     float: right;
-    padding: 2%;
+    padding: 3%;
     border-radius: 4px;
+    margin: 8px;
 }
 .modal_mostrarSabata{
     width: 50%;
@@ -73,8 +77,11 @@ header{
     color:red;
 }
 footer{
+    position: absolute;
     background-color: var(--bgHeaderFooter);
-    height: 11vh;
+    margin-bottom: -48vw;
+    margin-top: 208vw;
+  
 }
 .container__img{
     margin-left: -4vw;
@@ -83,7 +90,8 @@ footer{
     width: 95vw;
     display: flex;
     place-content: center;
-    height: 4vh;
+    position: static;
+
 }
 .logo__img{
     height: 40px;
@@ -252,6 +260,7 @@ button {
 }
 
 #lista{
+    position: absolute;
     display: grid;
     grid-template-columns: 1fr 1fr;
     row-gap: 2vh;
@@ -259,8 +268,8 @@ button {
     width: 89vw;
     margin-top: 13vh;
     margin-bottom: 2vh;
-
 }
+
 #carrito{
     margin-top: 10%;
     width: 60%;
@@ -735,4 +744,47 @@ a{
     position: absolute;
     top: 34vw;
     left: 5vw;
+}
+
+.comandaUsari{
+    background: white;
+    position: absolute;
+    top: 34vw;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    width: 88vw;
+    left: 1vw;
+}
+
+.item__comandaUsuari{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 5px 0;
+}
+
+.container__comandaUsuari{
+    display: grid;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.botonComandaUsuari{
+    border-radius: 5px;
+    padding: 4px;
+    
+}
+
+.modalComanda{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    overflow: scroll;
 }
