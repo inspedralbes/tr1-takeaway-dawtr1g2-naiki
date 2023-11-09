@@ -26,18 +26,21 @@ class ControllerComanda extends Controller
             //Return if the user is logged in or not from the token
             [$id, $token] = explode('|', $checkToken, 2);
             $accessToken = PersonalAccessToken::find($id);
-
             if ($accessToken != null) {
-                if (!hash_equals($accessToken->token, hash('sha256', $token))) {
+                if (hash_equals($accessToken->token, hash('sha256', $token))) {
+                    $userId = $accessToken->tokenable_id;
+
+                } else {
                     $response = [
+                        'error'=> '1',
                         'missatge' => 'Sessió expirada'
                     ];
                     return (json_encode($response));
-                } else {
-                    $userId = $accessToken->tokenable_id;
                 }
             } else {
                 $response = [
+                    'error'=> '2',
+
                     'missatge' => 'Sessió expirada'
                 ];
                 return (json_encode($response));
@@ -46,14 +49,16 @@ class ControllerComanda extends Controller
 
         } else {
             $response = [
-                'missatge' => 'Sessió expirada'
+                'missatge' => 'Sessió expirada',
+                'error'=> '3'
+
             ];
             return (json_encode($response));
 
         }
 
-        $user = User::find($userId);
-        $comandes = Comanda::find('usuari',$user->email);
+        $user = \App\Models\User::find($userId);
+        $comandes = Comanda::select('*')->where('usuari', $user->email)->get();
         return $comandes;
     }
 
