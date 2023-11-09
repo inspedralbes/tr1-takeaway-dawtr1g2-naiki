@@ -152,7 +152,52 @@ class ControllerComanda extends Controller
         });
     }
 
+    public function getLineasComanda(Request $request){
+        $checkToken = $request->bearerToken();
+        if (!($checkToken == null || $checkToken == "" || $checkToken == "null")) {
 
+            //Return if the user is logged in or not from the token
+            [$id, $token] = explode('|', $checkToken, 2);
+            $id = ltrim($id, '{'); 
+                $token = rtrim($token, '}'); 
+
+                
+                
+            $accessToken = PersonalAccessToken::find($id);
+            if ($accessToken != null) {
+                if (hash_equals($accessToken->token, hash('sha256', $token))) {
+                    $userId = $accessToken->tokenable_id;
+
+                } else {
+                    $response = [
+                        'error'=> '1',
+                        'missatge' => 'Sessió expirada'
+                    ];
+                    return (json_encode($response));
+                }
+            } else {
+                $response = [
+                    'error'=> '2',
+
+                    'missatge' => 'Sessió expirada'
+                ];
+                return (json_encode($response));
+
+            }
+
+        } else {
+            $response = [
+                'missatge' => 'Sessió expirada',
+                'error'=> '3'
+
+            ];
+            return (json_encode($response));
+
+        }
+        $idComanda = json_decode($request->getContent(), true);
+        $comandes = DB::table('linea_comandas')->where('idComanda', '=', $idComanda)->get();
+        return $comandes;
+    }
     public function canviarEstatComanda(Request $request)
     {
         $checkToken = session()->get('token');
