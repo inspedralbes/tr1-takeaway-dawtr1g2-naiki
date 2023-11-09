@@ -105,6 +105,8 @@ button {
   <nav>
     <a href="{{ route('panel') }}">Comandes</a>
     <a href="{{ route('sabates') }}">Sabates</a>
+    <a href="{{ route('logoutAdmin') }}">Logout</a>
+
   </nav>
     @foreach (session()->get('comandes') as $sabata)
         <div class="comanda">
