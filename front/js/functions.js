@@ -23,8 +23,8 @@ createApp({
             mostrarComanda: [],
             idComandaMostrar: null,
             ticket: {
-                carrito : [],
-                total : null,
+                carrito: [],
+                total: null,
             },
             register: {
                 nom: null,
@@ -44,17 +44,17 @@ createApp({
             let descr = document.querySelectorAll('.item__descripcio');
             descr.forEach(element => {
                 element.classList.add("hidden");
-                
+
             });
 
             if (direccio === -1) {
-              if (this.paginaActual > 1) {
-                this.paginaActual--;
-              }
+                if (this.paginaActual > 1) {
+                    this.paginaActual--;
+                }
             } else {
-              if (this.paginaActual < this.totalPagina) {
-                this.paginaActual++;
-              }
+                if (this.paginaActual < this.totalPagina) {
+                    this.paginaActual++;
+                }
             }
         },
         afegir(zapato) {
@@ -174,7 +174,7 @@ createApp({
                 }
             }
         },
-        quitarFiltre(){
+        quitarFiltre() {
             this.paginaActual = 1;
             this.mostrarBotiga();
             let buttons = document.querySelectorAll('nav button');
@@ -184,18 +184,18 @@ createApp({
             this.sabatesMostrar = this.sabates;
 
         },
-        mostrarDescripcio(e,sabata){
-            if(e.target.tagName != "BUTTON"){
+        mostrarDescripcio(e, sabata) {
+            if (e.target.tagName != "BUTTON") {
 
-                this.mostrarModalSabata = true;            
+                this.mostrarModalSabata = true;
                 this.mostrarSabata = sabata;
             }
         },
-        
+
         mostrarBotiga() {
             this.divActivo = "tienda";
         }, filtre(e, filtrar) {
-            this.paginaActual= 1;
+            this.paginaActual = 1;
             this.mostrarBotiga();
             let buttons = document.querySelectorAll('nav button');
             buttons.forEach(button => {
@@ -253,7 +253,7 @@ createApp({
                 },
                 body: formulari,
             })
-            
+
             response = await response.json();
             if (response.error == 2) {
                 document.getElementById('errorContrasenya').classList.add("hidden");
@@ -273,8 +273,8 @@ createApp({
 
 
         },
-        async comandasUsuari(){
-            
+        async comandasUsuari() {
+
             let response = await fetch("http://localhost:8000/api/comanda", {
                 method: "GET",
                 headers: {
@@ -285,11 +285,11 @@ createApp({
             })
             response = await response.json();
             console.log(response);
-            
-            if (response.error==null) {
+
+            if (response.error == null) {
                 this.comandas = response;
                 this.cambiar('comandasUsuari');
-            }else{
+            } else {
                 this.cambiar('portada');
                 this.token = null;
                 this.user = null;
@@ -321,7 +321,7 @@ createApp({
             }
 
         },
-        async mostrarProductos(comandaSelect){
+        async mostrarProductos(comandaSelect) {
             let response = await fetch("http://localhost:8000/api/lineasComanda", {
                 method: "POST",
                 headers: {
@@ -335,21 +335,33 @@ createApp({
             response = await response.json();
             this.mostrarComanda = response;
             this.idComandaMostrar = comandaSelect.id;
-            this.mostrarModalComanda= true;
+            this.mostrarModalComanda = true;
 
         },
-        async cancelarComanda(comandaCancelar){
-            let response = await fetch("http://localhost:8000/api/comanda", {
-                method: "POST",
-                headers: {
-                    "Authorization": 'Bearer {' + this.token + '}',
-                    "Content-Type": "application/json",
+        async cancelarComanda(comandaCancelar) {
+            if (confirm("Estas segur que vols cancelar aquesta comanda?")) {
 
-                },
-                body: JSON.stringify(comandaSelect.id),
 
-            });
-            response = await response.json();
+                let response = await fetch("http://localhost:8000/api/comanda", {
+                    method: "DELETE",
+                    headers: {
+                        "Authorization": 'Bearer {' + this.token + '}',
+                        "Content-Type": "application/json",
+
+                    },
+                    body: JSON.stringify(comandaCancelar),
+
+                });
+                response = await response.json();
+                
+                if(response.error == null){
+                    this.comandas = response.comandas,
+                    console.log(response.comandas);
+                    this.tencar();
+
+                    document.getElementById("successCancelar").classList.remove("hidden");
+                }
+            }
         },
 
 
@@ -373,13 +385,13 @@ createApp({
     },
     computed: {
         paginacioSabates() {
-          const iniciIndex = (this.paginaActual - 1) * this.sabatesPagina;
-          const finalIndex = iniciIndex + this.sabatesPagina;
-          return this.sabatesMostrar.slice(iniciIndex, finalIndex);
+            const iniciIndex = (this.paginaActual - 1) * this.sabatesPagina;
+            const finalIndex = iniciIndex + this.sabatesPagina;
+            return this.sabatesMostrar.slice(iniciIndex, finalIndex);
         },
         totalPagina() {
-          return Math.ceil(this.sabatesMostrar.length / this.sabatesPagina);
+            return Math.ceil(this.sabatesMostrar.length / this.sabatesPagina);
         },
-        
-      }
+
+    }
 }).mount("#app")

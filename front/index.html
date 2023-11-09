@@ -65,6 +65,8 @@
             </div>
         </header>
         <div v-if="divActivo== 'comandasUsuari'">
+            <h3 class="success hidden" id="successCancelar">Comanda cancelada correctament!</h3>
+
             <div v-for="(actual, index) in comandas">
                 <h2>{{actual.id}}</h2>
                 <h3>{{actual.estat}}</h3>
