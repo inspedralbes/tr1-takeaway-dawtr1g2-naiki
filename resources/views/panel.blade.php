@@ -97,9 +97,7 @@ button {
     </style>
     <title>Document</title>
 </head>
-@if (session('success'))
-    <h1>{{ session('success') }} </h1>
-@endif
+
 
 <body>
   <nav>
@@ -108,6 +106,9 @@ button {
     <a href="{{ route('logoutAdmin') }}">Logout</a>
 
   </nav>
+  @if (session('success'))
+    <h1>{{ session('success') }} </h1>
+  @endif
     @foreach (session()->get('comandes') as $comanda)
         <div class="comanda">
             <p>{{ $comanda->id }}</p>
