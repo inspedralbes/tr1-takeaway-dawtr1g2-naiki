@@ -60,6 +60,12 @@ return [
             'root'   => public_path(''),
             'visibility' => 'public',
         ],
+        
+        'sabates' => [
+            'driver' => 'local',
+            'root'   => public_path(''),
+            'visibility' => 'public',
+        ],
 
     ],
 

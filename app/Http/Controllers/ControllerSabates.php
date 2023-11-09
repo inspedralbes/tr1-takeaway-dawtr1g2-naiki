@@ -19,7 +19,9 @@ class ControllerSabates extends Controller
 
         $sabata->talles = $request->talles;
         $sabata->color  = $request->color; 
-        $sabata->imatge = "img"; 
+        $new = $request->model.'_'.$request->color . '.jpg';
+        $src = $request->file('img')->storeAs('imatge', $new, ['disk' => 'sabates']);
+        $sabata->imatge = $src;
         $sabata->save();
         session()->put("sabates", Sabates::all());
         session()->save();

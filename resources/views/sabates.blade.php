@@ -100,7 +100,7 @@ button:hover {
         <a href="{{ route('panel') }}">Comandes</a>
         <a href="{{ route('sabates') }}">Sabates</a>
       </nav>
-    <form method="POST" action="{{route('crearSabata')}}">
+    <form method="POST" enctype="multipart/form-data" action="{{route('crearSabata')}}">
         @csrf
         @method("POST")
         <label for="marca">Marca</label>
@@ -119,6 +119,8 @@ button:hover {
         <input type="text" name="talles">
         <label for="color">Color</label>
         <input type="text" name="color">
+        <label for="img">Imatge</label>
+        <input type="file" name="img">
         <button type="submit">Crear</button>
     </form>
     @foreach (session('sabates') as $sabata )
