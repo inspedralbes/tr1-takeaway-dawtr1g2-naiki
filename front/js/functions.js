@@ -183,7 +183,7 @@ createApp({
             e.target.classList.add("actiu");
             this.sabatesMostrar = [];
             this.sabates.forEach(sabata => {
-                if (sabata.genere == filtrar) {
+                if (sabata.genere == filtrar || sabata.genere == 'Unisex') {
                     this.sabatesMostrar.push(sabata);
                     console.log(sabata)
                 }
