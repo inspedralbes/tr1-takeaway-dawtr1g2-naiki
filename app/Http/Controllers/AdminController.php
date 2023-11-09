@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comanda;
+use App\Models\LineaComanda;
 use App\Models\Sabates;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -132,10 +133,12 @@ class AdminController extends Controller
         $token = $user->createToken('myapptoken')->plainTextToken;
         $comandes=Comanda::all();
         $sabates = Sabates::all();
-
+        $lineasComanda =LineaComanda::all();
         session()->put('sabates', $sabates);
         session()->put('token', $token);
         session()->put('comandes', $comandes);
+        session()->put('lineaComandes', $lineasComanda);
+
         session()->save();
         
         return redirect()->route('panel');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sabates;
 use Illuminate\Http\Request;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class ControllerSabates extends Controller
 {
@@ -32,6 +33,28 @@ class ControllerSabates extends Controller
     }
     public function updateSabata(Request $request)
     {
+        $checkToken = session()->get('token');
+        //$result = PersonalAccessToken::where('token', Hash::make($token))->first();
+        //$idComanda = $request->idComanda;
+        if (!($checkToken == null || $checkToken == "" || $checkToken == "null")) {
+
+            //Return if the user is logged in or not from the token
+            [$id, $token] = explode('|', $checkToken, 2);
+            $accessToken = PersonalAccessToken::find($id);
+
+            if ($accessToken != null) {
+                if (!hash_equals($accessToken->token, hash('sha256', $token))) {
+                    return redirect()->route('app')->with('error', 'Sessió expirada');
+                }
+            } else {
+                return redirect()->route('app')->with('error', 'Sessió expirada');
+
+            }
+
+        } else {
+            return redirect()->route('app')->with('error', 'Sessió expirada');
+
+        }
         $sabata = Sabates::find($request->idSabata);
         $sabata->marca = $request->marca;
         $sabata->model = $request->model;

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comanda;
 use App\Models\LineaComanda;
 use App\Models\Sabates;
+use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Hash;
 use Illuminate\Http\Request;
@@ -17,9 +18,42 @@ use Validator;
 
 class ControllerComanda extends Controller
 {
-    public function getComanda()
+    public function getComanda(Request $request)
     {
-        $comandes = Comanda::all();
+        $checkToken = $request->bearerToken();
+        if (!($checkToken == null || $checkToken == "" || $checkToken == "null")) {
+
+            //Return if the user is logged in or not from the token
+            [$id, $token] = explode('|', $checkToken, 2);
+            $accessToken = PersonalAccessToken::find($id);
+
+            if ($accessToken != null) {
+                if (!hash_equals($accessToken->token, hash('sha256', $token))) {
+                    $response = [
+                        'missatge' => 'Sessió expirada'
+                    ];
+                    return (json_encode($response));
+                } else {
+                    $userId = $accessToken->tokenable_id;
+                }
+            } else {
+                $response = [
+                    'missatge' => 'Sessió expirada'
+                ];
+                return (json_encode($response));
+
+            }
+
+        } else {
+            $response = [
+                'missatge' => 'Sessió expirada'
+            ];
+            return (json_encode($response));
+
+        }
+
+        $user = User::find($userId);
+        $comandes = Comanda::find('usuari',$user->email);
         return $comandes;
     }
 
@@ -113,33 +147,33 @@ class ControllerComanda extends Controller
         $checkToken = session()->get('token');
         //$result = PersonalAccessToken::where('token', Hash::make($token))->first();
         //$idComanda = $request->idComanda;
-        if ( !($checkToken == null ||  $checkToken == "" ||  $checkToken == "null") ) {
+        if (!($checkToken == null || $checkToken == "" || $checkToken == "null")) {
 
             //Return if the user is logged in or not from the token
             [$id, $token] = explode('|', $checkToken, 2);
             $accessToken = PersonalAccessToken::find($id);
-            
+
             if ($accessToken != null) {
-                if (! hash_equals($accessToken->token, hash('sha256', $token))) {
-                    return redirect()->route('app')->with('error','Sessió expirada');
+                if (!hash_equals($accessToken->token, hash('sha256', $token))) {
+                    return redirect()->route('app')->with('error', 'Sessió expirada');
                 }
-            }else{
-                return redirect()->route('app')->with('error','Sessió expirada');
+            } else {
+                return redirect()->route('app')->with('error', 'Sessió expirada');
 
             }
 
-        }else{
-            return redirect()->route('app')->with('error','Sessió expirada');
+        } else {
+            return redirect()->route('app')->with('error', 'Sessió expirada');
 
         }
         $nouEstat = $request->nouEstat;
         $idComanda = $request->idComanda;
         DB::table('comandas')
-        ->where('id', $idComanda)
-        ->update(['estat' => $nouEstat]);
+            ->where('id', $idComanda)
+            ->update(['estat' => $nouEstat]);
         session()->put('comandes', Comanda::all());
         session()->save();
-        return redirect()->route('panel')->with('success','Estat actualitzat correctament');
+        return redirect()->route('panel')->with('success', 'Estat actualitzat correctament');
 
     }
 

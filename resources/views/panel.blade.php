@@ -108,15 +108,15 @@ button {
     <a href="{{ route('logoutAdmin') }}">Logout</a>
 
   </nav>
-    @foreach (session()->get('comandes') as $sabata)
+    @foreach (session()->get('comandes') as $comanda)
         <div class="comanda">
-            <p>{{ $sabata->id }}</p>
-            <p>{{ $sabata->usuari }}</p>
-            <p>{{ $sabata->estat }}</p>
-            <button id="mostrar-{{ $sabata->id }}">Mostrar comanda</button>
-            <button class="js-modal-trigger" data-target="modal-js-estat{{ $sabata->id }}">Editar Estat</button>
+            <p>{{ $comanda->id }}</p>
+            <p>{{ $comanda->usuari }}</p>
+            <p>{{ $comanda->estat }}</p>
+            <button class="js-modal-trigger mostrarProductes" data-target="modal-js-mostrar{{ $comanda->id }}">Mostrar productes</button>
+            <button class="js-modal-trigger" data-target="modal-js-estat{{ $comanda->id }}">Editar Estat</button>
 
-            <div id="modal-js-estat{{ $sabata->id }}" class="modal">
+            <div id="modal-js-estat{{ $comanda->id }}" class="modal">
                 <div class="modal-background"></div>
 
                 <div class="modal-content">
@@ -126,10 +126,34 @@ button {
                         <form method='POST' action="{{ route('updateEstat') }}">
                             @csrf
                             @method('PATCH')
-                            <input type="hidden" name="idComanda" value="{{ $sabata->id }}">
+                            <input type="hidden" name="idComanda" value="{{ $comanda->id }}">
                             <input type="text" name="nouEstat">
                             <button type="submit">Guardar</button>
                         </form>
+
+                    </div>
+                </div>
+
+            </div>
+            <div id="modal-js-mostrar{{ $comanda->id }}" class="modal">
+                <div class="modal-background"></div>
+
+                <div class="modal-content">
+                    <div class="box">
+                        <button class="modal-close is-large" aria-label="close"></button>
+
+                        @foreach (session()->get('lineaComandes') as $sabata)
+                        @if($sabata->idComanda == $comanda->id)
+                        <div class="sabata">
+                          <img class="item__img img__lista" src="{{$sabata->imatge}}" height="184" width="184" alt="">
+                          <h3 class="item__model"> {{$sabata->model}}</h3>
+                          <p class="item__color">{{$sabata->color}}</p>
+                          <p class="item__quantitat">Quantitat: {{$sabata->quantitat}}</p>
+                          <p class="item__preu">Preu/u: {{$sabata->preu}}€</p>
+                        </div>
+
+                        @endif
+                        @endforeach
 
                     </div>
                 </div>
@@ -139,6 +163,7 @@ button {
         </div>
     @endforeach
     <script>
+
         function openModal($el) {
             $el.classList.add('is-active');
         }
@@ -161,6 +186,8 @@ button {
                 openModal($target);
             });
         });
+
+      
 
         // Add a click event on various child elements to close the parent modal
         (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') ||[]).forEach(($close) => {
