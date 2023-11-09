@@ -61,10 +61,13 @@ header{
     top: 0;
     z-index: 1;
 }
-.tencarCheckout{
+.tencarModal{
     float: right;
     padding: 2%;
     border-radius: 4px;
+}
+.modal_mostrarSabata{
+    width: 50%;
 }
 .error{
     color:red;
@@ -596,7 +599,10 @@ a{
     text-align: center;
     width: 300px;
 }
-
+.item__descripcio{
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
 
 
 .formulario.inicio-sesion .volver-comprar {

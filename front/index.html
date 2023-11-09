@@ -54,7 +54,7 @@
                 </ul>
             </nav>
 
-            <div  @click="btnUsuario()" class="usuario">
+            <div @click="btnUsuario()" class="usuario">
                 <img src="imagen/usuario.png">
 
             </div>
@@ -95,59 +95,74 @@
                         <button class="eliminar" @click="eliminar(actual)">Treure</button>
                     </div>
 
-                    
+
                 </div>
             </div>
             <div id="lista">
-                <div :class="['llista__item item', { 'transicion': aplicarTransicion }]" v-for="(actual, index) in paginacioSabates">
+                <div @click="mostrarDescripcio(actual)"
+                    :class="['llista__item item', { 'transicion': aplicarTransicion }]"
+                    v-for="(actual, index) in paginacioSabates">
                     <img class="item__img img__lista" :src="actual.imatge" height="184" width="184" alt="">
                     <h3 class="item__model">{{ actual.model }}</h3>
                     <p class="item__color">{{actual.color}}</p>
                     <p class="item__preu">Preu/u: {{actual.preu}}€</p>
-
+                    <p :id="'descripcio_sabata'+actual.id" class="item__descripcio hidden">{{actual.descripcio}}</p>
                     <button @click="afegir(actual)" class="afegir">Afegir</button>
+
+                    
                 </div>
-                
+                <div v-if="mostrarModalSabata" class="modal ">
+                    <div class="modal-contenido modal_mostrarSabata" :class="[ { 'transicion': aplicarTransicion }]">
+                        <button class="tencarModal" @click="tencarModalSabata">X</button>
+                        <img class="item__img img__lista" :src="this.mostrarSabata.imatge" height="184" width="184" alt="">
+                        <h3 class="item__model">{{ this.mostrarSabata.model }}</h3>
+                        <p class="item__color">{{this.mostrarSabata.color}}</p>
+                        <p class="item__preu">Preu/u: {{this.mostrarSabata.preu}}€</p>
+                        <p class="item__descripcio">{{this.mostrarSabata.descripcio}}</p>
+                        <button @click="afegir(this.mostrarSabata)" class="afegir">Afegir</button>
+                    </div>
+                </div>
             </div>
             <div class="paginacio">
                 <button @click="canviaPagina(-1)" :disabled="paginaActual === 1">Anterior</button>
                 <button @click="canviaPagina(1)" :disabled="paginaActual === totalPagina">Següent</button>
-              </div>
+            </div>
         </div>
-        
+
         <div v-if="divActivo == 'mostrarInicioSesion'" class="formulario-container">
             <div class="formulario inicio-sesion formLogin">
                 <h3 class="error hidden" id="errorLogin">Contrasenya o email incorrecte</h3>
                 <h2>Iniciar Sesión</h2>
-                    <label for="usuario">Usuario:</label>
-                    <input type="text" id="usuario" v-model="register.email" required>
-                    <label for="contrasena">Contraseña:</label>
-                    <input type="password" id="contrasenaLogin" v-model="register.password" required>
-                    <button type="submit" @click="login()">Iniciar Sesión</button>
+                <label for="usuario">Usuario:</label>
+                <input type="text" id="usuario" v-model="register.email" required>
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" id="contrasenaLogin" v-model="register.password" required>
+                <button type="submit" @click="login()">Iniciar Sesión</button>
                 <button class="volver-comprar" @click="cambiar('tienda')">Volver al comprar</button>
                 <button @click="cambiar('RegistroUsuario')">Registrarse</button>
             </div>
         </div>
-        
+
         <div v-if="divActivo == 'RegistroUsuario'" class="formulario-container">
             <div class="formulario registro-usuario" id="formRegister">
                 <h2 class='error hidden' id="errorContrasenya">Les constrasenyes no coïncideixen</h2>
                 <h2 class='error hidden' id="errorEmail">Email ja esta en ús</h2>
 
                 <h2>Registrarse</h2>
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" name="nom" required v-model="register.nom">
-                    <label for="apellido">Apellido:</label>
-                    <input type="text" id="apellido" name="cognoms" required  v-model="register.cognoms">
-                    <label for="correo">Correo Electrónico:</label>
-                    <input type="email" id="correo" name="email" required  v-model="register.email" >
-                    <label for="telefono">Teléfono:</label>
-                    <input type="text" id="telefono" name="telefon" required  v-model="register.telefon">
-                    <label for="contrasena">Contraseña:</label>
-                    <input type="password" id="contrasena" name="password" required  v-model="register.password"> 
-                    <label for="contrasena">Confirmación de contraseña:</label>
-                    <input type="password" id="contrasena" name="password_confirmation" required  v-model="register.password_confirmation">
-                    <button @click="registrar()">Registrarse</button>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nom" required v-model="register.nom">
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" name="cognoms" required v-model="register.cognoms">
+                <label for="correo">Correo Electrónico:</label>
+                <input type="email" id="correo" name="email" required v-model="register.email">
+                <label for="telefono">Teléfono:</label>
+                <input type="text" id="telefono" name="telefon" required v-model="register.telefon">
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" id="contrasena" name="password" required v-model="register.password">
+                <label for="contrasena">Confirmación de contraseña:</label>
+                <input type="password" id="contrasena" name="password_confirmation" required
+                    v-model="register.password_confirmation">
+                <button @click="registrar()">Registrarse</button>
                 <button @click="cambiar('mostrarInicioSesion')">Iniciar sesion</button>
                 <button class="volver-comprar" @click="cambiar('tienda')">Volver al comprar</button>
             </div>
@@ -161,11 +176,12 @@
                 <div class="checkout__cesta" v-if="carrito.length > 0">
                     <div class="container__preuTotal">
                         <p id="checkout-total">Total del Carrito: ${{this.total}}</p>
-                        <button v-if="carrito.length > 0" @click="completar" class="finalizarCompra">Realizar Compra</button>
+                        <button v-if="carrito.length > 0" @click="completar" class="finalizarCompra">Realizar
+                            Compra</button>
                     </div>
                     <h2>Cesta de la compra</h2>
                     <div class="checkout__llista">
-                       
+
                         <div class="checkout__item" v-for="(actual, index) in carrito">
                             <img class="item__img" :src="actual.imatge" height="184" width="184" alt="">
                             <div class="cesta__item">
@@ -175,13 +191,14 @@
                                     <p class="item__quantitat">Quantitat: {{actual.quantitat}}</p>
                                     <p class="item__preu">Preu/u: {{actual.preu}}€</p>
 
-                                <button class="eliminar" @click="eliminar(actual)">Treure</button>
+                                    <button class="eliminar" @click="eliminar(actual)">Treure</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="container__buttons">                      
-                        <button v-if="carrito.length > 0" @click="limpiarCesta" class="checkout__buttons">Limpiar cesta de compra</button>
+                    <div class="container__buttons">
+                        <button v-if="carrito.length > 0" @click="limpiarCesta" class="checkout__buttons">Limpiar cesta
+                            de compra</button>
                         <button @click="mostrarBotiga" class="checkout__buttons">Continuar Comprando</button>
                     </div>
                 </div>
@@ -206,7 +223,7 @@
         <!-- Página de Modal Login -->
         <div v-if="mostrarModalCorreo" class="modal checkout__modal">
             <div class="modal-contenido">
-                <button class="tencarCheckout" @click="tencarCheckout">X</button>
+                <button class="tencarModal" @click="tencarCheckout">X</button>
 
                 <h2>Ingrese su correo</h2>
                 <input type="text" v-model="correo" id="emailUser"> <!-- Campo de entrada para el correo -->
@@ -217,7 +234,7 @@
 
         <div v-if="divActivo == 'compraConfirm'">
             <div id="compraConfirm">
-                
+
                 <div class="container__ticket">
                     <div class="container__ImagenTicket">
                         <img src="imagen/NAIKI.png" alt="" class="imagenTicket">
@@ -240,10 +257,10 @@
                 </div>
             </div>
         </div>
-        <footer  v-if="divActivo != 'portada' && divActivo != 'mostrarInicioSesion'">
+        <footer v-if="divActivo != 'portada' && divActivo != 'mostrarInicioSesion'">
             <div class="container__img">
-                <a href="https://www.youtube.com/watch?v=8Pc0AEbfnBM&ab_channel=Marbler"><img
-                        src="imagen/instagram.png" alt="" class="logo__img"></a>
+                <a href="https://www.youtube.com/watch?v=8Pc0AEbfnBM&ab_channel=Marbler"><img src="imagen/instagram.png"
+                        alt="" class="logo__img"></a>
                 <a href="https://www.youtube.com/watch?v=IxQhfoRwSGU"><img src="imagen/youtube.png" alt=""
                         class="logo__img"></a>
                 <a href="https://www.youtube.com/watch?v=_YjKboT4I40"><img src="imagen/facebook.png" alt=""

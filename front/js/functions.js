@@ -17,6 +17,8 @@ createApp({
             mostrarMenu: false,
             token: null,
             user: null,
+            mostrarModalSabata: false,
+            mostrarSabata: null,
             ticket: {
                 carrito : [],
                 total : null,
@@ -36,6 +38,12 @@ createApp({
     },
     methods: {
         canviaPagina(direccio) {
+            let descr = document.querySelectorAll('.item__descripcio');
+            descr.forEach(element => {
+                element.classList.add("hidden");
+                
+            });
+
             if (direccio === -1) {
               if (this.paginaActual > 1) {
                 this.paginaActual--;
@@ -170,6 +178,13 @@ createApp({
             });
             this.sabatesMostrar = this.sabates;
 
+        },
+        mostrarDescripcio(sabata){
+            this.mostrarSabata = sabata;
+            this.mostrarModalSabata = true;            
+        },
+        tencarModalSabata(){
+            this.mostrarModalSabata = false;
         },
         mostrarBotiga() {
             this.divActivo = "tienda";
@@ -309,6 +324,7 @@ createApp({
         getSabates().then(sabates => {
             this.sabates = sabates;
             this.sabatesMostrar = sabates;
+            this.mostrarSabata = sabates[0];
 
             console.log(this.sabates);
         })
@@ -318,7 +334,6 @@ createApp({
             this.total += element.preu * element.quantitat;
             this.nItems += element.quantitat;
         }
-
     },
     computed: {
         paginacioSabates() {
@@ -329,5 +344,6 @@ createApp({
         totalPagina() {
           return Math.ceil(this.sabatesMostrar.length / this.sabatesPagina);
         },
+        
       }
 }).mount("#app")
