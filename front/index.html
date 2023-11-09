@@ -64,7 +64,8 @@
                 <span class="cuantitat">{{this.nItems}}</span>
             </div>
         </header>
-        <div v-if="divActivo== 'comandasUsuari'" class="comandaUsari">
+        <div v-if="divActivo== 'comandasUsuari'">
+           <div  class="comandaUsari">
             <h3 class="success hidden" id="successCancelar">Comanda cancel·lada correctament!</h3>
 
             <div v-for="(actual, index) in comandas" class="item__comandaUsuari">
@@ -96,6 +97,7 @@
 
                 </div>
             </div>
+           </div>
         </div>
         <div v-if="divActivo == 'tienda'">
             <div class="menuUsuari">
@@ -120,9 +122,9 @@
                         <p class="item__quantitat">Quantitat: {{actual.quantitat}}</p>
                         <p class="item__preu">Preu/u: {{actual.preu}}€</p>
                         <div class="button-container">
-                            <button class="afegir" @click="anadirCantidad(actual)">+</button>
-                            <button class="eliminar" @click="quitarCantidad(actual)">-</button>     
-                        </div>
+                        <button class="afegir" @click="afegir(actual)">+</button>
+                        <button class="eliminar" @click="eliminar(actual)">-</button>     
+                    </div>
                     </div>
 
 
@@ -227,7 +229,7 @@
                     </div>
                     <div class="container__buttons">
                         <button v-if="carrito.length > 0" @click="limpiarCesta" class="checkout__buttons">Netejar cistella de compra</button>
-                        <button @click="mostrarBotiga" class="checkout__buttons">Netejar cistella de compra</button>
+                        <button @click="mostrarBotiga" class="checkout__buttons">Tornar a comprar</button>
                     </div>
                 </div>
                 <div class="checkout__cesta" v-if="carrito.length == 0">
@@ -279,7 +281,7 @@
                     </ul>
                     <h2 class="total">Total: {{this.ticket.total}} € </h2>
                     <div>
-                        <button class="boton__ticket" @click="cambiar('tienda')">Seguir comprant</button>
+                        <button class="boton__ticket" @click="cambiar('tienda')">Seguir comprando</button>
                         <button v-if="this.token!=null" class="boton__ticket" @click="">Estat de Producte</button>
                     </div>
                 </div>

@@ -16,8 +16,8 @@ body {
 .paginacio {
     position: absolute;
    text-align: center;
-   margin-top: 191vw;
-   margin-left: 20vw;
+   top: 84vh;
+   margin-left: 22vw;
 
   }
   
@@ -37,10 +37,6 @@ body {
     background-color: #a9a9a9; 
     cursor: not-allowed;
   }
-  .button-container {
-    display: flex;
-    align-items: center;
-}
 
 .afegir,.eliminar{
     margin-bottom: 5vh;
@@ -77,9 +73,8 @@ header{
     color:red;
 }
 footer{
-    position: absolute;
+    position: static;
     background-color: var(--bgHeaderFooter);
-    margin-bottom: -48vw;
     margin-top: 208vw;
   
 }
@@ -266,8 +261,7 @@ button {
     row-gap: 2vh;
     margin-left: 6%;
     width: 89vw;
-    margin-top: 13vh;
-    margin-bottom: 2vh;
+    top: 12vh;
 }
 
 #carrito{
@@ -373,7 +367,7 @@ button {
 .container__buttons{
     position: absolute;
     display: flex;
-    left: 7vw;
+    left: 2vw;
     top: 84vh;
 }
 #checkout-total{
@@ -512,10 +506,11 @@ nav > ul > li:first-child { border-left: none; }
     margin: 4px;
 }
 .checkout-container{
+    position: static;
     overflow: hidden;
     width: 100%;
     margin-top: 10vh;
-    margin-bottom: 10vh;
+    margin-bottom: -81vh;
 }
 .checkout__item{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -787,4 +782,9 @@ a{
     background: rgba(0, 0, 0, 0.5);
     z-index: 1000;
     overflow: scroll;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
 }
