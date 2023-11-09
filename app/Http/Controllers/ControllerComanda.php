@@ -130,6 +130,7 @@ class ControllerComanda extends Controller
 
             $imagePath = 'qr/' . $qrCodeFileName;
             $comanda->qr = $imagePath;
+            
             $comanda->save();
         } catch (\Exception $e) {
             \Log::error('Error al almacenar el código QR: ' . $e->getMessage());
