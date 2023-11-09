@@ -5,6 +5,8 @@ const { createApp } = Vue
 createApp({
     data() {
         return {
+            //Link per el fetch, si estas a labs es canvia la variable linkFetch a ../ si es en local es canvia athis.fetchLink+ 
+            fetchLink: "http://localhost:8000",
             divActivo: 'portada',
             mostrarModalLogin: false,
             mostrarModalCorreo: false,
@@ -17,6 +19,15 @@ createApp({
             mostrarMenu: false,
             token: null,
             user: null,
+            mostrarModalSabata: false,
+            mostrarSabata: null,
+            mostrarModalComanda: false,
+            mostrarComanda: [],
+            idComandaMostrar: null,
+            ticket: {
+                carrito: [],
+                total: null,
+            },
             register: {
                 nom: null,
                 cognoms: null,
@@ -24,10 +35,30 @@ createApp({
                 telefon: null,
                 password: null,
                 password_confirmation: null,
-            }
+            },
+            aplicarTransicion: false,
+            paginaActual: 1,
+            sabatesPagina: 4,
         }
     },
     methods: {
+        canviaPagina(direccio) {
+            let descr = document.querySelectorAll('.item__descripcio');
+            descr.forEach(element => {
+                element.classList.add("hidden");
+
+            });
+
+            if (direccio === -1) {
+                if (this.paginaActual > 1) {
+                    this.paginaActual--;
+                }
+            } else {
+                if (this.paginaActual < this.totalPagina) {
+                    this.paginaActual++;
+                }
+            }
+        },
         afegir(zapato) {
             const index = this.carrito.findIndex(element => element.model === zapato.model);
 
@@ -44,6 +75,8 @@ createApp({
             localStorage.setItem("carrito", JSON.stringify(this.carrito));
             this.total += zapato.preu;
             this.nItems++;
+            this.aplicarTransicion = true;
+            setTimeout(() => { this.aplicarTransicion = false; }, 500);
         },
         eliminar(zapato) {
             const index = this.carrito.findIndex(element => element.model === zapato.model);
@@ -54,7 +87,8 @@ createApp({
             localStorage.setItem("carrito", JSON.stringify(this.carrito));
             this.total -= zapato.preu;
             this.nItems--;
-
+            this.aplicarTransicion = true;
+            setTimeout(() => { this.aplicarTransicion = false; }, 500);
 
         },
         btnUsuario() {
@@ -72,7 +106,7 @@ createApp({
         async logout() {
             let token = new FormData();
             token.append("token", this.token);
-            let response = await fetch("http://127.0.0.1:8000/api/logout", {
+            let response = await fetch(this.fetchLink+"/api/logout", {
                 method: "POST",
                 headers: {
                     "Authorization": 'Bearer {' + this.token + '}',
@@ -106,10 +140,12 @@ createApp({
         cambiar(nuevoDiv) {
             this.divActivo = nuevoDiv;
         },
-        tencarCheckout() {
+        tencar() {
+            this.mostrarModalSabata = false;
+            this.mostrarModalComanda = false;
             this.mostrarModalCorreo = false; // Cierra el modal
         },
-        guardarCorreoYContinuar(nuevoDiv) {
+        async guardarCorreoYContinuar(nuevoDiv) {
             // Guarda el correo ingresado y realiza la acción necesaria
             let user = null;
             if (this.token == null) {
@@ -127,23 +163,42 @@ createApp({
                 if (user != null) {
                     let payload = [{ email: user }, { sabates: this.carrito }];
                     localStorage.clear();
-                    fetch("http://127.0.0.1:8000/api/comanda", {
+                    fetch(this.fetchLink+"/api/comanda", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
                         },
                         body: JSON.stringify(payload),
                     });
-                    localStorage.clear();
-                    this.carrito = [];
-                    this.nItems = 0;
-                    this.total = 0;
+                    this.ticket.carrito = this.carrito;
+                    this.ticket.total = this.total;
+                    this.limpiarCesta();
                 }
             }
         },
+        quitarFiltre() {
+            this.paginaActual = 1;
+            this.mostrarBotiga();
+            let buttons = document.querySelectorAll('nav button');
+            buttons.forEach(button => {
+                button.classList.remove("actiu");
+            });
+            this.sabatesMostrar = this.sabates;
+
+        },
+        mostrarDescripcio(e, sabata) {
+            if (e.target.tagName != "BUTTON") {
+
+                this.mostrarModalSabata = true;
+                this.mostrarSabata = sabata;
+            }
+        },
+
         mostrarBotiga() {
             this.divActivo = "tienda";
         }, filtre(e, filtrar) {
+            this.paginaActual = 1;
+            this.mostrarBotiga();
             let buttons = document.querySelectorAll('nav button');
             buttons.forEach(button => {
                 button.classList.remove("actiu");
@@ -151,7 +206,7 @@ createApp({
             e.target.classList.add("actiu");
             this.sabatesMostrar = [];
             this.sabates.forEach(sabata => {
-                if (sabata.genere == filtrar) {
+                if (sabata.genere == filtrar || sabata.genere == 'Unisex') {
                     this.sabatesMostrar.push(sabata);
                     console.log(sabata)
                 }
@@ -171,7 +226,6 @@ createApp({
             this.total = 0;
             localStorage.clear();
         },
-
         cesta() {
             let closeShopping = document.querySelector('.closeShopping');
 
@@ -194,7 +248,7 @@ createApp({
             formulari.append("password_confirmation", this.register.password_confirmation);
             console.log(this.register);
 
-            let response = await fetch("http://localhost:8000/api/register", {
+            let response = await fetch(this.fetchLink+"/api/register", {
                 method: "POST",
                 headers: {
                     "Access-Control-Allow-Origin": "*",
@@ -221,6 +275,29 @@ createApp({
 
 
         },
+        async comandasUsuari() {
+
+            let response = await fetch(this.fetchLink+"/api/comanda", {
+                method: "GET",
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    "Authorization": 'Bearer {' + this.token + '}',
+                },
+                body: null
+            })
+            response = await response.json();
+            console.log(response);
+
+            if (response.error == null) {
+                this.comandas = response;
+                this.cambiar('comandasUsuari');
+            } else {
+                this.cambiar('portada');
+                this.token = null;
+                this.user = null;
+                alert('Sessio expirada');
+            }
+        },
         async login() {
 
             var formulari = new FormData();
@@ -228,7 +305,7 @@ createApp({
             formulari.append("email", this.register.email);
             formulari.append("password", this.register.password);
 
-            let response = await fetch("http://localhost:8000/api/login", {
+            let response = await fetch(this.fetchLink+"/api/login", {
                 method: "POST",
                 headers: {
                     "Access-Control-Allow-Origin": "*",
@@ -236,11 +313,57 @@ createApp({
                 body: formulari,
             })
             response = await response.json();
+
             this.token = response.token;
             this.user = response.user;
-            this.cambiar("tienda")
+            if (this.token == null) {
+                document.getElementById("errorLogin").classList.remove("hidden");
+            } else {
+                this.cambiar("tienda")
+            }
+
+        },
+        async mostrarProductos(comandaSelect) {
+            let response = await fetch(this.fetchLink+"/api/lineasComanda", {
+                method: "POST",
+                headers: {
+                    "Authorization": 'Bearer {' + this.token + '}',
+                    "Content-Type": "application/json",
+
+                },
+                body: JSON.stringify(comandaSelect.id),
+
+            });
+            response = await response.json();
+            this.mostrarComanda = response;
+            this.idComandaMostrar = comandaSelect.id;
+            this.mostrarModalComanda = true;
+
+        },
+        async cancelarComanda(comandaCancelar) {
+            if (confirm("Estas segur que vols cancelar aquesta comanda?")) {
 
 
+                let response = await fetch(this.fetchLink+"/api/comanda", {
+                    method: "DELETE",
+                    headers: {
+                        "Authorization": 'Bearer {' + this.token + '}',
+                        "Content-Type": "application/json",
+
+                    },
+                    body: JSON.stringify(comandaCancelar),
+
+                });
+                response = await response.json();
+                
+                if(response.error == null){
+                    this.comandas = response.comandas,
+                    console.log(response.comandas);
+                    this.tencar();
+
+                    document.getElementById("successCancelar").classList.remove("hidden");
+                }
+            }
         },
 
 
@@ -251,6 +374,7 @@ createApp({
         getSabates().then(sabates => {
             this.sabates = sabates;
             this.sabatesMostrar = sabates;
+            this.mostrarSabata = sabates[0];
 
             console.log(this.sabates);
         })
@@ -260,6 +384,16 @@ createApp({
             this.total += element.preu * element.quantitat;
             this.nItems += element.quantitat;
         }
+    },
+    computed: {
+        paginacioSabates() {
+            const iniciIndex = (this.paginaActual - 1) * this.sabatesPagina;
+            const finalIndex = iniciIndex + this.sabatesPagina;
+            return this.sabatesMostrar.slice(iniciIndex, finalIndex);
+        },
+        totalPagina() {
+            return Math.ceil(this.sabatesMostrar.length / this.sabatesPagina);
+        },
 
     }
 }).mount("#app")
