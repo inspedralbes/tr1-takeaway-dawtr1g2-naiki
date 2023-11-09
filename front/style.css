@@ -665,10 +665,18 @@ a{
     background-color: var(--bgHeaderFooter)
 }
 .menuUsuariActiu{
-    top: inherit;
+    top: 5vh;
+    padding: 4%;
+    z-index: 1;
+    right: auto;
+    left: 23vh;
+    border-radius: 5px;
 }
 .menuUsuari button{
     width: 90%;
+    margin: 4px;
+    padding: 4px;
+    border-radius: 4px;
 
 }
 

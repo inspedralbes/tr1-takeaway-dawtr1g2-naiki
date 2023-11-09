@@ -64,13 +64,18 @@
                 <span class="cuantitat">{{this.nItems}}</span>
             </div>
         </header>
-
+        <div v-if="divActivo== 'comandasUsuari'">
+            <div v-for="(actual, index) in comandas">
+                <h2>{{actual.id}}</h2>
+                <h3>{{actual.estat}}</h3>
+            </div>
+        </div>
         <div v-if="divActivo == 'tienda'">
             <div class="menuUsuari">
-                <button>Veure comandas</button>
-                <button @click="logout()">Logout</button>
-
+                <button @click="comandasUsuari()" class="botonsUsuari">Veure comandas</button>
+                <button @click="logout()" class="botonsUsuari">Logout</button>
             </div>
+
             <div class="cesta">
                 <div class="header__cesta">
                     <h1>Carrito</h1>

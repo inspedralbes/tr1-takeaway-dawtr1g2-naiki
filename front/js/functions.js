@@ -232,7 +232,7 @@ createApp({
                 },
                 body: formulari,
             })
-
+            
             response = await response.json();
             if (response.error == 2) {
                 document.getElementById('errorContrasenya').classList.add("hidden");
@@ -251,6 +251,29 @@ createApp({
 
 
 
+        },
+        async comandasUsuari(){
+            
+            let response = await fetch("http://localhost:8000/api/comanda", {
+                method: "GET",
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    "Authorization": 'Bearer {' + this.token + '}',
+                },
+                body: null
+            })
+            response = await response.json();
+            console.log(response);
+            
+            if (response.error==null) {
+                this.comandas = response;
+                this.cambiar('comandasUsuari');
+            }else{
+                this.cambiar('portada');
+                this.token = null;
+                this.user = null;
+                alert('Sessio expirada');
+            }
         },
         async login() {
 
