@@ -19,6 +19,9 @@ createApp({
             user: null,
             mostrarModalSabata: false,
             mostrarSabata: null,
+            mostrarModalComanda: false,
+            mostrarComanda: [],
+            idComandaMostrar: null,
             ticket: {
                 carrito : [],
                 total : null,
@@ -135,7 +138,9 @@ createApp({
         cambiar(nuevoDiv) {
             this.divActivo = nuevoDiv;
         },
-        tencarCheckout() {
+        tencar() {
+            this.mostrarModalSabata = false;
+            this.mostrarModalComanda = false;
             this.mostrarModalCorreo = false; // Cierra el modal
         },
         async guardarCorreoYContinuar(nuevoDiv) {
@@ -186,9 +191,7 @@ createApp({
                 this.mostrarSabata = sabata;
             }
         },
-        tencarModalSabata(){
-            this.mostrarModalSabata = false;
-        },
+        
         mostrarBotiga() {
             this.divActivo = "tienda";
         }, filtre(e, filtrar) {
@@ -319,20 +322,35 @@ createApp({
 
         },
         async mostrarProductos(comandaSelect){
-            let comanda = new FormData();
-            comanda.append("comanda", comandaSelect.id);
-            let response = await fetch("http://localhost:8000/api/lineaComanda", {
-                method: "GET",
+            let response = await fetch("http://localhost:8000/api/lineasComanda", {
+                method: "POST",
                 headers: {
                     "Authorization": 'Bearer {' + this.token + '}',
                     "Content-Type": "application/json",
 
                 },
-                body: comanda,
+                body: JSON.stringify(comandaSelect.id),
 
             });
             response = await response.json();
-        }
+            this.mostrarComanda = response;
+            this.idComandaMostrar = comandaSelect.id;
+            this.mostrarModalComanda= true;
+
+        },
+        async cancelarComanda(comandaCancelar){
+            let response = await fetch("http://localhost:8000/api/comanda", {
+                method: "POST",
+                headers: {
+                    "Authorization": 'Bearer {' + this.token + '}',
+                    "Content-Type": "application/json",
+
+                },
+                body: JSON.stringify(comandaSelect.id),
+
+            });
+            response = await response.json();
+        },
 
 
     },
