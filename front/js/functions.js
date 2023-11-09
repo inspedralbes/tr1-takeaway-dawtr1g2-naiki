@@ -30,22 +30,21 @@ createApp({
                 password_confirmation: null,
             },
             aplicarTransicion: false,
+            mostrarDetalle: false,
+            productoSeleccionado: null,
             paginaActual: 1,
             sabatesPagina: 4,
         }
     },
     methods: {
-        iniciarTransicion(index) {
-            const sabate = this.paginacioSabates[index];
-            this.$set(this.paginacioSabates, index, {
-                ...sabate,
-                aplicarTransicion: !sabate.aplicarTransicion
-            });
-        
-            // Agregar o quitar la clase 'active' según la propiedad aplicarTransicion
-            const container = document.querySelector(`#lista .llista__item:nth-child(${index + 1}) .item__container`);
-            container.classList.toggle('active', sabate.aplicarTransicion);
-        },
+        mostrarDescripcion(index) {
+            this.mostrarDetalle = true;
+            this.productoSeleccionado = index;
+          },
+          ocultarDescripcion() {
+            this.mostrarDetalle = false;
+            this.productoSeleccionado = null;
+          },
         canviaPagina(direccio) {
             if (direccio === -1) {
               if (this.paginaActual > 1) {

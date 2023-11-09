@@ -13,29 +13,46 @@ body {
     max-height: 98vh;
 }
 
+  #lista .descripcion-overlay {
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  #lista .descripcion-overlay p {
+    margin-bottom: 10px;
+  }
+  
+  #lista .descripcion-overlay button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  #lista .llista__item:hover .descripcion-overlay {
+    display: flex;
+  }
 
-.transicion {
-    transition: transform 0.5s ease-in-out;
+  .rating {
+    display: flex;
 }
 
-.transicion.active {
-    transform: rotateY(180deg);
+.rating .fa-star {
+    font-size: 20px;
+    margin-right: 5px;
 }
 
-.descripcion {
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.transicion.active .descripcion {
-    display: block;
+.rating .checked {
+    color: orange;
 }
 
 .paginacio {
