@@ -22,22 +22,6 @@ nav button{
     background-color:transparent;
 
 }
-.button-container {
-    display: flex;
-    align-items: center; /* Alinea verticalmente los botones */
-}
-
-.increment-button,
-.decrement-button {
-    background-color: var(--bgButton);
-    color: #fff;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 6px;
-    padding: 6px;
-    margin: 2px;
-}
 header{
     background-color: var(--bgHeaderFooter);
     display: grid;
@@ -604,6 +588,29 @@ a{
     .producto {
         width: 100%;
     }
+}
+.button-container {
+    display: flex;
+    align-items: center;
+}
+
+.increment-button,
+.decrement-button {
+    background-color: var(--bgButton);
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin: 2px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.increment-button:hover,
+.decrement-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.1); /* Escala el botón al hacer hover */
 }
 .imagen-usuario {
     width: 40px; /* Ajusta el tamaño de la imagen de usuario */
