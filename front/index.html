@@ -95,17 +95,20 @@
             </div>
             <div id="lista">
                 <div :class="['llista__item item', { 'transicion': aplicarTransicion }]" v-for="(actual, index) in paginacioSabates">
-                    <img class="item__img img__lista" :src="actual.imatge" height="184" width="184" alt="">
-                    <h2 class="item__model">{{ actual.model }}</h2>
-                    <p class="item__color">{{actual.color}}</p>
-                    <p class="item__preu">Preu/u: {{actual.preu}}€</p>
-
-                    <button @click="afegir(actual)" class="afegir">Afegir</button>
+                        <img class="item__img img__lista" @click="iniciarTransicion(index)" :src="actual.imatge" height="184" width="184" alt="">
+                        <h2 class="item__model">{{ actual.model }}</h2>
+                        <p class="item__color">{{actual.color}}</p>
+                        <p class="item__preu">Preu/u: {{actual.preu}}€</p>
+            
+                        <button @click="afegir(actual)" class="afegir">Afegir</button>
+                    <div class="descripcion" v-show="aplicarTransicion">
+                        <p>¡Girando y mostrando la descripción!</p>
+                    </div>
                 </div>
                 <div class="paginacio">
                     <button @click="canviaPagina(-1)" :disabled="paginaActual === 1">Anterior</button>
                     <button @click="canviaPagina(1)" :disabled="paginaActual === totalPagina">Següent</button>
-                  </div>
+                </div>
             </div>
             <footer>
                 <div class="container__img">
