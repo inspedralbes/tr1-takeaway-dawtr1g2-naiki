@@ -179,9 +179,12 @@ createApp({
             this.sabatesMostrar = this.sabates;
 
         },
-        mostrarDescripcio(sabata){
-            this.mostrarSabata = sabata;
-            this.mostrarModalSabata = true;            
+        mostrarDescripcio(e,sabata){
+            if(e.target.tagName != "BUTTON"){
+
+                this.mostrarModalSabata = true;            
+                this.mostrarSabata = sabata;
+            }
         },
         tencarModalSabata(){
             this.mostrarModalSabata = false;
@@ -315,6 +318,21 @@ createApp({
             }
 
         },
+        async mostrarProductos(comandaSelect){
+            let comanda = new FormData();
+            comanda.append("comanda", comandaSelect.id);
+            let response = await fetch("http://localhost:8000/api/lineaComanda", {
+                method: "GET",
+                headers: {
+                    "Authorization": 'Bearer {' + this.token + '}',
+                    "Content-Type": "application/json",
+
+                },
+                body: comanda,
+
+            });
+            response = await response.json();
+        }
 
 
     },

@@ -68,6 +68,7 @@
             <div v-for="(actual, index) in comandas">
                 <h2>{{actual.id}}</h2>
                 <h3>{{actual.estat}}</h3>
+                <button @click="mostrarProductos(actual)">Mostrar productos</button>
             </div>
         </div>
         <div v-if="divActivo == 'tienda'">
@@ -99,7 +100,7 @@
                 </div>
             </div>
             <div id="lista">
-                <div @click="mostrarDescripcio(actual)"
+                <div @click="mostrarDescripcio($event,actual)"
                     :class="['llista__item item', { 'transicion': aplicarTransicion }]"
                     v-for="(actual, index) in paginacioSabates">
                     <img class="item__img img__lista" :src="actual.imatge" height="184" width="184" alt="">
@@ -112,7 +113,7 @@
                     
                 </div>
                 <div v-if="mostrarModalSabata" class="modal ">
-                    <div class="modal-contenido modal_mostrarSabata" :class="[ { 'transicion': aplicarTransicion }]">
+                    <div class="modal-contenido modal_mostrarSabata" :class="[{'transicion': aplicarTransicion }]">
                         <button class="tencarModal" @click="tencarModalSabata">X</button>
                         <img class="item__img img__lista" :src="this.mostrarSabata.imatge" height="184" width="184" alt="">
                         <h3 class="item__model">{{ this.mostrarSabata.model }}</h3>
