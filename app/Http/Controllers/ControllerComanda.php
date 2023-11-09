@@ -62,7 +62,7 @@ class ControllerComanda extends Controller
 
         }
 
-        $user = \App\Models\User::find($userId);
+        $user = User::find($userId);
         $comandes = Comanda::select('*')->where('usuari', $user->email)->get();
         return $comandes;
     }
@@ -130,6 +130,7 @@ class ControllerComanda extends Controller
 
             $imagePath = 'qr/' . $qrCodeFileName;
             $comanda->qr = $imagePath;
+            
             $comanda->save();
         } catch (\Exception $e) {
             \Log::error('Error al almacenar el código QR: ' . $e->getMessage());
@@ -151,7 +152,52 @@ class ControllerComanda extends Controller
         });
     }
 
+    public function getLineasComanda(Request $request){
+        $checkToken = $request->bearerToken();
+        if (!($checkToken == null || $checkToken == "" || $checkToken == "null")) {
 
+            //Return if the user is logged in or not from the token
+            [$id, $token] = explode('|', $checkToken, 2);
+            $id = ltrim($id, '{'); 
+                $token = rtrim($token, '}'); 
+
+                
+                
+            $accessToken = PersonalAccessToken::find($id);
+            if ($accessToken != null) {
+                if (hash_equals($accessToken->token, hash('sha256', $token))) {
+                    $userId = $accessToken->tokenable_id;
+
+                } else {
+                    $response = [
+                        'error'=> '1',
+                        'missatge' => 'Sessió expirada'
+                    ];
+                    return (json_encode($response));
+                }
+            } else {
+                $response = [
+                    'error'=> '2',
+
+                    'missatge' => 'Sessió expirada'
+                ];
+                return (json_encode($response));
+
+            }
+
+        } else {
+            $response = [
+                'missatge' => 'Sessió expirada',
+                'error'=> '3'
+
+            ];
+            return (json_encode($response));
+
+        }
+        $idComanda = json_decode($request->getContent(), true);
+        $comandes = DB::table('linea_comandas')->where('idComanda', '=', $idComanda)->get();
+        return $comandes;
+    }
     public function canviarEstatComanda(Request $request)
     {
         $checkToken = session()->get('token');
@@ -187,8 +233,57 @@ class ControllerComanda extends Controller
 
     }
 
-    public function veuraComanda()
+    public function deleteComanda(Request $request)
     {
+        $checkToken = $request->bearerToken();
+        if (!($checkToken == null || $checkToken == "" || $checkToken == "null")) {
 
+            //Return if the user is logged in or not from the token
+            [$id, $token] = explode('|', $checkToken, 2);
+            $id = ltrim($id, '{'); 
+                $token = rtrim($token, '}'); 
+
+                
+                
+            $accessToken = PersonalAccessToken::find($id);
+            if ($accessToken != null) {
+                if (hash_equals($accessToken->token, hash('sha256', $token))) {
+                    $userId = $accessToken->tokenable_id;
+
+                } else {
+                    $response = [
+                        'error'=> '1',
+                        'missatge' => 'Sessió expirada'
+                    ];
+                    return (json_encode($response));
+                }
+            } else {
+                $response = [
+                    'error'=> '2',
+
+                    'missatge' => 'Sessió expirada'
+                ];
+                return (json_encode($response));
+
+            }
+
+        } else {
+            $response = [
+                'missatge' => 'Sessió expirada',
+                'error'=> '3'
+
+            ];
+            return (json_encode($response));
+
+        }
+
+        $user = User::find($userId);
+        $idComanda = json_decode($request->getContent(), true);
+        Comanda::where('usuari','=', $user->email)->where('id','=', $idComanda)->delete();
+        $response = [
+            'missatge' => 'Esborrat correctament',  
+            'comandas' => Comanda::where('usuari','=', $user->email)->get()
+        ];
+        return json_encode($response);
     }
 }

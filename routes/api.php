@@ -32,10 +32,6 @@ Route::post('/login', [AdminController::class, 'login']);
 
 Route::post('/logout', [AdminController::class, 'logout']);
 Route::get('/comanda', [ControllerComanda::class, 'getComanda'])->name("getComandas");
+Route::delete('/comanda', [ControllerComanda::class, 'deleteComanda'])->name("deleteComanda");
 
-Route::group(['middleware' => ['auth:sanctum']], function () {
-
-   // Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
-
-
-});
+Route::post('/lineasComanda', [ControllerComanda::class, 'getLineasComanda'])->name("getLineasComandas");

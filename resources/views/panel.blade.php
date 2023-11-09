@@ -100,7 +100,6 @@ button {
 @if (session('success'))
     <h1>{{ session('success') }} </h1>
 @endif
-<h1>{{ session('token') }} </h1>
 
 <body>
   <nav>
