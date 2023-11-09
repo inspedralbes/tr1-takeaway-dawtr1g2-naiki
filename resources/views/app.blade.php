@@ -10,23 +10,15 @@
 @if (session('error'))
   <h1> {{session('error')}}</h1>
   @endif
-    <form action="{{ route('login') }}" method="POST">
+    <form action="{{ route('loginAdmin') }}" method="POST">
         @csrf
         @method ('POST')
+        
         <label for="email">Email</label>
         <input type="email" name="email">
         <label for="password">Password</label>
         <input type="password" name="password">
         <button type="submit">Login</button>
-    </form>
-    <form action="{{ route('register') }}" method="POST">
-        @csrf
-        @method ('POST')
-        <input type="text" name="name">
-        <input type="email" name="email">
-        <input type="password" name="password">
-        <input type="password" name="password_confirmation">
-        <button type="submit">Register</button>
     </form>
 </body>
 </html>

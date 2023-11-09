@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comanda;
+use App\Models\Sabates;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -100,14 +101,34 @@ class AdminController extends Controller
         return view('panel',['comandes'=>$comandes]);
 
     }
-    public function canviarEstatComanda(Request $request){
-        
-        $idComanda = $request->idComanda;
+    
+   
 
-        $nouEstat = $request->nouEstat;
-        DB::table('comandas')
-        ->where('id', $idComanda)
-        ->update(['estat' => $nouEstat]);
-        return redirect()->route('panel')->with('success','Estat actualitzat correctament');
+    public function loginAdmin(Request $request){
+        $fields = $request->validate([
+            'email' => 'required|string',
+            'password' => 'required|string'
+
+        ]);
+        $user = User::where('email', $fields['email'])->first();
+        if (!Hash::check($fields['password'], $user->password)) {
+            return redirect()->route('/')->with('error','Email o contraseña incorrecta');
+
+        }
+
+        if ($user->admin==0) {
+            return redirect()->route('app')->with('error','Este usuario no es admin');
+        }
+        
+        $token = $user->createToken('myapptoken')->plainTextToken;
+        $comandes=Comanda::all();
+        $sabates = Sabates::all();
+
+        session()->put('sabates', $sabates);
+        session()->put('token', $token);
+        session()->put('comandes', $comandes);
+        session()->save();
+        
+        return redirect()->route('panel');
     }
 }
