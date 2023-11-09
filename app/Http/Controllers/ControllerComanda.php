@@ -25,6 +25,8 @@ class ControllerComanda extends Controller
 
             //Return if the user is logged in or not from the token
             [$id, $token] = explode('|', $checkToken, 2);
+            $id = ltrim($id, '{'); 
+            dd($id);
             $accessToken = PersonalAccessToken::find($id);
             if ($accessToken != null) {
                 if (hash_equals($accessToken->token, hash('sha256', $token))) {
