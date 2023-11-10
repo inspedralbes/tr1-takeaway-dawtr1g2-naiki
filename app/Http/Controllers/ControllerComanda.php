@@ -222,6 +222,28 @@ class ControllerComanda extends Controller
             return redirect()->route('app')->with('error', 'Sessió expirada');
 
         }
+        $checkToken = session()->get('token');
+        //$result = PersonalAccessToken::where('token', Hash::make($token))->first();
+        //$idComanda = $request->idComanda;
+        if (!($checkToken == null || $checkToken == "" || $checkToken == "null")) {
+
+            //Return if the user is logged in or not from the token
+            [$id, $token] = explode('|', $checkToken, 2);
+            $accessToken = PersonalAccessToken::find($id);
+
+            if ($accessToken != null) {
+                if (!hash_equals($accessToken->token, hash('sha256', $token))) {
+                    return redirect()->route('app')->with('error', 'Sessió expirada');
+                }
+            } else {
+                return redirect()->route('app')->with('error', 'Sessió expirada');
+
+            }
+
+        } else {
+            return redirect()->route('app')->with('error', 'Sessió expirada');
+
+        }
         $nouEstat = $request->nouEstat;
         $idComanda = $request->idComanda;
         DB::table('comandas')
@@ -229,6 +251,26 @@ class ControllerComanda extends Controller
             ->update(['estat' => $nouEstat]);
         session()->put('comandes', Comanda::all());
         session()->save();
+        
+        $lineasComanda = DB::table('linea_comandas')->where('idComanda', '=', $idComanda)->get();
+        $comanda = Comanda::find($idComanda);
+
+      
+
+        $data["email"] = $comanda->usuari;
+        $data["title"] = "Estat de comanda actualitzat!";
+        $data["body"] = "Comanda actualitzada";
+        $data["lineasComanda"] = $lineasComanda;
+        $data["comanda"] = $comanda;
+
+        $pdf = Pdf::loadView('comanda', $data);
+
+        Mail::send('bodycomandaupdate', $data, function ($message) use ($data, $pdf) {
+            $message->to($data["email"], $data["email"])
+                ->subject($data["title"])
+                ->attachData($pdf->output(), "text.pdf");
+        });
+
         return redirect()->route('panel')->with('success', 'Estat actualitzat correctament');
 
     }
