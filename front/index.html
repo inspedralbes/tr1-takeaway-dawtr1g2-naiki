@@ -81,7 +81,7 @@
                     <button class="tencarModal" @click="tencar">X</button>
     
                     <div class="checkout__item" v-for="(actual, index) in mostrarComanda">
-                        <img class="item__img" :src="actual.imatge" height="184" width="184" alt="">
+                        <img class="item__img" :src="'../public/'+actual.imatge" height="184" width="184" alt="">
                         <div class="cesta__item">
                             <div class="cesta__text">
                                 <h3 class="item__model">{{ actual.model }}</h3>
@@ -115,7 +115,7 @@
                     <button id="btnCheckout" @click="cambiar('checkout')">Checkout</button>
                 </div>
                 <div :class="'cesta__item item'" v-for="(actual, index) in carrito">
-                    <img class="item__img img__cesta" :src="actual.imatge" height="184" width="184" alt="">
+                    <img class="item__img img__cesta" :src="'../public/'+actual.imatge" height="184" width="184" alt="">
                     <div class="cesta__text">
                         <h3 class="item__model">{{ actual.model }}</h3>
                         <p class="item__color">{{actual.color}}</p>
@@ -134,7 +134,7 @@
                 <div @click="mostrarDescripcio($event,actual)"
                     :class="['llista__item item', { 'transicion': aplicarTransicion }]"
                     v-for="(actual, index) in paginacioSabates">
-                    <img class="item__img img__lista" :src="actual.imatge" height="184" width="184" alt="">
+                    <img class="item__img img__lista" :src="'../public/'+actual.imatge" height="184" width="184" alt="">
                     <h3 class="item__model">{{ actual.model }}</h3>
                     <p class="item__color">{{actual.color}}</p>
                     <p class="item__preu">Preu/u: {{actual.preu}}€</p>
@@ -146,7 +146,7 @@
                 <div v-if="mostrarModalSabata" class="modal ">
                     <div class="modal-contenido modal_mostrarSabata" :class="[{'transicion': aplicarTransicion }]">
                         <button class="tencarModal" @click="tencar">X</button>
-                        <img class="item__img img__lista" :src="this.mostrarSabata.imatge" height="184" width="184" alt="">
+                        <img class="item__img img__lista" :src="'../public/'+this.mostrarSabata.imatge" height="184" width="184" alt="">
                         <h3 class="item__model">{{ this.mostrarSabata.model }}</h3>
                         <p class="item__color">{{this.mostrarSabata.color}}</p>
                         <p class="item__preu">Preu/u: {{this.mostrarSabata.preu}}€</p>
@@ -214,7 +214,7 @@
                     <div class="checkout__llista">
 
                         <div class="checkout__item" v-for="(actual, index) in carrito">
-                            <img class="item__img" :src="actual.imatge" height="184" width="184" alt="">
+                            <img class="item__img" :src="'../public/'+actual.imatge" height="184" width="184" alt="">
                             <div class="cesta__item">
                                 <div class="cesta__text">
                                     <h3 class="item__model">{{ actual.model }}</h3>

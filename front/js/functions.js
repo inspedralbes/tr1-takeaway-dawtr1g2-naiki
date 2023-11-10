@@ -5,7 +5,7 @@ const { createApp } = Vue
 createApp({
     data() {
         return {
-            //Link per el fetch, si estas a labs es canvia la variable linkFetch a ../ si es en local es canvia athis.fetchLink+ 
+            //Link per el fetch, si estas a labs es canvia la variable linkFetch a .. si es en local es canvia athis.fetchLink+ 
             fetchLink: "http://localhost:8000",
             divActivo: 'portada',
             mostrarModalLogin: false,

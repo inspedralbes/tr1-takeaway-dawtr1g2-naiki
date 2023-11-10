@@ -14,8 +14,8 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     public function register(Request $request)
-    {   
-        
+    {
+
         $validator = Validator::make($request->all(), [
             'nom' => 'required|string',
             'cognoms' => 'required|string',
@@ -28,8 +28,9 @@ class AdminController extends Controller
                 'missatge' => 'Comprova que la contrasenya i la confirmació siguin la mateixa'
             ];
             return (json_encode($response));
-        };
-        
+        }
+        ;
+
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|unique:users,email',
         ]);
@@ -41,14 +42,15 @@ class AdminController extends Controller
             ];
             return (json_encode($response));
 
-        };
-       
+        }
+        ;
+
         $user = User::create([
             'nom' => $request->nom,
             'cognoms' => $request->cognoms,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'telefon' =>$request->telefon,
+            'telefon' => $request->telefon,
         ]);
 
 
@@ -75,7 +77,7 @@ class AdminController extends Controller
             ];
             return (json_encode($response));
         }
-        
+
         $token = $user->createToken('myapptoken')->plainTextToken;
 
         $response = [
@@ -88,59 +90,62 @@ class AdminController extends Controller
     public function logout(Request $request)
     {
         //auth()->user()->tokens()->delete();
-        DB::table('personal_access_tokens')->where('token','=', $request->token)->delete();
-    
+        DB::table('personal_access_tokens')->where('token', '=', $request->token)->delete();
+
         $response = [
             'message' => 'Log out fet'
         ];
         return (json_encode($response));
-        
-    }
-
-    public function mostrarPanel(){
-        $comandes=Comanda::all();
-        return view('panel',['comandes'=>$comandes]);
 
     }
-    
+
+    public function mostrarPanel()
+    {
+        $comandes = Comanda::all();
+        return view('panel', ['comandes' => $comandes]);
+
+    }
+
     public function logoutAdmin(Request $request)
     {
-        DB::table('personal_access_tokens')->where('token','=', session()->get('token'))->delete();
-        
-        
+        DB::table('personal_access_tokens')->where('token', '=', session()->get('token'))->delete();
+
+
         session()->forget('token');
         session()->save();
-        return redirect()->route('app')->with('error','Sessió tencada');
-        
+        return redirect()->route('app')->with('error', 'Sessió tencada');
+
     }
 
-    public function loginAdmin(Request $request){
+    public function loginAdmin(Request $request)
+    {
         $fields = $request->validate([
             'email' => 'required|string',
             'password' => 'required|string'
 
         ]);
         $user = User::where('email', $fields['email'])->first();
-        if (!Hash::check($fields['password'], $user->password)) {
-            return redirect()->route('app')->with('error','Email o contraseña incorrecta');
+        if ($user != null) {
+            if (!Hash::check($fields['password'], $user->password)) {
+                return redirect()->route('app')->with('error', 'Email o contraseña incorrecta');
 
-        }
+            }
 
-        if ($user->admin==0) {
-            return redirect()->route('app')->with('error','Este usuario no es admin');
+            if ($user->admin == 0) {
+                return redirect()->route('app')->with('error', 'Este usuario no es admin');
+            }
         }
-        
         $token = $user->createToken('myapptoken')->plainTextToken;
-        $comandes=Comanda::all();
+        $comandes = Comanda::all();
         $sabates = Sabates::all();
-        $lineasComanda =LineaComanda::all();
+        $lineasComanda = LineaComanda::all();
         session()->put('sabates', $sabates);
         session()->put('token', $token);
         session()->put('comandes', $comandes);
         session()->put('lineaComandes', $lineasComanda);
 
         session()->save();
-        
+
         return redirect()->route('panel');
     }
 }
