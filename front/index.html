@@ -67,6 +67,7 @@
         <div v-if="divActivo== 'comandasUsuari'">
            <div  class="comandaUsari">
             <h3 class="success hidden" id="successCancelar">Comanda cancel·lada correctament!</h3>
+            <h1 v-if="mostrarComanda.length == 0 ">Encara no has fet cap comanda!</h1>
 
             <div v-for="(actual, index) in comandas" class="item__comandaUsuari">
                 <div class="container__comandaUsuari">
