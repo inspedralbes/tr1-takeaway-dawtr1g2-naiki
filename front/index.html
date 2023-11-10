@@ -282,12 +282,11 @@
                     <h2 class="total">Total: {{this.ticket.total}} € </h2>
                     <div>
                         <button class="boton__ticket" @click="cambiar('tienda')">Seguir comprando</button>
-                        <button v-if="this.token!=null" class="boton__ticket" @click="">Estat de Producte</button>
                     </div>
                 </div>
             </div>
         </div>
-        <footer v-if="divActivo != 'portada' && divActivo != 'mostrarInicioSesion' && divActivo != 'RegistroUsuario'">
+        <footer v-if="divActivo != 'portada' && divActivo != 'mostrarInicioSesion' && divActivo != 'RegistroUsuario' && divActivo != 'compraConfirm'">
             <div class="container__img">
                 <a href="https://www.youtube.com/watch?v=8Pc0AEbfnBM&ab_channel=Marbler"><img src="imagen/instagram.png"
                         alt="" class="logo__img"></a>
