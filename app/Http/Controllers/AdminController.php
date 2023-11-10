@@ -134,7 +134,7 @@ class AdminController extends Controller
             if ($user->admin == 0) {
                 return redirect()->route('app')->with('error', 'Este usuario no es admin');
             }
-        } else {
+        }else{
             return redirect()->route('app')->with('error', 'Email incorrecto');
 
         }
