@@ -6,7 +6,9 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="style.css"> </head> @php $total=0; @endphp <body>
 
-<div> <h2>Cesta de la compra</h2>
+<div>
+    <h2>Estat de la comanda: {{$comanda->estat}}</h2> 
+    <h2>Cesta de la compra</h2>
 @foreach ($lineasComanda as $sabata)
 @php
 $total += $sabata->preu * $sabata->quantitat;
