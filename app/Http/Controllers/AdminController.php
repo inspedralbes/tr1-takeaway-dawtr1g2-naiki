@@ -70,21 +70,30 @@ class AdminController extends Controller
 
         ]);
         $user = User::where('email', $fields['email'])->first();
-        if (!Hash::check($fields['password'], $user->password)) {
+        if($user!=null){
+            if (!Hash::check($fields['password'], $user->password)) {
+                $response = [
+                    'user' => $user,
+                    'missatge' => 'Email o contrasenya incorrecte'
+                ];
+                return (json_encode($response));
+            }
+    
+            $token = $user->createToken('myapptoken')->plainTextToken;
+    
+            $response = [
+                'user' => $user,
+                'token' => $token
+            ];
+            return (json_encode($response));
+        }else{
             $response = [
                 'user' => $user,
                 'missatge' => 'Email o contrasenya incorrecte'
             ];
             return (json_encode($response));
         }
-
-        $token = $user->createToken('myapptoken')->plainTextToken;
-
-        $response = [
-            'user' => $user,
-            'token' => $token
-        ];
-        return (json_encode($response));
+        
 
     }
     public function logout(Request $request)
