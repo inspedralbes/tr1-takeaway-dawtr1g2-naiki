@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\ControllerComanda;
+use App\Http\Controllers\ControllerSabates;
+use App\Mail\Comanda;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TaskController;
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +16,35 @@ use App\Http\Controllers\TaskController;
 |
 */
 
-Route::get('/', function(){
+Route::get('/',function(){
     return view('app');
+})->name('app');
+
+Route::get('/panel',function(){
+    return view('panel');;
+})->name('panel');
+
+Route::post('/loginAdmin',[AdminController::class,'loginAdmin'])->name('loginAdmin');
+Route::patch('/comanda', [ControllerComanda::class, 'canviarEstatComanda'])->name("updateEstat");
+
+Route::get('/sabates', function(){
+    return view('sabates');
+})->name('sabates');
+
+Route::post('/sabates',[ControllerSabates::class,'crearSabata'])->name('crearSabata');
+Route::patch('/sabates',[ControllerSabates::class,'updateSabata'])->name('updateSabata');
+Route::get('/logoutAdmin',[AdminController::class,'logoutAdmin'])->name('logoutAdmin');
+
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+
+    Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
+
 });
 

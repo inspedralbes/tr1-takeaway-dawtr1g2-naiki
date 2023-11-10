@@ -12,19 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('comandas', function (Blueprint $table) {
-            $table->integer('idComanda');
-            $table->integer("numItem");
+            $table->id();
             $table->string("usuari");
-            $table->string("marca");
-            $table->string("model");
-            $table->string("genere");
-            $table->string("talla");
-            $table->string("color");
-            $table->string("imatge");
-            $table->integer("quantitat");
             $table->string("estat");
-            $table->primary(['idComanda','numItem']);
-
+            $table->string("qr")->nullable();
             $table->timestamps();
 
         });
